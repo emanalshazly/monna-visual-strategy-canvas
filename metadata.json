@@ -1,0 +1,7 @@
+{
+  "name": "Visual Strategy Canvas Generator",
+  "description": "A strategy-canvas reference implementation with editable output, explicit evidence boundaries, and server-side AI providers.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
