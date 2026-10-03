@@ -1,0 +1,17 @@
+{
+  "kind": "slop-project-authority",
+  "policyRevision": "2026-10-03.1",
+  "projectId": "monna-visual-strategy-canvas",
+  "proposal": "https://github.com/SlopDotCash/slopdotcash/issues/513",
+  "repository": {
+    "fullName": "emanalshazly/monna-visual-strategy-canvas",
+    "id": "1367980137",
+    "integrationBranch": "main"
+  },
+  "schemaVersion": "1",
+  "steward": {
+    "actorId": "6705196",
+    "login": "emanalshazly",
+    "nodeId": "MDQ6VXNlcjY3MDUxOTY="
+  }
+}
