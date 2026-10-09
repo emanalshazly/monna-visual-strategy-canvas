@@ -41,14 +41,14 @@ const ControlsPanel: React.FC<ControlsPanelProps> = ({
     error,
 }) => {
     return (
-        <div className="w-full bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm p-6 rounded-xl shadow-enhanced border border-slate-200/50 dark:border-slate-700/50 flex flex-col space-y-6">
+        <div className="w-full bg-white/90 dark:bg-slate-800/90 backdrop-blur-xs p-6 rounded-xl shadow-enhanced border border-slate-200/50 dark:border-slate-700/50 flex flex-col space-y-6">
             <div>
                 <label htmlFor="canvas-type" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">1. Select Canvas Type</label>
                 <select
                     id="canvas-type"
                     value={canvasType}
                     onChange={(e) => setCanvasType(e.target.value as CanvasType)}
-                    className="w-full p-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-slate-50 dark:bg-slate-700 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all duration-200 shadow-sm hover:shadow-md"
+                    className="w-full p-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-slate-50 dark:bg-slate-700 focus:ring-2 focus:ring-blue-500 focus:outline-hidden transition-all duration-200 shadow-xs hover:shadow-md"
                 >
                     <option value={CanvasType.BUSINESS_MODEL_CANVAS}>Business Model Canvas</option>
                     <option value={CanvasType.PORTERS_FIVE_FORCES}>Porter's Five Forces</option>
@@ -56,7 +56,7 @@ const ControlsPanel: React.FC<ControlsPanelProps> = ({
                     <option value={CanvasType.VALUE_PROPOSITION_CANVAS}>Value Proposition Canvas</option>
                 </select>
                 <div className="mt-3 p-3 bg-slate-100 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700 rounded-lg text-sm text-slate-600 dark:text-slate-400 min-h-[60px] transition-all duration-300 flex items-start space-x-3">
-                    <InfoIcon className="h-5 w-5 flex-shrink-0 mt-0.5 text-slate-500" />
+                    <InfoIcon className="h-5 w-5 shrink-0 mt-0.5 text-slate-500" />
                     <span>{CANVAS_TEMPLATES[canvasType]?.description || 'Select a canvas to see its description.'}</span>
                 </div>
             </div>
@@ -66,7 +66,7 @@ const ControlsPanel: React.FC<ControlsPanelProps> = ({
                 <textarea
                     id="user-input"
                     rows={8}
-                    className="w-full p-4 border border-slate-300 dark:border-slate-600 rounded-lg bg-slate-50 dark:bg-slate-700 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all duration-200 shadow-sm hover:shadow-md custom-scrollbar resize-none"
+                    className="w-full p-4 border border-slate-300 dark:border-slate-600 rounded-lg bg-slate-50 dark:bg-slate-700 focus:ring-2 focus:ring-blue-500 focus:outline-hidden transition-all duration-200 shadow-xs hover:shadow-md custom-scrollbar resize-none"
                     placeholder="Describe your business idea, product, or strategy here..."
                     value={userInput}
                     onChange={(e) => setUserInput(e.target.value)}
@@ -145,7 +145,7 @@ const ControlsPanel: React.FC<ControlsPanelProps> = ({
             {error && (
                 <div role="alert" className="mt-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg animate-fade-in-up">
                     <div className="flex items-start">
-                        <div className="flex-shrink-0">
+                        <div className="shrink-0">
                             <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
                                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
                             </svg>

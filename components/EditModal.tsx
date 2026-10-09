@@ -45,7 +45,7 @@ const EditModal: React.FC<EditModalProps> = ({ isOpen, title, initialContent, on
         <div className="p-6">
           <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100 mb-4">Editing: {title}</h2>
           <textarea
-            className="w-full h-64 p-3 border border-slate-300 dark:border-slate-600 rounded-md bg-slate-50 dark:bg-slate-700 text-slate-800 dark:text-slate-200 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="w-full h-64 p-3 border border-slate-300 dark:border-slate-600 rounded-md bg-slate-50 dark:bg-slate-700 text-slate-800 dark:text-slate-200 focus:ring-2 focus:ring-blue-500 focus:outline-hidden"
             value={content}
             onChange={(e) => setContent(e.target.value)}
             placeholder="Enter your content here..."
