@@ -46,7 +46,7 @@ const SVGBlock: React.FC<{
                 <div className="w-full h-full flex flex-col text-slate-800 dark:text-slate-200">
                     <h3 className={`font-bold text-slate-800 dark:text-slate-100 mb-2 ${block.titleFontSize || 'text-lg'}`}>{block.title}</h3>
                     <p className="text-xs text-slate-500 dark:text-slate-400 mb-3 italic">{block.description}</p>
-                    <div className={`prose prose-sm dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 flex-grow overflow-y-auto ${block.contentFontSize || ''}`}>
+                    <div className={`prose prose-sm dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 grow overflow-y-auto ${block.contentFontSize || ''}`}>
                         {content ? (
                             content.split('\n').map((line, index) => <p key={index} className="my-1">{line.startsWith('- ') ? `• ${line.substring(2)}` : line}</p>)
                         ) : (

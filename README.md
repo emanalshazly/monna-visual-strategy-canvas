@@ -17,6 +17,9 @@ A reference implementation that turns a business description into an editable Bu
 
 Requires Node.js 22 and a Gemini or OpenAI API key.
 
+The Tailwind 4 stylesheet requires Safari 16.4+, Chrome 111+, or Firefox 128+.
+See the [official upgrade guide](https://tailwindcss.com/docs/upgrade-guide).
+
 ```bash
 npm ci
 # PowerShell: Copy-Item .env.example .env.local

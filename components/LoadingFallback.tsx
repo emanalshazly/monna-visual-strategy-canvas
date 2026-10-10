@@ -16,7 +16,7 @@ const LoadingFallback: React.FC<LoadingFallbackProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 bg-black/20 backdrop-blur-sm z-50 flex justify-center items-center">
+    <div className="fixed inset-0 bg-black/20 backdrop-blur-xs z-50 flex justify-center items-center">
       <div className="bg-white/90 dark:bg-slate-800/90 backdrop-blur-md rounded-2xl p-8 shadow-2xl border border-slate-200/50 dark:border-slate-700/50 flex flex-col items-center space-y-4">
         <div className="relative">
           <div className={`animate-spin rounded-full ${sizeClasses[size]} border-4 border-blue-200 dark:border-blue-900`}></div>

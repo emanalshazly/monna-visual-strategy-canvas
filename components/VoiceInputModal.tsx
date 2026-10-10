@@ -97,7 +97,7 @@ const VoiceInputModal: React.FC<VoiceInputModalProps> = ({ isOpen, onClose, onSa
     const confidencePercentage = (confidence * 100).toFixed(0);
 
     return (
-        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex justify-center items-center p-4 modal-backdrop" aria-modal="true" role="dialog">
+        <div className="fixed inset-0 bg-black/70 backdrop-blur-xs z-50 flex justify-center items-center p-4 modal-backdrop" aria-modal="true" role="dialog">
             <div className="bg-white/95 dark:bg-slate-800/95 backdrop-blur-md rounded-2xl shadow-2xl w-full max-w-4xl h-full max-h-[90vh] flex flex-col transform transition-all border border-slate-200/50 dark:border-slate-700/50">
                 <header className="p-4 border-b border-slate-200 dark:border-slate-700 flex justify-between items-center">
                     <h2 className="text-xl font-bold text-slate-800 dark:text-slate-100">Advanced Voice Input</h2>
@@ -118,14 +118,14 @@ const VoiceInputModal: React.FC<VoiceInputModalProps> = ({ isOpen, onClose, onSa
                         value={language}
                         onChange={(e) => setLanguage(e.target.value)}
                         disabled={isListening}
-                        className="mt-1 w-full md:w-1/2 p-2 border border-slate-300 dark:border-slate-600 rounded-md bg-white dark:bg-slate-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                        className="mt-1 w-full md:w-1/2 p-2 border border-slate-300 dark:border-slate-600 rounded-md bg-white dark:bg-slate-700 focus:ring-2 focus:ring-blue-500 focus:outline-hidden"
                     >
                         {LANGUAGES.map(lang => <option key={lang.code} value={lang.code}>{lang.name}</option>)}
                     </select>
                     <p className="text-xs text-slate-500 mt-1">Select your language before starting the recording.</p>
                 </div>
 
-                <main className="flex-grow p-6 flex flex-col">
+                <main className="grow p-6 flex flex-col">
                     <div className="relative w-full h-24 bg-gradient-to-r from-slate-100 to-slate-200 dark:from-slate-900/50 dark:to-slate-800/50 rounded-xl overflow-hidden mb-4 shadow-inner border border-slate-200/50 dark:border-slate-700/50">
                         <canvas ref={canvasRef} width="800" height="96" className="absolute top-0 left-0 w-full h-full waveform-canvas"></canvas>
                         {!isListening && (
@@ -135,7 +135,7 @@ const VoiceInputModal: React.FC<VoiceInputModalProps> = ({ isOpen, onClose, onSa
                         )}
                     </div>
                     <textarea
-                        className="w-full flex-grow p-3 border border-slate-300 dark:border-slate-600 rounded-md bg-slate-50 dark:bg-slate-700 text-slate-800 dark:text-slate-200 focus:ring-2 focus:ring-blue-500 focus:outline-none resize-none"
+                        className="w-full grow p-3 border border-slate-300 dark:border-slate-600 rounded-md bg-slate-50 dark:bg-slate-700 text-slate-800 dark:text-slate-200 focus:ring-2 focus:ring-blue-500 focus:outline-hidden resize-none"
                         value={fullTranscript}
                         onChange={(e) => setText(e.target.value)}
                         placeholder="Your transcribed text will appear here..."

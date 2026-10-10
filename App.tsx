@@ -185,7 +185,7 @@ const App: React.FC = () => {
 
     return (
         <div className="min-h-screen flex flex-col text-slate-800 dark:text-slate-200 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
-            <header className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm shadow-enhanced p-4 flex items-center justify-between sticky top-0 z-40 border-b border-slate-200/50 dark:border-slate-700/50">
+            <header className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xs shadow-enhanced p-4 flex items-center justify-between sticky top-0 z-40 border-b border-slate-200/50 dark:border-slate-700/50">
                 <div className="flex items-center space-x-3">
                     <div className="p-2 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 shadow-lg">
                         <BrainCircuitIcon className="h-8 w-8 text-white"/>
@@ -209,7 +209,7 @@ const App: React.FC = () => {
                 </button>
             </header>
             
-            <main className="flex-grow flex flex-col md:flex-row p-4 gap-4">
+            <main className="grow flex flex-col md:flex-row p-4 gap-4">
                 <div className="w-full md:w-1/3 lg:w-1/4 flex flex-col gap-4 self-start md:sticky md:top-24">
                     <ControlsPanel
                         canvasType={canvasType}
@@ -273,7 +273,7 @@ const App: React.FC = () => {
 
             {/* A/B Test Dashboard Modal */}
             {showABTestDashboard && (
-                <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 overflow-y-auto">
+                <div className="fixed inset-0 bg-black/50 backdrop-blur-xs z-50 overflow-y-auto">
                     <div className="min-h-screen px-4 py-8">
                         <div className="max-w-7xl mx-auto bg-white dark:bg-gray-900 rounded-lg shadow-2xl">
                             <div className="sticky top-0 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 px-6 py-4 flex justify-between items-center rounded-t-lg z-10">
