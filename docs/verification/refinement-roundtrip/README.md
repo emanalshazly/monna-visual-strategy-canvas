@@ -55,3 +55,15 @@ audit **fails** with the existing, unchanged lockfile's advisories; see
 `validation.json` for severity counts and the lockfile digest. No dependency
 change or hosted CI success is claimed. Other open generation, storage,
 editing-race and export-style PRs are separate outcomes.
+
+## Required-runtime follow-up
+
+The same committed code (`8c0dc39934609fcb8d883b2275239584bd07c1a1`)
+was also checked on Windows with **Node 22.23.4**. Secret checks, type checking,
+lint, all 17 tests, both builds and all six E2E cases pass. The complete E2E
+command was `npm run test:e2e -- --config ../.tools/visual-playwright.config.ts`,
+using the same documented local Chromium launcher. The dependency audit still
+fails on the unchanged lockfile. `node22-verification.json` records the checks,
+official runtime archive digest, tested source hashes and completed download
+hashes. The committed before/after media remains from the initial Node 24 run;
+this follow-up adds a runtime check without changing product code.
