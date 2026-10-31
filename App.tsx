@@ -35,7 +35,6 @@ const App: React.FC = () => {
         handleEditBlock,
         handleSaveEdit,
         handleCloseModal,
-        clearCanvas,
     } = useCanvas(CanvasType.BUSINESS_MODEL_CANVAS);
 
     const { trackEvent } = useAnalytics();
@@ -61,8 +60,8 @@ const App: React.FC = () => {
         }
         setError('');
         setIsLoading(true);
-        clearCanvas();
-        setAnalysisFeedback(null);
+        // Keep the last completed canvas and its analysis until a replacement
+        // succeeds. Cancellation or failure must not discard the user's edits.
         const controller = new AbortController();
         activeRequestRef.current = controller;
 
@@ -107,7 +106,7 @@ const App: React.FC = () => {
             activeRequestRef.current = null;
             setIsLoading(false);
         }
-    }, [userInput, fileContent, image, canvasType, setCanvasData, clearCanvas, trackEvent, isLoading]);
+    }, [userInput, fileContent, image, canvasType, setCanvasData, trackEvent, isLoading]);
 
     const handleCancel = useCallback(() => {
         activeRequestRef.current?.abort();
@@ -224,12 +223,12 @@ const App: React.FC = () => {
                         handleGenerate={handleGenerate}
                         onCancel={handleCancel}
                         isLoading={isLoading}
-                        isCanvasPopulated={Object.keys(canvasData).length > 0}
+                        isCanvasPopulated={!isLoading && Object.keys(canvasData).length > 0}
                         onExport={() => setIsExportModalOpen(true)}
                         onOpenVoiceModal={() => setIsVoiceModalOpen(true)}
                         error={error}
                     />
-                    {analysisFeedback && (
+                    {!isLoading && analysisFeedback && (
                         <AnalysisPanel 
                             analysis={analysisFeedback} 
                             onDismiss={() => setAnalysisFeedback(null)} 
