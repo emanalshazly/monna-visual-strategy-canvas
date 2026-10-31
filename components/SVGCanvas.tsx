@@ -83,8 +83,7 @@ const SVGCanvas: React.FC<SVGCanvasProps> = ({ template, data, onEditBlock }) =>
                 const y1 = (deco.from.y / 100) * viewBoxHeight;
                 const x2 = (deco.to.x / 100) * viewBoxWidth;
                 const y2 = (deco.to.y / 100) * viewBoxHeight;
-                const y2Adjusted = deco.to.y > deco.from.y ? y2 - (viewBoxHeight * 0.22) : y2; // quick adjustment
-                 return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2Adjusted} className="stroke-current text-slate-400 dark:text-slate-600" strokeWidth="2" markerEnd="url(#arrowhead)" />;
+                 return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} className="stroke-current text-slate-400 dark:text-slate-600" strokeWidth="2" markerEnd="url(#arrowhead)" />;
             }
              if (deco.type === 'text' && deco.text) {
                  return <text key={i} x={`${deco.x}%`} y={deco.y || 30} textAnchor="middle" className="fill-current text-slate-600 dark:text-slate-400" fontSize={deco.fontSize} fontWeight={deco.fontWeight}>{deco.text}</text>
