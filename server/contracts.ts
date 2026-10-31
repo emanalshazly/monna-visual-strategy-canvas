@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+export const REFINEMENT_TEXT_LIMIT = 20_000;
+
 export const canvasTypeSchema = z.enum([
   'BUSINESS_MODEL_CANVAS',
   'PORTERS_FIVE_FORCES',
@@ -23,7 +25,7 @@ export const generateInputSchema = z.object({
 export const refineInputSchema = z.object({
   action: z.literal('refine'),
   blockTitle: z.string().trim().min(1).max(200),
-  currentContent: z.string().max(10_000),
+  currentContent: z.string().max(REFINEMENT_TEXT_LIMIT),
   originalUserInput: z.string().max(10_000),
 }).strict();
 

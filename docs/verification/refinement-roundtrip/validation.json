@@ -1,0 +1,56 @@
+{
+  "base": "61a2067cce2d658094be73caaea2e05c67c4f63a",
+  "date": "2026-10-31",
+  "os": "Windows",
+  "node": "24.15.0",
+  "playwright": "1.62.1",
+  "chromium": "156.0.8078.4",
+  "provider": "fake (real local Fastify gateway, no live model request)",
+  "live_provider_checks": "NOT RUN",
+  "before": {
+    "initial_characters": 10000,
+    "first_response_characters": 10009,
+    "first_status": 200,
+    "second_status": 400,
+    "browser_cases_failed": 2
+  },
+  "after": {
+    "second_response_characters": 10018,
+    "second_status": 200,
+    "browser_cases_passed": 2,
+    "artifact": "completed SVG downloads parsed as XML; all four SWOT blocks and exact twice-refined text retained"
+  },
+  "checks": {
+    "check:secrets": "PASS",
+    "type-check": "PASS",
+    "lint": "PASS",
+    "test": {
+      "result": "PASS",
+      "files": 6,
+      "tests": 17
+    },
+    "build": "PASS",
+    "test:e2e": {
+      "result": "PASS",
+      "tests": 6,
+      "desktop_and_mobile_viewports": [
+        1280,
+        393
+      ]
+    },
+    "npm audit --audit-level=high": {
+      "result": "FAIL (unchanged dependencies)",
+      "vulnerabilities": {
+        "info": 0,
+        "low": 1,
+        "moderate": 18,
+        "high": 2,
+        "critical": 1,
+        "total": 22
+      }
+    }
+  },
+  "package_lock_sha256": "59c0103c491f87347fb658c91d281258a6ebd530e80378e452f653e8ff0dca6f",
+  "test_launcher": "Local override uses existing Chromium 1248, localhost:3108, video enabled and reuseExistingServer=false; repository test cases are unchanged except the new regression file.",
+  "hosted_ci_claimed": false
+}

@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto';
 import Fastify from 'fastify';
 import { CANVAS_TEMPLATES } from '../constants.js';
-import { analysisRequestSchema, generationResultSchema, type AnalysisProvider, type GenerationResult } from './contracts.js';
+import { analysisRequestSchema, generationResultSchema, REFINEMENT_TEXT_LIMIT, type AnalysisProvider, type GenerationResult } from './contracts.js';
 
 type AppOptions = {
   provider: AnalysisProvider;
@@ -73,6 +73,6 @@ export function buildApp({ provider, maxRequests = 20, windowMs = 60_000, timeou
 }
 
 function zText(value: unknown) {
-  if (typeof value !== 'string' || value.trim().length === 0 || value.length > 20_000) throw new Error('invalid_provider_output');
+  if (typeof value !== 'string' || value.trim().length === 0 || value.length > REFINEMENT_TEXT_LIMIT) throw new Error('invalid_provider_output');
   return value;
 }
