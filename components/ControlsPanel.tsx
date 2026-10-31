@@ -16,6 +16,7 @@ interface ControlsPanelProps {
     handleGenerate: () => void;
     onCancel: () => void;
     isLoading: boolean;
+    isReadingContext: boolean;
     isCanvasPopulated: boolean;
     onExport: () => void;
     onOpenVoiceModal: () => void;
@@ -35,6 +36,7 @@ const ControlsPanel: React.FC<ControlsPanelProps> = ({
     handleGenerate,
     onCancel,
     isLoading,
+    isReadingContext,
     isCanvasPopulated,
     onExport,
     onOpenVoiceModal,
@@ -108,7 +110,7 @@ const ControlsPanel: React.FC<ControlsPanelProps> = ({
             
             <button
                 onClick={handleGenerate}
-                disabled={isLoading || !userInput.trim()}
+                disabled={isLoading || isReadingContext || !userInput.trim()}
                 className="w-full btn-primary text-white font-bold py-4 px-6 rounded-xl hover:shadow-xl disabled:bg-slate-400 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center text-lg shadow-enhanced-hover"
             >
                 <BrainCircuitIcon className="h-6 w-6 mr-3" />
@@ -118,7 +120,7 @@ const ControlsPanel: React.FC<ControlsPanelProps> = ({
                         Generating Canvas...
                     </>
                 ) : (
-                    'Generate Canvas'
+                    isReadingContext ? 'Reading attachments...' : 'Generate Canvas'
                 )}
             </button>
 

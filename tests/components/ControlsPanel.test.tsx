@@ -19,6 +19,7 @@ const defaultProps = {
   handleGenerate: vi.fn(),
   onCancel: vi.fn(),
   isLoading: false,
+  isReadingContext: false,
   isCanvasPopulated: false,
   onExport: vi.fn(),
   onOpenVoiceModal: vi.fn(),

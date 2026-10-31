@@ -1,0 +1,1319 @@
+{
+  "schemaVersion": 1,
+  "base": "61a2067cce2d658094be73caaea2e05c67c4f63a",
+  "runtime": {
+    "node": "24.3.0",
+    "bun": "1.4.4",
+    "playwright": "1.62.1",
+    "chromium": "151.0.7922.34",
+    "platform": "macOS15.7.7 arm64"
+  },
+  "method": {
+    "fileIO": "Actual FileReader operations on fictional files selected via native input; actual trusted onload callbacks gated for deterministic order, actual native abort for recovery",
+    "gateway": "actual local Fastify/fake-provider HTTP200 requests; receipt cache state retained",
+    "modelQuality": "NOT RUN/claimed; provider canned output does not establish that strategy content used the context",
+    "artifact": "Manually saved fictional edit verified in actual downloaded SVG XML; nine blocks; no paint claim",
+    "mocks": "No file bytes or provider responses fabricated. Native read/callback wrappers explicitly inject scheduling and cancellation."
+  },
+  "runs": {
+    "before": {
+      "stats": {
+        "startTime": "2026-10-31T05:13:32.445Z",
+        "duration": 13695.897,
+        "expected": 2,
+        "skipped": 0,
+        "unexpected": 8,
+        "flaky": 0
+      },
+      "attachmentWorkflows": [
+        {
+          "scenario": {
+            "name": "a rejected document selection keeps its error and ignores the older read",
+            "kind": "document",
+            "action": "reject"
+          },
+          "expectedDocument": "",
+          "expectedImage": null,
+          "prematurelyEnabled": null,
+          "prematureRequest": null,
+          "errorAfterRelease": null,
+          "abortError": null,
+          "actual": {
+            "submitted": {
+              "action": "generate",
+              "canvasType": "BUSINESS_MODEL_CANVAS",
+              "userInput": "A fictional bicycle cooperative offering repairs and shared tools.",
+              "fileContent": "Fictional OLD document: bicycle sales only."
+            },
+            "receipt": {
+              "requestId": "req-19",
+              "provider": "fake",
+              "cached": true,
+              "durationMs": 0
+            }
+          },
+          "nativeReads": [
+            {
+              "name": "hold-old.txt",
+              "trusted": true,
+              "resultLength": 43
+            }
+          ],
+          "nativeAborts": [],
+          "artifact": {
+            "bytes": 35811,
+            "filename": "Business_Model_Canvas.svg",
+            "errors": 0,
+            "namespace": "http://www.w3.org/2000/svg",
+            "blockCount": 9,
+            "partners": "Fictional attachment check: \"current context\" & <shared tools>.",
+            "sha256": "b56557de991b3d1bfbd942c69c1810940731cbc8012bd14133a405833bc83ed7"
+          },
+          "inputFiles": {
+            "hold-old.txt": {
+              "bytes": 43,
+              "sha256": "a4f7db5f31b8b392641d41350e8f3c1e2ef60ee7acebc605e2d1e9599fcd2b1c"
+            },
+            "test-failed-1.png": {
+              "bytes": 202362,
+              "sha256": "b8fbc4bb1ea9de4c4da351be03d1a67ed3fe8182a980c2c9bd82ad9b810f6045"
+            },
+            "unsupported.pdf": {
+              "bytes": 33,
+              "sha256": "a6ac8cd30a0b226f2f6ae25f58ae67a938a9f92061b3bd2d871a99d99d43932e"
+            }
+          }
+        },
+        {
+          "scenario": {
+            "name": "an aborted document read reports failure and can recover",
+            "kind": "document",
+            "action": "abort"
+          },
+          "expectedDocument": "Fictional NEW document: weekly bicycle repairs and shared tools.",
+          "expectedImage": null,
+          "prematurelyEnabled": null,
+          "prematureRequest": null,
+          "errorAfterRelease": null,
+          "abortError": null,
+          "actual": {
+            "submitted": {
+              "action": "generate",
+              "canvasType": "BUSINESS_MODEL_CANVAS",
+              "userInput": "A fictional bicycle cooperative offering repairs and shared tools.",
+              "fileContent": "Fictional NEW document: weekly bicycle repairs and shared tools."
+            },
+            "receipt": {
+              "requestId": "req-1g",
+              "provider": "fake",
+              "cached": false,
+              "durationMs": 0
+            }
+          },
+          "nativeReads": [
+            {
+              "name": "new.txt",
+              "trusted": true,
+              "resultLength": 64
+            }
+          ],
+          "nativeAborts": [
+            {
+              "name": "abort-old.txt",
+              "before": 1,
+              "after": 2
+            }
+          ],
+          "artifact": {
+            "bytes": 35811,
+            "filename": "Business_Model_Canvas.svg",
+            "errors": 0,
+            "namespace": "http://www.w3.org/2000/svg",
+            "blockCount": 9,
+            "partners": "Fictional attachment check: \"current context\" & <shared tools>.",
+            "sha256": "ed3d32f9864f8e8ed062160cc65176a2e22d5876dc905144efaba2a702441399"
+          },
+          "inputFiles": {
+            "abort-old.txt": {
+              "bytes": 43,
+              "sha256": "a4f7db5f31b8b392641d41350e8f3c1e2ef60ee7acebc605e2d1e9599fcd2b1c"
+            },
+            "new.txt": {
+              "bytes": 64,
+              "sha256": "55a60340041893817a1f669d6a601298bb48c5ad1755785df47cc491a5a2c282"
+            },
+            "test-failed-1.png": {
+              "bytes": 201616,
+              "sha256": "9af3d4d6f44ba413e4c6583734ff78e766df46a617e1987893d6545ec3ce3b66"
+            }
+          }
+        },
+        {
+          "scenario": {
+            "name": "an aborted image read reports failure and can recover",
+            "kind": "image",
+            "action": "abort"
+          },
+          "expectedDocument": "",
+          "expectedImage": {
+            "data": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGPgEvkAAAE6AQ9sjS6hAAAAAElFTkSuQmCC",
+            "mimeType": "image/png"
+          },
+          "prematurelyEnabled": null,
+          "prematureRequest": null,
+          "errorAfterRelease": null,
+          "abortError": null,
+          "actual": {
+            "submitted": {
+              "action": "generate",
+              "canvasType": "BUSINESS_MODEL_CANVAS",
+              "userInput": "A fictional bicycle cooperative offering repairs and shared tools.",
+              "fileContent": "",
+              "image": {
+                "data": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGPgEvkAAAE6AQ9sjS6hAAAAAElFTkSuQmCC",
+                "mimeType": "image/png"
+              }
+            },
+            "receipt": {
+              "requestId": "req-1n",
+              "provider": "fake",
+              "cached": false,
+              "durationMs": 0
+            }
+          },
+          "nativeReads": [
+            {
+              "name": "new.png",
+              "trusted": true,
+              "resultLength": 114
+            }
+          ],
+          "nativeAborts": [
+            {
+              "name": "abort-old.png",
+              "before": 1,
+              "after": 2
+            }
+          ],
+          "artifact": {
+            "bytes": 35839,
+            "filename": "Business_Model_Canvas.svg",
+            "errors": 0,
+            "namespace": "http://www.w3.org/2000/svg",
+            "blockCount": 9,
+            "partners": "Fictional attachment check: \"current context\" & <shared tools>.",
+            "sha256": "b794b38ecd23242f62eaf21d2c794230b3910f5e596336492bd3faa31669da93"
+          },
+          "inputFiles": {
+            "abort-old.png": {
+              "bytes": 69,
+              "sha256": "74ca9e03e84a04a3b13e434c2ac371e6f2e0620b27bf09add51cc7ae86859326"
+            },
+            "new.png": {
+              "bytes": 69,
+              "sha256": "ca2fdb2532fa9f980b5557a6ce4e9e7d76cc152074a8fcea9088bdda02dc867f"
+            },
+            "test-failed-1.png": {
+              "bytes": 184465,
+              "sha256": "9127189c2c0f173cab9e706f4104191e8ffe4cb91a7a565a4c9ed92c14149c58"
+            }
+          }
+        },
+        {
+          "scenario": {
+            "name": "generation waits for its document",
+            "kind": "document",
+            "action": "pending"
+          },
+          "expectedDocument": "Fictional OLD document: bicycle sales only.",
+          "expectedImage": null,
+          "prematurelyEnabled": true,
+          "prematureRequest": {
+            "submitted": {
+              "action": "generate",
+              "canvasType": "BUSINESS_MODEL_CANVAS",
+              "userInput": "A fictional bicycle cooperative offering repairs and shared tools.",
+              "fileContent": ""
+            },
+            "receipt": {
+              "requestId": "req-t",
+              "provider": "fake",
+              "cached": false,
+              "durationMs": 0
+            }
+          },
+          "errorAfterRelease": null,
+          "abortError": null,
+          "actual": {
+            "submitted": {
+              "action": "generate",
+              "canvasType": "BUSINESS_MODEL_CANVAS",
+              "userInput": "A fictional bicycle cooperative offering repairs and shared tools.",
+              "fileContent": "Fictional OLD document: bicycle sales only."
+            },
+            "receipt": {
+              "requestId": "req-u",
+              "provider": "fake",
+              "cached": true,
+              "durationMs": 0
+            }
+          },
+          "nativeReads": [
+            {
+              "name": "hold-old.txt",
+              "trusted": true,
+              "resultLength": 43
+            }
+          ],
+          "nativeAborts": [],
+          "artifact": {
+            "bytes": 35811,
+            "filename": "Business_Model_Canvas.svg",
+            "errors": 0,
+            "namespace": "http://www.w3.org/2000/svg",
+            "blockCount": 9,
+            "partners": "Fictional attachment check: \"current context\" & <shared tools>.",
+            "sha256": "b56557de991b3d1bfbd942c69c1810940731cbc8012bd14133a405833bc83ed7"
+          },
+          "inputFiles": {
+            "hold-old.txt": {
+              "bytes": 43,
+              "sha256": "a4f7db5f31b8b392641d41350e8f3c1e2ef60ee7acebc605e2d1e9599fcd2b1c"
+            },
+            "test-failed-1.png": {
+              "bytes": 198712,
+              "sha256": "08f5f81a97a345896089555744728b98c2a14bb84017f1040561a4c9f9f7ed07"
+            }
+          }
+        },
+        {
+          "scenario": {
+            "name": "generation waits for its image",
+            "kind": "image",
+            "action": "pending"
+          },
+          "expectedDocument": "",
+          "expectedImage": {
+            "data": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP4wCUCAAL8AQ+ZkTKPAAAAAElFTkSuQmCC",
+            "mimeType": "image/png"
+          },
+          "prematurelyEnabled": true,
+          "prematureRequest": {
+            "submitted": {
+              "action": "generate",
+              "canvasType": "BUSINESS_MODEL_CANVAS",
+              "userInput": "A fictional bicycle cooperative offering repairs and shared tools.",
+              "fileContent": ""
+            },
+            "receipt": {
+              "requestId": "req-11",
+              "provider": "fake",
+              "cached": true,
+              "durationMs": 0
+            }
+          },
+          "errorAfterRelease": null,
+          "abortError": null,
+          "actual": {
+            "submitted": {
+              "action": "generate",
+              "canvasType": "BUSINESS_MODEL_CANVAS",
+              "userInput": "A fictional bicycle cooperative offering repairs and shared tools.",
+              "fileContent": "",
+              "image": {
+                "data": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP4wCUCAAL8AQ+ZkTKPAAAAAElFTkSuQmCC",
+                "mimeType": "image/png"
+              }
+            },
+            "receipt": {
+              "requestId": "req-12",
+              "provider": "fake",
+              "cached": true,
+              "durationMs": 0
+            }
+          },
+          "nativeReads": [
+            {
+              "name": "hold-old.png",
+              "trusted": true,
+              "resultLength": 114
+            }
+          ],
+          "nativeAborts": [],
+          "artifact": {
+            "bytes": 35839,
+            "filename": "Business_Model_Canvas.svg",
+            "errors": 0,
+            "namespace": "http://www.w3.org/2000/svg",
+            "blockCount": 9,
+            "partners": "Fictional attachment check: \"current context\" & <shared tools>.",
+            "sha256": "aefa352f70373d2d31ba62fb62430116dcce0ff3532a65bf132f6fdd266c60d7"
+          },
+          "inputFiles": {
+            "hold-old.png": {
+              "bytes": 69,
+              "sha256": "74ca9e03e84a04a3b13e434c2ac371e6f2e0620b27bf09add51cc7ae86859326"
+            },
+            "test-failed-1.png": {
+              "bytes": 180180,
+              "sha256": "d44033d479172e099e867f151d72b302a6d139693b81bece2a21822239e25e78"
+            }
+          }
+        },
+        {
+          "scenario": {
+            "name": "latest document wins",
+            "kind": "document",
+            "action": "reorder"
+          },
+          "expectedDocument": "Fictional NEW document: weekly bicycle repairs and shared tools.",
+          "expectedImage": null,
+          "prematurelyEnabled": null,
+          "prematureRequest": null,
+          "errorAfterRelease": null,
+          "abortError": null,
+          "actual": {
+            "submitted": {
+              "action": "generate",
+              "canvasType": "BUSINESS_MODEL_CANVAS",
+              "userInput": "A fictional bicycle cooperative offering repairs and shared tools.",
+              "fileContent": "Fictional OLD document: bicycle sales only."
+            },
+            "receipt": {
+              "requestId": "req-8",
+              "provider": "fake",
+              "cached": false,
+              "durationMs": 2
+            }
+          },
+          "nativeReads": [
+            {
+              "name": "hold-old.txt",
+              "trusted": true,
+              "resultLength": 43
+            },
+            {
+              "name": "new.txt",
+              "trusted": true,
+              "resultLength": 64
+            }
+          ],
+          "nativeAborts": [],
+          "artifact": {
+            "bytes": 35811,
+            "filename": "Business_Model_Canvas.svg",
+            "errors": 0,
+            "namespace": "http://www.w3.org/2000/svg",
+            "blockCount": 9,
+            "partners": "Fictional attachment check: \"current context\" & <shared tools>.",
+            "sha256": "b56557de991b3d1bfbd942c69c1810940731cbc8012bd14133a405833bc83ed7"
+          },
+          "inputFiles": {
+            "hold-old.txt": {
+              "bytes": 43,
+              "sha256": "a4f7db5f31b8b392641d41350e8f3c1e2ef60ee7acebc605e2d1e9599fcd2b1c"
+            },
+            "new.txt": {
+              "bytes": 64,
+              "sha256": "55a60340041893817a1f669d6a601298bb48c5ad1755785df47cc491a5a2c282"
+            },
+            "test-failed-1.png": {
+              "bytes": 201876,
+              "sha256": "c78ff14826d020db7164bef9e7a40974977c453d8caa51233db8034dcf4a0c35"
+            }
+          }
+        },
+        {
+          "scenario": {
+            "name": "latest image wins",
+            "kind": "image",
+            "action": "reorder"
+          },
+          "expectedDocument": "",
+          "expectedImage": {
+            "data": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGPgEvkAAAE6AQ9sjS6hAAAAAElFTkSuQmCC",
+            "mimeType": "image/png"
+          },
+          "prematurelyEnabled": null,
+          "prematureRequest": null,
+          "errorAfterRelease": null,
+          "abortError": null,
+          "actual": {
+            "submitted": {
+              "action": "generate",
+              "canvasType": "BUSINESS_MODEL_CANVAS",
+              "userInput": "A fictional bicycle cooperative offering repairs and shared tools.",
+              "fileContent": "",
+              "image": {
+                "data": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP4wCUCAAL8AQ+ZkTKPAAAAAElFTkSuQmCC",
+                "mimeType": "image/png"
+              }
+            },
+            "receipt": {
+              "requestId": "req-f",
+              "provider": "fake",
+              "cached": false,
+              "durationMs": 0
+            }
+          },
+          "nativeReads": [
+            {
+              "name": "hold-old.png",
+              "trusted": true,
+              "resultLength": 114
+            },
+            {
+              "name": "new.png",
+              "trusted": true,
+              "resultLength": 114
+            }
+          ],
+          "nativeAborts": [],
+          "artifact": {
+            "bytes": 35839,
+            "filename": "Business_Model_Canvas.svg",
+            "errors": 0,
+            "namespace": "http://www.w3.org/2000/svg",
+            "blockCount": 9,
+            "partners": "Fictional attachment check: \"current context\" & <shared tools>.",
+            "sha256": "d101dbb150d831709f6b3c7fb23a4e4240e2d344e366f346817afe04f5311eaa"
+          },
+          "inputFiles": {
+            "hold-old.png": {
+              "bytes": 69,
+              "sha256": "74ca9e03e84a04a3b13e434c2ac371e6f2e0620b27bf09add51cc7ae86859326"
+            },
+            "new.png": {
+              "bytes": 69,
+              "sha256": "ca2fdb2532fa9f980b5557a6ce4e9e7d76cc152074a8fcea9088bdda02dc867f"
+            },
+            "test-failed-1.png": {
+              "bytes": 184963,
+              "sha256": "31c3f68c0312f3aea7393e436092cc2e306db50390fa69b506681da1d384f3da"
+            }
+          }
+        },
+        {
+          "scenario": {
+            "name": "ordinary document read remains usable",
+            "kind": "document",
+            "action": "normal"
+          },
+          "expectedDocument": "Fictional NEW document: weekly bicycle repairs and shared tools.",
+          "expectedImage": null,
+          "prematurelyEnabled": null,
+          "prematureRequest": null,
+          "errorAfterRelease": null,
+          "abortError": null,
+          "actual": {
+            "submitted": {
+              "action": "generate",
+              "canvasType": "BUSINESS_MODEL_CANVAS",
+              "userInput": "A fictional bicycle cooperative offering repairs and shared tools.",
+              "fileContent": "Fictional NEW document: weekly bicycle repairs and shared tools."
+            },
+            "receipt": {
+              "requestId": "req-1u",
+              "provider": "fake",
+              "cached": true,
+              "durationMs": 0
+            }
+          },
+          "nativeReads": [
+            {
+              "name": "new.txt",
+              "trusted": true,
+              "resultLength": 64
+            }
+          ],
+          "nativeAborts": [],
+          "artifact": {
+            "bytes": 35811,
+            "filename": "Business_Model_Canvas.svg",
+            "errors": 0,
+            "namespace": "http://www.w3.org/2000/svg",
+            "blockCount": 9,
+            "partners": "Fictional attachment check: \"current context\" & <shared tools>.",
+            "sha256": "b56557de991b3d1bfbd942c69c1810940731cbc8012bd14133a405833bc83ed7"
+          },
+          "inputFiles": {
+            "new.txt": {
+              "bytes": 64,
+              "sha256": "55a60340041893817a1f669d6a601298bb48c5ad1755785df47cc491a5a2c282"
+            }
+          }
+        },
+        {
+          "scenario": {
+            "name": "ordinary image read remains usable",
+            "kind": "image",
+            "action": "normal"
+          },
+          "expectedDocument": "",
+          "expectedImage": {
+            "data": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGPgEvkAAAE6AQ9sjS6hAAAAAElFTkSuQmCC",
+            "mimeType": "image/png"
+          },
+          "prematurelyEnabled": null,
+          "prematureRequest": null,
+          "errorAfterRelease": null,
+          "abortError": null,
+          "actual": {
+            "submitted": {
+              "action": "generate",
+              "canvasType": "BUSINESS_MODEL_CANVAS",
+              "userInput": "A fictional bicycle cooperative offering repairs and shared tools.",
+              "fileContent": "",
+              "image": {
+                "data": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGPgEvkAAAE6AQ9sjS6hAAAAAElFTkSuQmCC",
+                "mimeType": "image/png"
+              }
+            },
+            "receipt": {
+              "requestId": "req-21",
+              "provider": "fake",
+              "cached": true,
+              "durationMs": 0
+            }
+          },
+          "nativeReads": [
+            {
+              "name": "new.png",
+              "trusted": true,
+              "resultLength": 114
+            }
+          ],
+          "nativeAborts": [],
+          "artifact": {
+            "bytes": 35839,
+            "filename": "Business_Model_Canvas.svg",
+            "errors": 0,
+            "namespace": "http://www.w3.org/2000/svg",
+            "blockCount": 9,
+            "partners": "Fictional attachment check: \"current context\" & <shared tools>.",
+            "sha256": "5bb89d8e9f12521c7f30e38162f267a632309f9e23561ec09a364000141211cd"
+          },
+          "inputFiles": {
+            "new.png": {
+              "bytes": 69,
+              "sha256": "ca2fdb2532fa9f980b5557a6ce4e9e7d76cc152074a8fcea9088bdda02dc867f"
+            }
+          }
+        },
+        {
+          "scenario": {
+            "name": "removal invalidates an older image read",
+            "kind": "image",
+            "action": "remove"
+          },
+          "expectedDocument": "",
+          "expectedImage": null,
+          "prematurelyEnabled": null,
+          "prematureRequest": null,
+          "errorAfterRelease": null,
+          "abortError": null,
+          "actual": {
+            "submitted": {
+              "action": "generate",
+              "canvasType": "BUSINESS_MODEL_CANVAS",
+              "userInput": "A fictional bicycle cooperative offering repairs and shared tools.",
+              "fileContent": "",
+              "image": {
+                "data": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP4wCUCAAL8AQ+ZkTKPAAAAAElFTkSuQmCC",
+                "mimeType": "image/png"
+              }
+            },
+            "receipt": {
+              "requestId": "req-m",
+              "provider": "fake",
+              "cached": true,
+              "durationMs": 0
+            }
+          },
+          "nativeReads": [
+            {
+              "name": "hold-old.png",
+              "trusted": true,
+              "resultLength": 114
+            },
+            {
+              "name": "new.png",
+              "trusted": true,
+              "resultLength": 114
+            }
+          ],
+          "nativeAborts": [],
+          "artifact": {
+            "bytes": 35839,
+            "filename": "Business_Model_Canvas.svg",
+            "errors": 0,
+            "namespace": "http://www.w3.org/2000/svg",
+            "blockCount": 9,
+            "partners": "Fictional attachment check: \"current context\" & <shared tools>.",
+            "sha256": "d101dbb150d831709f6b3c7fb23a4e4240e2d344e366f346817afe04f5311eaa"
+          },
+          "inputFiles": {
+            "hold-old.png": {
+              "bytes": 69,
+              "sha256": "74ca9e03e84a04a3b13e434c2ac371e6f2e0620b27bf09add51cc7ae86859326"
+            },
+            "new.png": {
+              "bytes": 69,
+              "sha256": "ca2fdb2532fa9f980b5557a6ce4e9e7d76cc152074a8fcea9088bdda02dc867f"
+            },
+            "test-failed-1.png": {
+              "bytes": 184108,
+              "sha256": "668d6b852fcaddefb4f8ea73d85d91b5f7fceb9c6c2468ab56cbc5f82db78502"
+            }
+          }
+        }
+      ]
+    },
+    "after": {
+      "stats": {
+        "startTime": "2026-10-31T05:13:46.439Z",
+        "duration": 12056.036,
+        "expected": 14,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "attachmentWorkflows": [
+        {
+          "scenario": {
+            "name": "a rejected document selection keeps its error and ignores the older read",
+            "kind": "document",
+            "action": "reject"
+          },
+          "expectedDocument": "",
+          "expectedImage": null,
+          "prematurelyEnabled": null,
+          "prematureRequest": null,
+          "errorAfterRelease": "ErrorOnly plain-text documents are supported.",
+          "abortError": null,
+          "actual": {
+            "submitted": {
+              "action": "generate",
+              "canvasType": "BUSINESS_MODEL_CANVAS",
+              "userInput": "A fictional bicycle cooperative offering repairs and shared tools.",
+              "fileContent": ""
+            },
+            "receipt": {
+              "requestId": "req-17",
+              "provider": "fake",
+              "cached": true,
+              "durationMs": 0
+            }
+          },
+          "nativeReads": [
+            {
+              "name": "hold-old.txt",
+              "trusted": true,
+              "resultLength": 43
+            }
+          ],
+          "nativeAborts": [],
+          "artifact": {
+            "bytes": 35811,
+            "filename": "Business_Model_Canvas.svg",
+            "errors": 0,
+            "namespace": "http://www.w3.org/2000/svg",
+            "blockCount": 9,
+            "partners": "Fictional attachment check: \"current context\" & <shared tools>.",
+            "sha256": "3048eafcde4e32a65babe552d04f010e5e05a404c3c7f638d00e0ca39d9555c2"
+          },
+          "inputFiles": {
+            "hold-old.txt": {
+              "bytes": 43,
+              "sha256": "a4f7db5f31b8b392641d41350e8f3c1e2ef60ee7acebc605e2d1e9599fcd2b1c"
+            },
+            "unsupported.pdf": {
+              "bytes": 33,
+              "sha256": "a6ac8cd30a0b226f2f6ae25f58ae67a938a9f92061b3bd2d871a99d99d43932e"
+            }
+          }
+        },
+        {
+          "scenario": {
+            "name": "an aborted document read reports failure and can recover",
+            "kind": "document",
+            "action": "abort"
+          },
+          "expectedDocument": "Fictional NEW document: weekly bicycle repairs and shared tools.",
+          "expectedImage": null,
+          "prematurelyEnabled": null,
+          "prematureRequest": null,
+          "errorAfterRelease": null,
+          "abortError": "ErrorThe text document could not be read. Please try again.",
+          "actual": {
+            "submitted": {
+              "action": "generate",
+              "canvasType": "BUSINESS_MODEL_CANVAS",
+              "userInput": "A fictional bicycle cooperative offering repairs and shared tools.",
+              "fileContent": "Fictional NEW document: weekly bicycle repairs and shared tools."
+            },
+            "receipt": {
+              "requestId": "req-1e",
+              "provider": "fake",
+              "cached": true,
+              "durationMs": 0
+            }
+          },
+          "nativeReads": [
+            {
+              "name": "new.txt",
+              "trusted": true,
+              "resultLength": 64
+            }
+          ],
+          "nativeAborts": [
+            {
+              "name": "abort-old.txt",
+              "before": 1,
+              "after": 2
+            }
+          ],
+          "artifact": {
+            "bytes": 35811,
+            "filename": "Business_Model_Canvas.svg",
+            "errors": 0,
+            "namespace": "http://www.w3.org/2000/svg",
+            "blockCount": 9,
+            "partners": "Fictional attachment check: \"current context\" & <shared tools>.",
+            "sha256": "3048eafcde4e32a65babe552d04f010e5e05a404c3c7f638d00e0ca39d9555c2"
+          },
+          "inputFiles": {
+            "abort-old.txt": {
+              "bytes": 43,
+              "sha256": "a4f7db5f31b8b392641d41350e8f3c1e2ef60ee7acebc605e2d1e9599fcd2b1c"
+            },
+            "new.txt": {
+              "bytes": 64,
+              "sha256": "55a60340041893817a1f669d6a601298bb48c5ad1755785df47cc491a5a2c282"
+            }
+          }
+        },
+        {
+          "scenario": {
+            "name": "an aborted image read reports failure and can recover",
+            "kind": "image",
+            "action": "abort"
+          },
+          "expectedDocument": "",
+          "expectedImage": {
+            "data": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGPgEvkAAAE6AQ9sjS6hAAAAAElFTkSuQmCC",
+            "mimeType": "image/png"
+          },
+          "prematurelyEnabled": null,
+          "prematureRequest": null,
+          "errorAfterRelease": null,
+          "abortError": "ErrorThe image could not be read. Please try again.",
+          "actual": {
+            "submitted": {
+              "action": "generate",
+              "canvasType": "BUSINESS_MODEL_CANVAS",
+              "userInput": "A fictional bicycle cooperative offering repairs and shared tools.",
+              "fileContent": "",
+              "image": {
+                "data": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGPgEvkAAAE6AQ9sjS6hAAAAAElFTkSuQmCC",
+                "mimeType": "image/png"
+              }
+            },
+            "receipt": {
+              "requestId": "req-1l",
+              "provider": "fake",
+              "cached": true,
+              "durationMs": 0
+            }
+          },
+          "nativeReads": [
+            {
+              "name": "new.png",
+              "trusted": true,
+              "resultLength": 114
+            }
+          ],
+          "nativeAborts": [
+            {
+              "name": "abort-old.png",
+              "before": 1,
+              "after": 2
+            }
+          ],
+          "artifact": {
+            "bytes": 35839,
+            "filename": "Business_Model_Canvas.svg",
+            "errors": 0,
+            "namespace": "http://www.w3.org/2000/svg",
+            "blockCount": 9,
+            "partners": "Fictional attachment check: \"current context\" & <shared tools>.",
+            "sha256": "d54e799c614d59552d683f49590121806d445a24d73201f219f65d6290d01c10"
+          },
+          "inputFiles": {
+            "abort-old.png": {
+              "bytes": 69,
+              "sha256": "74ca9e03e84a04a3b13e434c2ac371e6f2e0620b27bf09add51cc7ae86859326"
+            },
+            "new.png": {
+              "bytes": 69,
+              "sha256": "ca2fdb2532fa9f980b5557a6ce4e9e7d76cc152074a8fcea9088bdda02dc867f"
+            }
+          }
+        },
+        {
+          "scenario": {
+            "name": "generation waits for its document",
+            "kind": "document",
+            "action": "pending"
+          },
+          "expectedDocument": "Fictional OLD document: bicycle sales only.",
+          "expectedImage": null,
+          "prematurelyEnabled": false,
+          "prematureRequest": null,
+          "errorAfterRelease": null,
+          "abortError": null,
+          "actual": {
+            "submitted": {
+              "action": "generate",
+              "canvasType": "BUSINESS_MODEL_CANVAS",
+              "userInput": "A fictional bicycle cooperative offering repairs and shared tools.",
+              "fileContent": "Fictional OLD document: bicycle sales only."
+            },
+            "receipt": {
+              "requestId": "req-t",
+              "provider": "fake",
+              "cached": false,
+              "durationMs": 0
+            }
+          },
+          "nativeReads": [
+            {
+              "name": "hold-old.txt",
+              "trusted": true,
+              "resultLength": 43
+            }
+          ],
+          "nativeAborts": [],
+          "artifact": {
+            "bytes": 35811,
+            "filename": "Business_Model_Canvas.svg",
+            "errors": 0,
+            "namespace": "http://www.w3.org/2000/svg",
+            "blockCount": 9,
+            "partners": "Fictional attachment check: \"current context\" & <shared tools>.",
+            "sha256": "3048eafcde4e32a65babe552d04f010e5e05a404c3c7f638d00e0ca39d9555c2"
+          },
+          "inputFiles": {
+            "hold-old.txt": {
+              "bytes": 43,
+              "sha256": "a4f7db5f31b8b392641d41350e8f3c1e2ef60ee7acebc605e2d1e9599fcd2b1c"
+            }
+          }
+        },
+        {
+          "scenario": {
+            "name": "generation waits for its image",
+            "kind": "image",
+            "action": "pending"
+          },
+          "expectedDocument": "",
+          "expectedImage": {
+            "data": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP4wCUCAAL8AQ+ZkTKPAAAAAElFTkSuQmCC",
+            "mimeType": "image/png"
+          },
+          "prematurelyEnabled": false,
+          "prematureRequest": null,
+          "errorAfterRelease": null,
+          "abortError": null,
+          "actual": {
+            "submitted": {
+              "action": "generate",
+              "canvasType": "BUSINESS_MODEL_CANVAS",
+              "userInput": "A fictional bicycle cooperative offering repairs and shared tools.",
+              "fileContent": "",
+              "image": {
+                "data": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP4wCUCAAL8AQ+ZkTKPAAAAAElFTkSuQmCC",
+                "mimeType": "image/png"
+              }
+            },
+            "receipt": {
+              "requestId": "req-10",
+              "provider": "fake",
+              "cached": false,
+              "durationMs": 0
+            }
+          },
+          "nativeReads": [
+            {
+              "name": "hold-old.png",
+              "trusted": true,
+              "resultLength": 114
+            }
+          ],
+          "nativeAborts": [],
+          "artifact": {
+            "bytes": 35839,
+            "filename": "Business_Model_Canvas.svg",
+            "errors": 0,
+            "namespace": "http://www.w3.org/2000/svg",
+            "blockCount": 9,
+            "partners": "Fictional attachment check: \"current context\" & <shared tools>.",
+            "sha256": "5bb89d8e9f12521c7f30e38162f267a632309f9e23561ec09a364000141211cd"
+          },
+          "inputFiles": {
+            "hold-old.png": {
+              "bytes": 69,
+              "sha256": "74ca9e03e84a04a3b13e434c2ac371e6f2e0620b27bf09add51cc7ae86859326"
+            }
+          }
+        },
+        {
+          "scenario": {
+            "name": "latest document wins",
+            "kind": "document",
+            "action": "reorder"
+          },
+          "expectedDocument": "Fictional NEW document: weekly bicycle repairs and shared tools.",
+          "expectedImage": null,
+          "prematurelyEnabled": null,
+          "prematureRequest": null,
+          "errorAfterRelease": null,
+          "abortError": null,
+          "actual": {
+            "submitted": {
+              "action": "generate",
+              "canvasType": "BUSINESS_MODEL_CANVAS",
+              "userInput": "A fictional bicycle cooperative offering repairs and shared tools.",
+              "fileContent": "Fictional NEW document: weekly bicycle repairs and shared tools."
+            },
+            "receipt": {
+              "requestId": "req-8",
+              "provider": "fake",
+              "cached": false,
+              "durationMs": 2
+            }
+          },
+          "nativeReads": [
+            {
+              "name": "hold-old.txt",
+              "trusted": true,
+              "resultLength": 43
+            },
+            {
+              "name": "new.txt",
+              "trusted": true,
+              "resultLength": 64
+            }
+          ],
+          "nativeAborts": [],
+          "artifact": {
+            "bytes": 35811,
+            "filename": "Business_Model_Canvas.svg",
+            "errors": 0,
+            "namespace": "http://www.w3.org/2000/svg",
+            "blockCount": 9,
+            "partners": "Fictional attachment check: \"current context\" & <shared tools>.",
+            "sha256": "b56557de991b3d1bfbd942c69c1810940731cbc8012bd14133a405833bc83ed7"
+          },
+          "inputFiles": {
+            "hold-old.txt": {
+              "bytes": 43,
+              "sha256": "a4f7db5f31b8b392641d41350e8f3c1e2ef60ee7acebc605e2d1e9599fcd2b1c"
+            },
+            "new.txt": {
+              "bytes": 64,
+              "sha256": "55a60340041893817a1f669d6a601298bb48c5ad1755785df47cc491a5a2c282"
+            }
+          }
+        },
+        {
+          "scenario": {
+            "name": "latest image wins",
+            "kind": "image",
+            "action": "reorder"
+          },
+          "expectedDocument": "",
+          "expectedImage": {
+            "data": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGPgEvkAAAE6AQ9sjS6hAAAAAElFTkSuQmCC",
+            "mimeType": "image/png"
+          },
+          "prematurelyEnabled": null,
+          "prematureRequest": null,
+          "errorAfterRelease": null,
+          "abortError": null,
+          "actual": {
+            "submitted": {
+              "action": "generate",
+              "canvasType": "BUSINESS_MODEL_CANVAS",
+              "userInput": "A fictional bicycle cooperative offering repairs and shared tools.",
+              "fileContent": "",
+              "image": {
+                "data": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGPgEvkAAAE6AQ9sjS6hAAAAAElFTkSuQmCC",
+                "mimeType": "image/png"
+              }
+            },
+            "receipt": {
+              "requestId": "req-f",
+              "provider": "fake",
+              "cached": false,
+              "durationMs": 1
+            }
+          },
+          "nativeReads": [
+            {
+              "name": "hold-old.png",
+              "trusted": true,
+              "resultLength": 114
+            },
+            {
+              "name": "new.png",
+              "trusted": true,
+              "resultLength": 114
+            }
+          ],
+          "nativeAborts": [],
+          "artifact": {
+            "bytes": 35839,
+            "filename": "Business_Model_Canvas.svg",
+            "errors": 0,
+            "namespace": "http://www.w3.org/2000/svg",
+            "blockCount": 9,
+            "partners": "Fictional attachment check: \"current context\" & <shared tools>.",
+            "sha256": "5bb89d8e9f12521c7f30e38162f267a632309f9e23561ec09a364000141211cd"
+          },
+          "inputFiles": {
+            "hold-old.png": {
+              "bytes": 69,
+              "sha256": "74ca9e03e84a04a3b13e434c2ac371e6f2e0620b27bf09add51cc7ae86859326"
+            },
+            "new.png": {
+              "bytes": 69,
+              "sha256": "ca2fdb2532fa9f980b5557a6ce4e9e7d76cc152074a8fcea9088bdda02dc867f"
+            }
+          }
+        },
+        {
+          "scenario": {
+            "name": "ordinary document read remains usable",
+            "kind": "document",
+            "action": "normal"
+          },
+          "expectedDocument": "Fictional NEW document: weekly bicycle repairs and shared tools.",
+          "expectedImage": null,
+          "prematurelyEnabled": null,
+          "prematureRequest": null,
+          "errorAfterRelease": null,
+          "abortError": null,
+          "actual": {
+            "submitted": {
+              "action": "generate",
+              "canvasType": "BUSINESS_MODEL_CANVAS",
+              "userInput": "A fictional bicycle cooperative offering repairs and shared tools.",
+              "fileContent": "Fictional NEW document: weekly bicycle repairs and shared tools."
+            },
+            "receipt": {
+              "requestId": "req-1s",
+              "provider": "fake",
+              "cached": true,
+              "durationMs": 0
+            }
+          },
+          "nativeReads": [
+            {
+              "name": "new.txt",
+              "trusted": true,
+              "resultLength": 64
+            }
+          ],
+          "nativeAborts": [],
+          "artifact": {
+            "bytes": 35811,
+            "filename": "Business_Model_Canvas.svg",
+            "errors": 0,
+            "namespace": "http://www.w3.org/2000/svg",
+            "blockCount": 9,
+            "partners": "Fictional attachment check: \"current context\" & <shared tools>.",
+            "sha256": "3048eafcde4e32a65babe552d04f010e5e05a404c3c7f638d00e0ca39d9555c2"
+          },
+          "inputFiles": {
+            "new.txt": {
+              "bytes": 64,
+              "sha256": "55a60340041893817a1f669d6a601298bb48c5ad1755785df47cc491a5a2c282"
+            }
+          }
+        },
+        {
+          "scenario": {
+            "name": "ordinary image read remains usable",
+            "kind": "image",
+            "action": "normal"
+          },
+          "expectedDocument": "",
+          "expectedImage": {
+            "data": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGPgEvkAAAE6AQ9sjS6hAAAAAElFTkSuQmCC",
+            "mimeType": "image/png"
+          },
+          "prematurelyEnabled": null,
+          "prematureRequest": null,
+          "errorAfterRelease": null,
+          "abortError": null,
+          "actual": {
+            "submitted": {
+              "action": "generate",
+              "canvasType": "BUSINESS_MODEL_CANVAS",
+              "userInput": "A fictional bicycle cooperative offering repairs and shared tools.",
+              "fileContent": "",
+              "image": {
+                "data": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGPgEvkAAAE6AQ9sjS6hAAAAAElFTkSuQmCC",
+                "mimeType": "image/png"
+              }
+            },
+            "receipt": {
+              "requestId": "req-1z",
+              "provider": "fake",
+              "cached": true,
+              "durationMs": 0
+            }
+          },
+          "nativeReads": [
+            {
+              "name": "new.png",
+              "trusted": true,
+              "resultLength": 114
+            }
+          ],
+          "nativeAborts": [],
+          "artifact": {
+            "bytes": 35839,
+            "filename": "Business_Model_Canvas.svg",
+            "errors": 0,
+            "namespace": "http://www.w3.org/2000/svg",
+            "blockCount": 9,
+            "partners": "Fictional attachment check: \"current context\" & <shared tools>.",
+            "sha256": "5bb89d8e9f12521c7f30e38162f267a632309f9e23561ec09a364000141211cd"
+          },
+          "inputFiles": {
+            "new.png": {
+              "bytes": 69,
+              "sha256": "ca2fdb2532fa9f980b5557a6ce4e9e7d76cc152074a8fcea9088bdda02dc867f"
+            }
+          }
+        },
+        {
+          "scenario": {
+            "name": "removal invalidates an older image read",
+            "kind": "image",
+            "action": "remove"
+          },
+          "expectedDocument": "",
+          "expectedImage": null,
+          "prematurelyEnabled": null,
+          "prematureRequest": null,
+          "errorAfterRelease": null,
+          "abortError": null,
+          "actual": {
+            "submitted": {
+              "action": "generate",
+              "canvasType": "BUSINESS_MODEL_CANVAS",
+              "userInput": "A fictional bicycle cooperative offering repairs and shared tools.",
+              "fileContent": ""
+            },
+            "receipt": {
+              "requestId": "req-m",
+              "provider": "fake",
+              "cached": false,
+              "durationMs": 0
+            }
+          },
+          "nativeReads": [
+            {
+              "name": "hold-old.png",
+              "trusted": true,
+              "resultLength": 114
+            },
+            {
+              "name": "new.png",
+              "trusted": true,
+              "resultLength": 114
+            }
+          ],
+          "nativeAborts": [],
+          "artifact": {
+            "bytes": 35811,
+            "filename": "Business_Model_Canvas.svg",
+            "errors": 0,
+            "namespace": "http://www.w3.org/2000/svg",
+            "blockCount": 9,
+            "partners": "Fictional attachment check: \"current context\" & <shared tools>.",
+            "sha256": "00312a3006fdce00a5ba89cef32a4ef95f83db728794231cdd941d9b205ba265"
+          },
+          "inputFiles": {
+            "hold-old.png": {
+              "bytes": 69,
+              "sha256": "74ca9e03e84a04a3b13e434c2ac371e6f2e0620b27bf09add51cc7ae86859326"
+            },
+            "new.png": {
+              "bytes": 69,
+              "sha256": "ca2fdb2532fa9f980b5557a6ce4e9e7d76cc152074a8fcea9088bdda02dc867f"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "checks": {
+    "matchedBase": {
+      "exitCode": 1
+    },
+    "fullBrowser": {
+      "exitCode": 0
+    },
+    "final-secrets": {
+      "exitCode": 0
+    },
+    "final-types": {
+      "exitCode": 0
+    },
+    "final-lint": {
+      "exitCode": 0
+    },
+    "final-unit": {
+      "exitCode": 0
+    },
+    "final-audit": {
+      "exitCode": 1
+    }
+  },
+  "unit": {
+    "pass": 16,
+    "skip": 0
+  },
+  "sourceSha256": {
+    "App.tsx": "ed7ba4f60c7242c7c7e26d10f7f9864f773eaebd7ea88ff30da58e68ce97c68f",
+    "components/ControlsPanel.tsx": "44c4a26e4925912e1f2ccf6828ddbd0fdc60517d36460681f4066aa2c17b0c17",
+    "tests/components/ControlsPanel.test.tsx": "98e99ad4bc9a213fe9d742f11ce754d4254a1b50b776e34d3db1b55c5a27bdc0",
+    "tests/e2e/attachment-context.spec.ts": "843e1b35895745020ab3680b9b77e4e631eb0a9785d953b3fc6f2f920aa881ce",
+    "verification/attachments.playwright.config.ts": "a686a2893c4674ce5be90066ccdf78bae343946cfc671d0a188755b93fac198f",
+    "verification/attachment-evidence.mjs": "373f5c688f7948a85666ffd6d7ac3c261f065f4282656367f6c4e0bb3362a8af"
+  },
+  "samples": {
+    "after-workflow.svg": {
+      "bytes": 35811,
+      "sha256": "b56557de991b3d1bfbd942c69c1810940731cbc8012bd14133a405833bc83ed7"
+    },
+    "before-workflow.svg": {
+      "bytes": 35811,
+      "sha256": "b56557de991b3d1bfbd942c69c1810940731cbc8012bd14133a405833bc83ed7"
+    }
+  },
+  "limits": [
+    "No live model, hosted CI, other browser, physical mobile or real filesystem latency claim",
+    "Native abort recovery tested; no OS-level read error produced",
+    "No PNG/JPEG/PDF paint or reload persistence claim"
+  ],
+  "spendUSD": 0,
+  "baselineProductionSha256": {
+    "App.tsx": "ce5f1b30553ad70aaf37e3e397b66ebf4f6d419e4280f856bd723a7fc9cf83ed",
+    "components/ControlsPanel.tsx": "d7d0a04332e17de07813b279cf7a83154a2f9c545fb82e3ef142f0f3cc9f0c09"
+  }
+}

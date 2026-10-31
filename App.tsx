@@ -43,6 +43,8 @@ const App: React.FC = () => {
     const [userInput, setUserInput] = useState<string>('');
     const [fileContent, setFileContent] = useState<string>('');
     const [image, setImage] = useState<ImageState | null>(null);
+    const [isReadingDocument, setIsReadingDocument] = useState(false);
+    const [isReadingImage, setIsReadingImage] = useState(false);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
     const [isExportModalOpen, setIsExportModalOpen] = useState<boolean>(false);
@@ -52,9 +54,11 @@ const App: React.FC = () => {
 
     const canvasRef = useRef<HTMLDivElement>(null);
     const activeRequestRef = useRef<AbortController | null>(null);
+    const documentReadIdRef = useRef(0);
+    const imageReadIdRef = useRef(0);
     
     const handleGenerate = useCallback(async () => {
-        if (isLoading) return;
+        if (isLoading || isReadingDocument || isReadingImage) return;
         if (!userInput.trim()) {
             setError('Please provide a description of your business strategy.');
             return;
@@ -107,13 +111,15 @@ const App: React.FC = () => {
             activeRequestRef.current = null;
             setIsLoading(false);
         }
-    }, [userInput, fileContent, image, canvasType, setCanvasData, clearCanvas, trackEvent, isLoading]);
+    }, [userInput, fileContent, image, canvasType, setCanvasData, clearCanvas, trackEvent, isLoading, isReadingDocument, isReadingImage]);
 
     const handleCancel = useCallback(() => {
         activeRequestRef.current?.abort();
     }, []);
     
     const handleFileChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+        const readId = ++documentReadIdRef.current;
+        setIsReadingDocument(false);
         const file = event.target.files?.[0];
         if (file) {
             if (file.type && file.type !== 'text/plain') {
@@ -124,17 +130,27 @@ const App: React.FC = () => {
                 setError('The text document must be 100 KB or smaller.');
                 return;
             }
+            setIsReadingDocument(true);
             const reader = new FileReader();
             reader.onload = (e) => {
+                if (readId !== documentReadIdRef.current) return;
                 const text = e.target?.result as string;
                 setFileContent(text);
+                setIsReadingDocument(false);
                 setError('');
+            };
+            reader.onerror = reader.onabort = () => {
+                if (readId !== documentReadIdRef.current) return;
+                setIsReadingDocument(false);
+                setError('The text document could not be read. Please try again.');
             };
             reader.readAsText(file);
         }
     }, []);
 
     const handleImageChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+        const readId = ++imageReadIdRef.current;
+        setIsReadingImage(false);
         const file = event.target.files?.[0];
         if (file) {
             if (!['image/png', 'image/jpeg', 'image/webp'].includes(file.type)) {
@@ -145,8 +161,10 @@ const App: React.FC = () => {
                 setError('The image must be 6 MB or smaller.');
                 return;
             }
+            setIsReadingImage(true);
             const reader = new FileReader();
             reader.onload = (e) => {
+                if (readId !== imageReadIdRef.current) return;
                 const dataUrl = e.target?.result as string;
                 const base64Data = dataUrl.split(',')[1];
                 setImage({
@@ -154,13 +172,23 @@ const App: React.FC = () => {
                     mimeType: file.type,
                     previewUrl: dataUrl
                 });
+                setIsReadingImage(false);
                 setError('');
+            };
+            reader.onerror = reader.onabort = () => {
+                if (readId !== imageReadIdRef.current) return;
+                setIsReadingImage(false);
+                setError('The image could not be read. Please try again.');
             };
             reader.readAsDataURL(file);
         }
     }, []);
 
-    const removeImage = useCallback(() => setImage(null), []);
+    const removeImage = useCallback(() => {
+        imageReadIdRef.current++;
+        setIsReadingImage(false);
+        setImage(null);
+    }, []);
 
     const handleVoiceInputSave = useCallback((finalTranscript: string) => {
         setUserInput(finalTranscript);
@@ -224,6 +252,7 @@ const App: React.FC = () => {
                         handleGenerate={handleGenerate}
                         onCancel={handleCancel}
                         isLoading={isLoading}
+                        isReadingContext={isReadingDocument || isReadingImage}
                         isCanvasPopulated={Object.keys(canvasData).length > 0}
                         onExport={() => setIsExportModalOpen(true)}
                         onOpenVoiceModal={() => setIsVoiceModalOpen(true)}
