@@ -41,6 +41,7 @@ const App: React.FC = () => {
     const { trackEvent } = useAnalytics();
 
     const [userInput, setUserInput] = useState<string>('');
+    const [canvasBrief, setCanvasBrief] = useState<string>('');
     const [fileContent, setFileContent] = useState<string>('');
     const [image, setImage] = useState<ImageState | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -78,6 +79,7 @@ const App: React.FC = () => {
             const imageData = image ? { data: image.data, mimeType: image.mimeType } : undefined;
             const result = await analyzeAndGenerateCanvas(canvasType, userInput, fileContent, imageData, controller.signal);
             setCanvasData(result.canvasData);
+            setCanvasBrief(userInput.trim());
             setAnalysisFeedback(result.analysisFeedback);
 
             // Track successful canvas generation
@@ -174,12 +176,12 @@ const App: React.FC = () => {
         if (!editingBlock) return currentContent;
         setError('');
         try {
-            return await refineBlockContent(editingBlock.title, currentContent, userInput);
+            return await refineBlockContent(editingBlock.title, currentContent, canvasBrief);
         } catch (err: any) {
             setError(err.message || 'An unknown error occurred during refinement.');
             return currentContent; 
         }
-    }, [editingBlock, userInput]);
+    }, [editingBlock, canvasBrief]);
     
     const currentTemplate = CANVAS_TEMPLATES[canvasType];
 
