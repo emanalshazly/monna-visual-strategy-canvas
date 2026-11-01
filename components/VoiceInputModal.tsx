@@ -66,10 +66,10 @@ const VoiceInputModal: React.FC<VoiceInputModalProps> = ({ isOpen, onClose, onSa
     useEffect(() => {
         if(transcript.final) {
             // Voice command processing
-            const command = transcript.final.toLowerCase().trim();
-            if (command.includes('stop recording')) {
+            const command = transcript.final.toLowerCase().trim().replace(/[.!?]+$/, '').trim();
+            if (command === 'stop recording') {
                 handleStop();
-            } else if (command.includes('clear text')) {
+            } else if (command === 'clear text') {
                 setText('');
                 clearTranscript();
             } else {
