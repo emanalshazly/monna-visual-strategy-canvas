@@ -1,0 +1,1772 @@
+{
+  "schemaVersion": 1,
+  "baseRevision": "61a2067cce2d658094be73caaea2e05c67c4f63a",
+  "baselineProductionAppSha256": "ce5f1b30553ad70aaf37e3e397b66ebf4f6d419e4280f856bd723a7fc9cf83ed",
+  "finalSourceSha256": {
+    "App.tsx": "95069d3ade13fd309f34434af4fb708eb44171b44e2be8140ec75913644033f1",
+    "tests/e2e/regeneration-preservation.spec.ts": "73529ba9e9ef96bba1b6820d4a8d416f92f030f3203d1211921eb6ee08b87da9",
+    "verification/regeneration.playwright.config.ts": "0994128e3b8fc7cca0ab8b1cf16c7736abd30880444cebe0b8a657dfc6384971",
+    "package-lock.json": "46b1fe5eec5ec29bfe8707f3c6441ccbcbfb913f8539e037f5a29cee6f2d0f49"
+  },
+  "runtime": {
+    "node": "v24.3.0",
+    "bun": "1.4.4",
+    "playwright": "1.62.1",
+    "observedChromium": "151.0.7922.34",
+    "platform": "macOS 15.7.7 arm64"
+  },
+  "method": {
+    "provider": "Built-in deterministic FakeAnalysisProvider through the real localhost Fastify gateway",
+    "liveProviders": "NOT RUN",
+    "responseFabrication": false,
+    "cancellation": "Hold the actual route.fetch response, cancel with the product button, then release it",
+    "gatewayRejection": "Actual HTTP400 invalid_request for a 10001-character fictional brief",
+    "interruption": "Explicit Playwright connectionreset fault after actual route.fetch success; not an observed external network outage",
+    "controls": [
+      "Successful replacement commits new content and exports it",
+      "First-ever gateway rejection remains empty, then normal generation/export recovers"
+    ],
+    "artifactAssertions": "DOMParser XML/root/namespace, all9 blocks and exact paragraph text; all9 blocks and analysis compared with the saved state after unsuccessful regeneration",
+    "baselineAndCandidateRegressionIdentical": true,
+    "spendUSD": 0
+  },
+  "before": {
+    "stats": {
+      "startTime": "2026-10-31T04:36:13.888Z",
+      "duration": 10415.721,
+      "expected": 2,
+      "skipped": 0,
+      "unexpected": 3,
+      "flaky": 0
+    },
+    "tests": {
+      "cancelled regeneration preserves the edited canvas and its downloaded SVG": {
+        "status": "failed",
+        "durationMs": 1453
+      },
+      "a real gateway rejection preserves the edited canvas and its downloaded SVG": {
+        "status": "failed",
+        "durationMs": 938
+      },
+      "interrupted response delivery preserves the edited canvas and its downloaded SVG": {
+        "status": "failed",
+        "durationMs": 1891
+      },
+      "successful regeneration commits the replacement and exports the new content": {
+        "status": "passed",
+        "durationMs": 1486
+      },
+      "a first-generation rejection stays empty and can recover normally": {
+        "status": "passed",
+        "durationMs": 1029
+      }
+    },
+    "observations": [
+      {
+        "caseDirectory": "regeneration-preservation--2f4ef-nvas-and-its-downloaded-SVG-chromium",
+        "observed": {
+          "initial": {
+            "body": {
+              "kind": "generate",
+              "result": {
+                "canvasData": {
+                  "keyPartners": "Fixture content for Key Partners",
+                  "keyActivities": "Fixture content for Key Activities",
+                  "valuePropositions": "Fixture content for Value Propositions",
+                  "customerRelationships": "Fixture content for Customer Relationships",
+                  "customerSegments": "Fixture content for Customer Segments",
+                  "keyResources": "Fixture content for Key Resources",
+                  "channels": "Fixture content for Channels",
+                  "costStructure": "Fixture content for Cost Structure",
+                  "revenueStreams": "Fixture content for Revenue Streams"
+                },
+                "analysisFeedback": {
+                  "strengths": "• Deterministic fixture strength",
+                  "suggestions": "• Validate this strategy with real evidence"
+                }
+              },
+              "receipt": {
+                "requestId": "req-o",
+                "provider": "fake",
+                "cached": true,
+                "durationMs": 0
+              }
+            },
+            "initial": {
+              "filename": "Business_Model_Canvas.svg",
+              "bytes": 35812,
+              "errors": 0,
+              "root": "svg",
+              "namespace": "http://www.w3.org/2000/svg",
+              "blocks": [
+                {
+                  "title": "Key Partners",
+                  "paragraphs": [
+                    "Fictional bicycle co-op: keep \"weekly repairs\" & <shared tools>."
+                  ]
+                },
+                {
+                  "title": "Key Activities",
+                  "paragraphs": [
+                    "Fixture content for Key Activities"
+                  ]
+                },
+                {
+                  "title": "Value Propositions",
+                  "paragraphs": [
+                    "Fixture content for Value Propositions"
+                  ]
+                },
+                {
+                  "title": "Customer Relationships",
+                  "paragraphs": [
+                    "Fixture content for Customer Relationships"
+                  ]
+                },
+                {
+                  "title": "Customer Segments",
+                  "paragraphs": [
+                    "Fixture content for Customer Segments"
+                  ]
+                },
+                {
+                  "title": "Key Resources",
+                  "paragraphs": [
+                    "Fixture content for Key Resources"
+                  ]
+                },
+                {
+                  "title": "Channels",
+                  "paragraphs": [
+                    "Fixture content for Channels"
+                  ]
+                },
+                {
+                  "title": "Cost Structure",
+                  "paragraphs": [
+                    "Fixture content for Cost Structure"
+                  ]
+                },
+                {
+                  "title": "Revenue Streams",
+                  "paragraphs": [
+                    "Fixture content for Revenue Streams"
+                  ]
+                }
+              ]
+            },
+            "analysis": [
+              "• Deterministic fixture strength",
+              "• Validate this strategy with real evidence"
+            ]
+          },
+          "responseBody": {
+            "kind": "generate",
+            "result": {
+              "canvasData": {
+                "keyPartners": "Fixture content for Key Partners",
+                "keyActivities": "Fixture content for Key Activities",
+                "valuePropositions": "Fixture content for Value Propositions",
+                "customerRelationships": "Fixture content for Customer Relationships",
+                "customerSegments": "Fixture content for Customer Segments",
+                "keyResources": "Fixture content for Key Resources",
+                "channels": "Fixture content for Channels",
+                "costStructure": "Fixture content for Cost Structure",
+                "revenueStreams": "Fixture content for Revenue Streams"
+              },
+              "analysisFeedback": {
+                "strengths": "• Deterministic fixture strength",
+                "suggestions": "• Validate this strategy with real evidence"
+              }
+            },
+            "receipt": {
+              "requestId": "req-p",
+              "provider": "fake",
+              "cached": false,
+              "durationMs": 0
+            }
+          },
+          "fault": "Playwright connectionreset after route.fetch",
+          "final": {
+            "editVisible": false,
+            "analysisVisible": false,
+            "analysis": [],
+            "exportAvailable": false,
+            "artifact": null
+          }
+        }
+      },
+      {
+        "caseDirectory": "regeneration-preservation--68e22-nvas-and-its-downloaded-SVG-chromium",
+        "observed": {
+          "initial": {
+            "body": {
+              "kind": "generate",
+              "result": {
+                "canvasData": {
+                  "keyPartners": "Fixture content for Key Partners",
+                  "keyActivities": "Fixture content for Key Activities",
+                  "valuePropositions": "Fixture content for Value Propositions",
+                  "customerRelationships": "Fixture content for Customer Relationships",
+                  "customerSegments": "Fixture content for Customer Segments",
+                  "keyResources": "Fixture content for Key Resources",
+                  "channels": "Fixture content for Channels",
+                  "costStructure": "Fixture content for Cost Structure",
+                  "revenueStreams": "Fixture content for Revenue Streams"
+                },
+                "analysisFeedback": {
+                  "strengths": "• Deterministic fixture strength",
+                  "suggestions": "• Validate this strategy with real evidence"
+                }
+              },
+              "receipt": {
+                "requestId": "req-8",
+                "provider": "fake",
+                "cached": false,
+                "durationMs": 2
+              }
+            },
+            "initial": {
+              "filename": "Business_Model_Canvas.svg",
+              "bytes": 35812,
+              "errors": 0,
+              "root": "svg",
+              "namespace": "http://www.w3.org/2000/svg",
+              "blocks": [
+                {
+                  "title": "Key Partners",
+                  "paragraphs": [
+                    "Fictional bicycle co-op: keep \"weekly repairs\" & <shared tools>."
+                  ]
+                },
+                {
+                  "title": "Key Activities",
+                  "paragraphs": [
+                    "Fixture content for Key Activities"
+                  ]
+                },
+                {
+                  "title": "Value Propositions",
+                  "paragraphs": [
+                    "Fixture content for Value Propositions"
+                  ]
+                },
+                {
+                  "title": "Customer Relationships",
+                  "paragraphs": [
+                    "Fixture content for Customer Relationships"
+                  ]
+                },
+                {
+                  "title": "Customer Segments",
+                  "paragraphs": [
+                    "Fixture content for Customer Segments"
+                  ]
+                },
+                {
+                  "title": "Key Resources",
+                  "paragraphs": [
+                    "Fixture content for Key Resources"
+                  ]
+                },
+                {
+                  "title": "Channels",
+                  "paragraphs": [
+                    "Fixture content for Channels"
+                  ]
+                },
+                {
+                  "title": "Cost Structure",
+                  "paragraphs": [
+                    "Fixture content for Cost Structure"
+                  ]
+                },
+                {
+                  "title": "Revenue Streams",
+                  "paragraphs": [
+                    "Fixture content for Revenue Streams"
+                  ]
+                }
+              ]
+            },
+            "analysis": [
+              "• Deterministic fixture strength",
+              "• Validate this strategy with real evidence"
+            ]
+          },
+          "receipt": {
+            "kind": "generate",
+            "result": {
+              "canvasData": {
+                "keyPartners": "Fixture content for Key Partners",
+                "keyActivities": "Fixture content for Key Activities",
+                "valuePropositions": "Fixture content for Value Propositions",
+                "customerRelationships": "Fixture content for Customer Relationships",
+                "customerSegments": "Fixture content for Customer Segments",
+                "keyResources": "Fixture content for Key Resources",
+                "channels": "Fixture content for Channels",
+                "costStructure": "Fixture content for Cost Structure",
+                "revenueStreams": "Fixture content for Revenue Streams"
+              },
+              "analysisFeedback": {
+                "strengths": "• Deterministic fixture strength",
+                "suggestions": "• Validate this strategy with real evidence"
+              }
+            },
+            "receipt": {
+              "requestId": "req-9",
+              "provider": "fake",
+              "cached": false,
+              "durationMs": 0
+            }
+          },
+          "final": {
+            "editVisible": false,
+            "analysisVisible": false,
+            "analysis": [],
+            "exportAvailable": false,
+            "artifact": null
+          }
+        }
+      },
+      {
+        "caseDirectory": "regeneration-preservation--6ccdf-nvas-and-its-downloaded-SVG-chromium",
+        "observed": {
+          "initial": {
+            "body": {
+              "kind": "generate",
+              "result": {
+                "canvasData": {
+                  "keyPartners": "Fixture content for Key Partners",
+                  "keyActivities": "Fixture content for Key Activities",
+                  "valuePropositions": "Fixture content for Value Propositions",
+                  "customerRelationships": "Fixture content for Customer Relationships",
+                  "customerSegments": "Fixture content for Customer Segments",
+                  "keyResources": "Fixture content for Key Resources",
+                  "channels": "Fixture content for Channels",
+                  "costStructure": "Fixture content for Cost Structure",
+                  "revenueStreams": "Fixture content for Revenue Streams"
+                },
+                "analysisFeedback": {
+                  "strengths": "• Deterministic fixture strength",
+                  "suggestions": "• Validate this strategy with real evidence"
+                }
+              },
+              "receipt": {
+                "requestId": "req-g",
+                "provider": "fake",
+                "cached": true,
+                "durationMs": 0
+              }
+            },
+            "initial": {
+              "filename": "Business_Model_Canvas.svg",
+              "bytes": 35812,
+              "errors": 0,
+              "root": "svg",
+              "namespace": "http://www.w3.org/2000/svg",
+              "blocks": [
+                {
+                  "title": "Key Partners",
+                  "paragraphs": [
+                    "Fictional bicycle co-op: keep \"weekly repairs\" & <shared tools>."
+                  ]
+                },
+                {
+                  "title": "Key Activities",
+                  "paragraphs": [
+                    "Fixture content for Key Activities"
+                  ]
+                },
+                {
+                  "title": "Value Propositions",
+                  "paragraphs": [
+                    "Fixture content for Value Propositions"
+                  ]
+                },
+                {
+                  "title": "Customer Relationships",
+                  "paragraphs": [
+                    "Fixture content for Customer Relationships"
+                  ]
+                },
+                {
+                  "title": "Customer Segments",
+                  "paragraphs": [
+                    "Fixture content for Customer Segments"
+                  ]
+                },
+                {
+                  "title": "Key Resources",
+                  "paragraphs": [
+                    "Fixture content for Key Resources"
+                  ]
+                },
+                {
+                  "title": "Channels",
+                  "paragraphs": [
+                    "Fixture content for Channels"
+                  ]
+                },
+                {
+                  "title": "Cost Structure",
+                  "paragraphs": [
+                    "Fixture content for Cost Structure"
+                  ]
+                },
+                {
+                  "title": "Revenue Streams",
+                  "paragraphs": [
+                    "Fixture content for Revenue Streams"
+                  ]
+                }
+              ]
+            },
+            "analysis": [
+              "• Deterministic fixture strength",
+              "• Validate this strategy with real evidence"
+            ]
+          },
+          "rejection": {
+            "code": "invalid_request",
+            "message": "Check the request fields."
+          },
+          "final": {
+            "editVisible": false,
+            "analysisVisible": false,
+            "analysis": [],
+            "exportAvailable": false,
+            "artifact": null
+          }
+        }
+      },
+      {
+        "caseDirectory": "regeneration-preservation--9a7a2-ty-and-can-recover-normally-chromium",
+        "observed": {
+          "rejection": {
+            "code": "invalid_request",
+            "message": "Check the request fields."
+          },
+          "recovered": {
+            "kind": "generate",
+            "result": {
+              "canvasData": {
+                "keyPartners": "Fixture content for Key Partners",
+                "keyActivities": "Fixture content for Key Activities",
+                "valuePropositions": "Fixture content for Value Propositions",
+                "customerRelationships": "Fixture content for Customer Relationships",
+                "customerSegments": "Fixture content for Customer Segments",
+                "keyResources": "Fixture content for Key Resources",
+                "channels": "Fixture content for Channels",
+                "costStructure": "Fixture content for Cost Structure",
+                "revenueStreams": "Fixture content for Revenue Streams"
+              },
+              "analysisFeedback": {
+                "strengths": "• Deterministic fixture strength",
+                "suggestions": "• Validate this strategy with real evidence"
+              }
+            },
+            "receipt": {
+              "requestId": "req-15",
+              "provider": "fake",
+              "cached": false,
+              "durationMs": 0
+            }
+          },
+          "artifact": {
+            "filename": "Business_Model_Canvas.svg",
+            "bytes": 35770,
+            "errors": 0,
+            "root": "svg",
+            "namespace": "http://www.w3.org/2000/svg",
+            "blocks": [
+              {
+                "title": "Key Partners",
+                "paragraphs": [
+                  "Fixture content for Key Partners"
+                ]
+              },
+              {
+                "title": "Key Activities",
+                "paragraphs": [
+                  "Fixture content for Key Activities"
+                ]
+              },
+              {
+                "title": "Value Propositions",
+                "paragraphs": [
+                  "Fixture content for Value Propositions"
+                ]
+              },
+              {
+                "title": "Customer Relationships",
+                "paragraphs": [
+                  "Fixture content for Customer Relationships"
+                ]
+              },
+              {
+                "title": "Customer Segments",
+                "paragraphs": [
+                  "Fixture content for Customer Segments"
+                ]
+              },
+              {
+                "title": "Key Resources",
+                "paragraphs": [
+                  "Fixture content for Key Resources"
+                ]
+              },
+              {
+                "title": "Channels",
+                "paragraphs": [
+                  "Fixture content for Channels"
+                ]
+              },
+              {
+                "title": "Cost Structure",
+                "paragraphs": [
+                  "Fixture content for Cost Structure"
+                ]
+              },
+              {
+                "title": "Revenue Streams",
+                "paragraphs": [
+                  "Fixture content for Revenue Streams"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "caseDirectory": "regeneration-preservation--fe19e-and-exports-the-new-content-chromium",
+        "observed": {
+          "initial": {
+            "body": {
+              "kind": "generate",
+              "result": {
+                "canvasData": {
+                  "keyPartners": "Fixture content for Key Partners",
+                  "keyActivities": "Fixture content for Key Activities",
+                  "valuePropositions": "Fixture content for Value Propositions",
+                  "customerRelationships": "Fixture content for Customer Relationships",
+                  "customerSegments": "Fixture content for Customer Segments",
+                  "keyResources": "Fixture content for Key Resources",
+                  "channels": "Fixture content for Channels",
+                  "costStructure": "Fixture content for Cost Structure",
+                  "revenueStreams": "Fixture content for Revenue Streams"
+                },
+                "analysisFeedback": {
+                  "strengths": "• Deterministic fixture strength",
+                  "suggestions": "• Validate this strategy with real evidence"
+                }
+              },
+              "receipt": {
+                "requestId": "req-w",
+                "provider": "fake",
+                "cached": true,
+                "durationMs": 0
+              }
+            },
+            "initial": {
+              "filename": "Business_Model_Canvas.svg",
+              "bytes": 35812,
+              "errors": 0,
+              "root": "svg",
+              "namespace": "http://www.w3.org/2000/svg",
+              "blocks": [
+                {
+                  "title": "Key Partners",
+                  "paragraphs": [
+                    "Fictional bicycle co-op: keep \"weekly repairs\" & <shared tools>."
+                  ]
+                },
+                {
+                  "title": "Key Activities",
+                  "paragraphs": [
+                    "Fixture content for Key Activities"
+                  ]
+                },
+                {
+                  "title": "Value Propositions",
+                  "paragraphs": [
+                    "Fixture content for Value Propositions"
+                  ]
+                },
+                {
+                  "title": "Customer Relationships",
+                  "paragraphs": [
+                    "Fixture content for Customer Relationships"
+                  ]
+                },
+                {
+                  "title": "Customer Segments",
+                  "paragraphs": [
+                    "Fixture content for Customer Segments"
+                  ]
+                },
+                {
+                  "title": "Key Resources",
+                  "paragraphs": [
+                    "Fixture content for Key Resources"
+                  ]
+                },
+                {
+                  "title": "Channels",
+                  "paragraphs": [
+                    "Fixture content for Channels"
+                  ]
+                },
+                {
+                  "title": "Cost Structure",
+                  "paragraphs": [
+                    "Fixture content for Cost Structure"
+                  ]
+                },
+                {
+                  "title": "Revenue Streams",
+                  "paragraphs": [
+                    "Fixture content for Revenue Streams"
+                  ]
+                }
+              ]
+            },
+            "analysis": [
+              "• Deterministic fixture strength",
+              "• Validate this strategy with real evidence"
+            ]
+          },
+          "replacement": {
+            "kind": "generate",
+            "result": {
+              "canvasData": {
+                "keyPartners": "Fixture content for Key Partners",
+                "keyActivities": "Fixture content for Key Activities",
+                "valuePropositions": "Fixture content for Value Propositions",
+                "customerRelationships": "Fixture content for Customer Relationships",
+                "customerSegments": "Fixture content for Customer Segments",
+                "keyResources": "Fixture content for Key Resources",
+                "channels": "Fixture content for Channels",
+                "costStructure": "Fixture content for Cost Structure",
+                "revenueStreams": "Fixture content for Revenue Streams"
+              },
+              "analysisFeedback": {
+                "strengths": "• Deterministic fixture strength",
+                "suggestions": "• Validate this strategy with real evidence"
+              }
+            },
+            "receipt": {
+              "requestId": "req-x",
+              "provider": "fake",
+              "cached": false,
+              "durationMs": 0
+            }
+          },
+          "artifact": {
+            "filename": "Business_Model_Canvas.svg",
+            "bytes": 35770,
+            "errors": 0,
+            "root": "svg",
+            "namespace": "http://www.w3.org/2000/svg",
+            "blocks": [
+              {
+                "title": "Key Partners",
+                "paragraphs": [
+                  "Fixture content for Key Partners"
+                ]
+              },
+              {
+                "title": "Key Activities",
+                "paragraphs": [
+                  "Fixture content for Key Activities"
+                ]
+              },
+              {
+                "title": "Value Propositions",
+                "paragraphs": [
+                  "Fixture content for Value Propositions"
+                ]
+              },
+              {
+                "title": "Customer Relationships",
+                "paragraphs": [
+                  "Fixture content for Customer Relationships"
+                ]
+              },
+              {
+                "title": "Customer Segments",
+                "paragraphs": [
+                  "Fixture content for Customer Segments"
+                ]
+              },
+              {
+                "title": "Key Resources",
+                "paragraphs": [
+                  "Fixture content for Key Resources"
+                ]
+              },
+              {
+                "title": "Channels",
+                "paragraphs": [
+                  "Fixture content for Channels"
+                ]
+              },
+              {
+                "title": "Cost Structure",
+                "paragraphs": [
+                  "Fixture content for Cost Structure"
+                ]
+              },
+              {
+                "title": "Revenue Streams",
+                "paragraphs": [
+                  "Fixture content for Revenue Streams"
+                ]
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "completedSvgDownloads": [
+      {
+        "caseDirectory": "regeneration-preservation--2f4ef-nvas-and-its-downloaded-SVG-chromium",
+        "file": "before-regeneration.svg",
+        "bytes": 35812,
+        "sha256": "fe539c8092717c99212e5602c67a66c59fa973ada5d022f484f3f6c6931a3fe7"
+      },
+      {
+        "caseDirectory": "regeneration-preservation--68e22-nvas-and-its-downloaded-SVG-chromium",
+        "file": "before-regeneration.svg",
+        "bytes": 35812,
+        "sha256": "fe539c8092717c99212e5602c67a66c59fa973ada5d022f484f3f6c6931a3fe7"
+      },
+      {
+        "caseDirectory": "regeneration-preservation--6ccdf-nvas-and-its-downloaded-SVG-chromium",
+        "file": "before-regeneration.svg",
+        "bytes": 35812,
+        "sha256": "fe539c8092717c99212e5602c67a66c59fa973ada5d022f484f3f6c6931a3fe7"
+      },
+      {
+        "caseDirectory": "regeneration-preservation--9a7a2-ty-and-can-recover-normally-chromium",
+        "file": "recovered.svg",
+        "bytes": 35770,
+        "sha256": "cf1c5c12ad2f6cf5693feefaa2abe2bc601c5d74210d4fbeeba5cfe7fc4a2b88"
+      },
+      {
+        "caseDirectory": "regeneration-preservation--fe19e-and-exports-the-new-content-chromium",
+        "file": "before-regeneration.svg",
+        "bytes": 35812,
+        "sha256": "fe539c8092717c99212e5602c67a66c59fa973ada5d022f484f3f6c6931a3fe7"
+      },
+      {
+        "caseDirectory": "regeneration-preservation--fe19e-and-exports-the-new-content-chromium",
+        "file": "replacement.svg",
+        "bytes": 35770,
+        "sha256": "e635185bf08246ef5d3175dc9840376b376de4e3b988acec5756593f472d2e76"
+      }
+    ]
+  },
+  "after": {
+    "stats": {
+      "startTime": "2026-10-31T04:36:55.225Z",
+      "duration": 9789.751,
+      "expected": 5,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "tests": {
+      "cancelled regeneration preserves the edited canvas and its downloaded SVG": {
+        "status": "passed",
+        "durationMs": 1302
+      },
+      "a real gateway rejection preserves the edited canvas and its downloaded SVG": {
+        "status": "passed",
+        "durationMs": 1133
+      },
+      "interrupted response delivery preserves the edited canvas and its downloaded SVG": {
+        "status": "passed",
+        "durationMs": 1085
+      },
+      "successful regeneration commits the replacement and exports the new content": {
+        "status": "passed",
+        "durationMs": 1157
+      },
+      "a first-generation rejection stays empty and can recover normally": {
+        "status": "passed",
+        "durationMs": 937
+      }
+    },
+    "observations": [
+      {
+        "caseDirectory": "regeneration-preservation--2f4ef-nvas-and-its-downloaded-SVG-chromium",
+        "observed": {
+          "initial": {
+            "body": {
+              "kind": "generate",
+              "result": {
+                "canvasData": {
+                  "keyPartners": "Fixture content for Key Partners",
+                  "keyActivities": "Fixture content for Key Activities",
+                  "valuePropositions": "Fixture content for Value Propositions",
+                  "customerRelationships": "Fixture content for Customer Relationships",
+                  "customerSegments": "Fixture content for Customer Segments",
+                  "keyResources": "Fixture content for Key Resources",
+                  "channels": "Fixture content for Channels",
+                  "costStructure": "Fixture content for Cost Structure",
+                  "revenueStreams": "Fixture content for Revenue Streams"
+                },
+                "analysisFeedback": {
+                  "strengths": "• Deterministic fixture strength",
+                  "suggestions": "• Validate this strategy with real evidence"
+                }
+              },
+              "receipt": {
+                "requestId": "req-o",
+                "provider": "fake",
+                "cached": true,
+                "durationMs": 0
+              }
+            },
+            "initial": {
+              "filename": "Business_Model_Canvas.svg",
+              "bytes": 35812,
+              "errors": 0,
+              "root": "svg",
+              "namespace": "http://www.w3.org/2000/svg",
+              "blocks": [
+                {
+                  "title": "Key Partners",
+                  "paragraphs": [
+                    "Fictional bicycle co-op: keep \"weekly repairs\" & <shared tools>."
+                  ]
+                },
+                {
+                  "title": "Key Activities",
+                  "paragraphs": [
+                    "Fixture content for Key Activities"
+                  ]
+                },
+                {
+                  "title": "Value Propositions",
+                  "paragraphs": [
+                    "Fixture content for Value Propositions"
+                  ]
+                },
+                {
+                  "title": "Customer Relationships",
+                  "paragraphs": [
+                    "Fixture content for Customer Relationships"
+                  ]
+                },
+                {
+                  "title": "Customer Segments",
+                  "paragraphs": [
+                    "Fixture content for Customer Segments"
+                  ]
+                },
+                {
+                  "title": "Key Resources",
+                  "paragraphs": [
+                    "Fixture content for Key Resources"
+                  ]
+                },
+                {
+                  "title": "Channels",
+                  "paragraphs": [
+                    "Fixture content for Channels"
+                  ]
+                },
+                {
+                  "title": "Cost Structure",
+                  "paragraphs": [
+                    "Fixture content for Cost Structure"
+                  ]
+                },
+                {
+                  "title": "Revenue Streams",
+                  "paragraphs": [
+                    "Fixture content for Revenue Streams"
+                  ]
+                }
+              ]
+            },
+            "analysis": [
+              "• Deterministic fixture strength",
+              "• Validate this strategy with real evidence"
+            ]
+          },
+          "responseBody": {
+            "kind": "generate",
+            "result": {
+              "canvasData": {
+                "keyPartners": "Fixture content for Key Partners",
+                "keyActivities": "Fixture content for Key Activities",
+                "valuePropositions": "Fixture content for Value Propositions",
+                "customerRelationships": "Fixture content for Customer Relationships",
+                "customerSegments": "Fixture content for Customer Segments",
+                "keyResources": "Fixture content for Key Resources",
+                "channels": "Fixture content for Channels",
+                "costStructure": "Fixture content for Cost Structure",
+                "revenueStreams": "Fixture content for Revenue Streams"
+              },
+              "analysisFeedback": {
+                "strengths": "• Deterministic fixture strength",
+                "suggestions": "• Validate this strategy with real evidence"
+              }
+            },
+            "receipt": {
+              "requestId": "req-p",
+              "provider": "fake",
+              "cached": false,
+              "durationMs": 0
+            }
+          },
+          "fault": "Playwright connectionreset after route.fetch",
+          "final": {
+            "editVisible": true,
+            "analysisVisible": true,
+            "analysis": [
+              "• Deterministic fixture strength",
+              "• Validate this strategy with real evidence"
+            ],
+            "exportAvailable": true,
+            "artifact": {
+              "filename": "Business_Model_Canvas.svg",
+              "bytes": 35812,
+              "errors": 0,
+              "root": "svg",
+              "namespace": "http://www.w3.org/2000/svg",
+              "blocks": [
+                {
+                  "title": "Key Partners",
+                  "paragraphs": [
+                    "Fictional bicycle co-op: keep \"weekly repairs\" & <shared tools>."
+                  ]
+                },
+                {
+                  "title": "Key Activities",
+                  "paragraphs": [
+                    "Fixture content for Key Activities"
+                  ]
+                },
+                {
+                  "title": "Value Propositions",
+                  "paragraphs": [
+                    "Fixture content for Value Propositions"
+                  ]
+                },
+                {
+                  "title": "Customer Relationships",
+                  "paragraphs": [
+                    "Fixture content for Customer Relationships"
+                  ]
+                },
+                {
+                  "title": "Customer Segments",
+                  "paragraphs": [
+                    "Fixture content for Customer Segments"
+                  ]
+                },
+                {
+                  "title": "Key Resources",
+                  "paragraphs": [
+                    "Fixture content for Key Resources"
+                  ]
+                },
+                {
+                  "title": "Channels",
+                  "paragraphs": [
+                    "Fixture content for Channels"
+                  ]
+                },
+                {
+                  "title": "Cost Structure",
+                  "paragraphs": [
+                    "Fixture content for Cost Structure"
+                  ]
+                },
+                {
+                  "title": "Revenue Streams",
+                  "paragraphs": [
+                    "Fixture content for Revenue Streams"
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "caseDirectory": "regeneration-preservation--68e22-nvas-and-its-downloaded-SVG-chromium",
+        "observed": {
+          "initial": {
+            "body": {
+              "kind": "generate",
+              "result": {
+                "canvasData": {
+                  "keyPartners": "Fixture content for Key Partners",
+                  "keyActivities": "Fixture content for Key Activities",
+                  "valuePropositions": "Fixture content for Value Propositions",
+                  "customerRelationships": "Fixture content for Customer Relationships",
+                  "customerSegments": "Fixture content for Customer Segments",
+                  "keyResources": "Fixture content for Key Resources",
+                  "channels": "Fixture content for Channels",
+                  "costStructure": "Fixture content for Cost Structure",
+                  "revenueStreams": "Fixture content for Revenue Streams"
+                },
+                "analysisFeedback": {
+                  "strengths": "• Deterministic fixture strength",
+                  "suggestions": "• Validate this strategy with real evidence"
+                }
+              },
+              "receipt": {
+                "requestId": "req-8",
+                "provider": "fake",
+                "cached": false,
+                "durationMs": 1
+              }
+            },
+            "initial": {
+              "filename": "Business_Model_Canvas.svg",
+              "bytes": 35812,
+              "errors": 0,
+              "root": "svg",
+              "namespace": "http://www.w3.org/2000/svg",
+              "blocks": [
+                {
+                  "title": "Key Partners",
+                  "paragraphs": [
+                    "Fictional bicycle co-op: keep \"weekly repairs\" & <shared tools>."
+                  ]
+                },
+                {
+                  "title": "Key Activities",
+                  "paragraphs": [
+                    "Fixture content for Key Activities"
+                  ]
+                },
+                {
+                  "title": "Value Propositions",
+                  "paragraphs": [
+                    "Fixture content for Value Propositions"
+                  ]
+                },
+                {
+                  "title": "Customer Relationships",
+                  "paragraphs": [
+                    "Fixture content for Customer Relationships"
+                  ]
+                },
+                {
+                  "title": "Customer Segments",
+                  "paragraphs": [
+                    "Fixture content for Customer Segments"
+                  ]
+                },
+                {
+                  "title": "Key Resources",
+                  "paragraphs": [
+                    "Fixture content for Key Resources"
+                  ]
+                },
+                {
+                  "title": "Channels",
+                  "paragraphs": [
+                    "Fixture content for Channels"
+                  ]
+                },
+                {
+                  "title": "Cost Structure",
+                  "paragraphs": [
+                    "Fixture content for Cost Structure"
+                  ]
+                },
+                {
+                  "title": "Revenue Streams",
+                  "paragraphs": [
+                    "Fixture content for Revenue Streams"
+                  ]
+                }
+              ]
+            },
+            "analysis": [
+              "• Deterministic fixture strength",
+              "• Validate this strategy with real evidence"
+            ]
+          },
+          "receipt": {
+            "kind": "generate",
+            "result": {
+              "canvasData": {
+                "keyPartners": "Fixture content for Key Partners",
+                "keyActivities": "Fixture content for Key Activities",
+                "valuePropositions": "Fixture content for Value Propositions",
+                "customerRelationships": "Fixture content for Customer Relationships",
+                "customerSegments": "Fixture content for Customer Segments",
+                "keyResources": "Fixture content for Key Resources",
+                "channels": "Fixture content for Channels",
+                "costStructure": "Fixture content for Cost Structure",
+                "revenueStreams": "Fixture content for Revenue Streams"
+              },
+              "analysisFeedback": {
+                "strengths": "• Deterministic fixture strength",
+                "suggestions": "• Validate this strategy with real evidence"
+              }
+            },
+            "receipt": {
+              "requestId": "req-9",
+              "provider": "fake",
+              "cached": false,
+              "durationMs": 0
+            }
+          },
+          "final": {
+            "editVisible": true,
+            "analysisVisible": true,
+            "analysis": [
+              "• Deterministic fixture strength",
+              "• Validate this strategy with real evidence"
+            ],
+            "exportAvailable": true,
+            "artifact": {
+              "filename": "Business_Model_Canvas.svg",
+              "bytes": 35812,
+              "errors": 0,
+              "root": "svg",
+              "namespace": "http://www.w3.org/2000/svg",
+              "blocks": [
+                {
+                  "title": "Key Partners",
+                  "paragraphs": [
+                    "Fictional bicycle co-op: keep \"weekly repairs\" & <shared tools>."
+                  ]
+                },
+                {
+                  "title": "Key Activities",
+                  "paragraphs": [
+                    "Fixture content for Key Activities"
+                  ]
+                },
+                {
+                  "title": "Value Propositions",
+                  "paragraphs": [
+                    "Fixture content for Value Propositions"
+                  ]
+                },
+                {
+                  "title": "Customer Relationships",
+                  "paragraphs": [
+                    "Fixture content for Customer Relationships"
+                  ]
+                },
+                {
+                  "title": "Customer Segments",
+                  "paragraphs": [
+                    "Fixture content for Customer Segments"
+                  ]
+                },
+                {
+                  "title": "Key Resources",
+                  "paragraphs": [
+                    "Fixture content for Key Resources"
+                  ]
+                },
+                {
+                  "title": "Channels",
+                  "paragraphs": [
+                    "Fixture content for Channels"
+                  ]
+                },
+                {
+                  "title": "Cost Structure",
+                  "paragraphs": [
+                    "Fixture content for Cost Structure"
+                  ]
+                },
+                {
+                  "title": "Revenue Streams",
+                  "paragraphs": [
+                    "Fixture content for Revenue Streams"
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "caseDirectory": "regeneration-preservation--6ccdf-nvas-and-its-downloaded-SVG-chromium",
+        "observed": {
+          "initial": {
+            "body": {
+              "kind": "generate",
+              "result": {
+                "canvasData": {
+                  "keyPartners": "Fixture content for Key Partners",
+                  "keyActivities": "Fixture content for Key Activities",
+                  "valuePropositions": "Fixture content for Value Propositions",
+                  "customerRelationships": "Fixture content for Customer Relationships",
+                  "customerSegments": "Fixture content for Customer Segments",
+                  "keyResources": "Fixture content for Key Resources",
+                  "channels": "Fixture content for Channels",
+                  "costStructure": "Fixture content for Cost Structure",
+                  "revenueStreams": "Fixture content for Revenue Streams"
+                },
+                "analysisFeedback": {
+                  "strengths": "• Deterministic fixture strength",
+                  "suggestions": "• Validate this strategy with real evidence"
+                }
+              },
+              "receipt": {
+                "requestId": "req-g",
+                "provider": "fake",
+                "cached": true,
+                "durationMs": 0
+              }
+            },
+            "initial": {
+              "filename": "Business_Model_Canvas.svg",
+              "bytes": 35812,
+              "errors": 0,
+              "root": "svg",
+              "namespace": "http://www.w3.org/2000/svg",
+              "blocks": [
+                {
+                  "title": "Key Partners",
+                  "paragraphs": [
+                    "Fictional bicycle co-op: keep \"weekly repairs\" & <shared tools>."
+                  ]
+                },
+                {
+                  "title": "Key Activities",
+                  "paragraphs": [
+                    "Fixture content for Key Activities"
+                  ]
+                },
+                {
+                  "title": "Value Propositions",
+                  "paragraphs": [
+                    "Fixture content for Value Propositions"
+                  ]
+                },
+                {
+                  "title": "Customer Relationships",
+                  "paragraphs": [
+                    "Fixture content for Customer Relationships"
+                  ]
+                },
+                {
+                  "title": "Customer Segments",
+                  "paragraphs": [
+                    "Fixture content for Customer Segments"
+                  ]
+                },
+                {
+                  "title": "Key Resources",
+                  "paragraphs": [
+                    "Fixture content for Key Resources"
+                  ]
+                },
+                {
+                  "title": "Channels",
+                  "paragraphs": [
+                    "Fixture content for Channels"
+                  ]
+                },
+                {
+                  "title": "Cost Structure",
+                  "paragraphs": [
+                    "Fixture content for Cost Structure"
+                  ]
+                },
+                {
+                  "title": "Revenue Streams",
+                  "paragraphs": [
+                    "Fixture content for Revenue Streams"
+                  ]
+                }
+              ]
+            },
+            "analysis": [
+              "• Deterministic fixture strength",
+              "• Validate this strategy with real evidence"
+            ]
+          },
+          "rejection": {
+            "code": "invalid_request",
+            "message": "Check the request fields."
+          },
+          "final": {
+            "editVisible": true,
+            "analysisVisible": true,
+            "analysis": [
+              "• Deterministic fixture strength",
+              "• Validate this strategy with real evidence"
+            ],
+            "exportAvailable": true,
+            "artifact": {
+              "filename": "Business_Model_Canvas.svg",
+              "bytes": 35812,
+              "errors": 0,
+              "root": "svg",
+              "namespace": "http://www.w3.org/2000/svg",
+              "blocks": [
+                {
+                  "title": "Key Partners",
+                  "paragraphs": [
+                    "Fictional bicycle co-op: keep \"weekly repairs\" & <shared tools>."
+                  ]
+                },
+                {
+                  "title": "Key Activities",
+                  "paragraphs": [
+                    "Fixture content for Key Activities"
+                  ]
+                },
+                {
+                  "title": "Value Propositions",
+                  "paragraphs": [
+                    "Fixture content for Value Propositions"
+                  ]
+                },
+                {
+                  "title": "Customer Relationships",
+                  "paragraphs": [
+                    "Fixture content for Customer Relationships"
+                  ]
+                },
+                {
+                  "title": "Customer Segments",
+                  "paragraphs": [
+                    "Fixture content for Customer Segments"
+                  ]
+                },
+                {
+                  "title": "Key Resources",
+                  "paragraphs": [
+                    "Fixture content for Key Resources"
+                  ]
+                },
+                {
+                  "title": "Channels",
+                  "paragraphs": [
+                    "Fixture content for Channels"
+                  ]
+                },
+                {
+                  "title": "Cost Structure",
+                  "paragraphs": [
+                    "Fixture content for Cost Structure"
+                  ]
+                },
+                {
+                  "title": "Revenue Streams",
+                  "paragraphs": [
+                    "Fixture content for Revenue Streams"
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "caseDirectory": "regeneration-preservation--9a7a2-ty-and-can-recover-normally-chromium",
+        "observed": {
+          "rejection": {
+            "code": "invalid_request",
+            "message": "Check the request fields."
+          },
+          "recovered": {
+            "kind": "generate",
+            "result": {
+              "canvasData": {
+                "keyPartners": "Fixture content for Key Partners",
+                "keyActivities": "Fixture content for Key Activities",
+                "valuePropositions": "Fixture content for Value Propositions",
+                "customerRelationships": "Fixture content for Customer Relationships",
+                "customerSegments": "Fixture content for Customer Segments",
+                "keyResources": "Fixture content for Key Resources",
+                "channels": "Fixture content for Channels",
+                "costStructure": "Fixture content for Cost Structure",
+                "revenueStreams": "Fixture content for Revenue Streams"
+              },
+              "analysisFeedback": {
+                "strengths": "• Deterministic fixture strength",
+                "suggestions": "• Validate this strategy with real evidence"
+              }
+            },
+            "receipt": {
+              "requestId": "req-15",
+              "provider": "fake",
+              "cached": false,
+              "durationMs": 0
+            }
+          },
+          "artifact": {
+            "filename": "Business_Model_Canvas.svg",
+            "bytes": 35770,
+            "errors": 0,
+            "root": "svg",
+            "namespace": "http://www.w3.org/2000/svg",
+            "blocks": [
+              {
+                "title": "Key Partners",
+                "paragraphs": [
+                  "Fixture content for Key Partners"
+                ]
+              },
+              {
+                "title": "Key Activities",
+                "paragraphs": [
+                  "Fixture content for Key Activities"
+                ]
+              },
+              {
+                "title": "Value Propositions",
+                "paragraphs": [
+                  "Fixture content for Value Propositions"
+                ]
+              },
+              {
+                "title": "Customer Relationships",
+                "paragraphs": [
+                  "Fixture content for Customer Relationships"
+                ]
+              },
+              {
+                "title": "Customer Segments",
+                "paragraphs": [
+                  "Fixture content for Customer Segments"
+                ]
+              },
+              {
+                "title": "Key Resources",
+                "paragraphs": [
+                  "Fixture content for Key Resources"
+                ]
+              },
+              {
+                "title": "Channels",
+                "paragraphs": [
+                  "Fixture content for Channels"
+                ]
+              },
+              {
+                "title": "Cost Structure",
+                "paragraphs": [
+                  "Fixture content for Cost Structure"
+                ]
+              },
+              {
+                "title": "Revenue Streams",
+                "paragraphs": [
+                  "Fixture content for Revenue Streams"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "caseDirectory": "regeneration-preservation--fe19e-and-exports-the-new-content-chromium",
+        "observed": {
+          "initial": {
+            "body": {
+              "kind": "generate",
+              "result": {
+                "canvasData": {
+                  "keyPartners": "Fixture content for Key Partners",
+                  "keyActivities": "Fixture content for Key Activities",
+                  "valuePropositions": "Fixture content for Value Propositions",
+                  "customerRelationships": "Fixture content for Customer Relationships",
+                  "customerSegments": "Fixture content for Customer Segments",
+                  "keyResources": "Fixture content for Key Resources",
+                  "channels": "Fixture content for Channels",
+                  "costStructure": "Fixture content for Cost Structure",
+                  "revenueStreams": "Fixture content for Revenue Streams"
+                },
+                "analysisFeedback": {
+                  "strengths": "• Deterministic fixture strength",
+                  "suggestions": "• Validate this strategy with real evidence"
+                }
+              },
+              "receipt": {
+                "requestId": "req-w",
+                "provider": "fake",
+                "cached": true,
+                "durationMs": 1
+              }
+            },
+            "initial": {
+              "filename": "Business_Model_Canvas.svg",
+              "bytes": 35812,
+              "errors": 0,
+              "root": "svg",
+              "namespace": "http://www.w3.org/2000/svg",
+              "blocks": [
+                {
+                  "title": "Key Partners",
+                  "paragraphs": [
+                    "Fictional bicycle co-op: keep \"weekly repairs\" & <shared tools>."
+                  ]
+                },
+                {
+                  "title": "Key Activities",
+                  "paragraphs": [
+                    "Fixture content for Key Activities"
+                  ]
+                },
+                {
+                  "title": "Value Propositions",
+                  "paragraphs": [
+                    "Fixture content for Value Propositions"
+                  ]
+                },
+                {
+                  "title": "Customer Relationships",
+                  "paragraphs": [
+                    "Fixture content for Customer Relationships"
+                  ]
+                },
+                {
+                  "title": "Customer Segments",
+                  "paragraphs": [
+                    "Fixture content for Customer Segments"
+                  ]
+                },
+                {
+                  "title": "Key Resources",
+                  "paragraphs": [
+                    "Fixture content for Key Resources"
+                  ]
+                },
+                {
+                  "title": "Channels",
+                  "paragraphs": [
+                    "Fixture content for Channels"
+                  ]
+                },
+                {
+                  "title": "Cost Structure",
+                  "paragraphs": [
+                    "Fixture content for Cost Structure"
+                  ]
+                },
+                {
+                  "title": "Revenue Streams",
+                  "paragraphs": [
+                    "Fixture content for Revenue Streams"
+                  ]
+                }
+              ]
+            },
+            "analysis": [
+              "• Deterministic fixture strength",
+              "• Validate this strategy with real evidence"
+            ]
+          },
+          "replacement": {
+            "kind": "generate",
+            "result": {
+              "canvasData": {
+                "keyPartners": "Fixture content for Key Partners",
+                "keyActivities": "Fixture content for Key Activities",
+                "valuePropositions": "Fixture content for Value Propositions",
+                "customerRelationships": "Fixture content for Customer Relationships",
+                "customerSegments": "Fixture content for Customer Segments",
+                "keyResources": "Fixture content for Key Resources",
+                "channels": "Fixture content for Channels",
+                "costStructure": "Fixture content for Cost Structure",
+                "revenueStreams": "Fixture content for Revenue Streams"
+              },
+              "analysisFeedback": {
+                "strengths": "• Deterministic fixture strength",
+                "suggestions": "• Validate this strategy with real evidence"
+              }
+            },
+            "receipt": {
+              "requestId": "req-x",
+              "provider": "fake",
+              "cached": false,
+              "durationMs": 0
+            }
+          },
+          "artifact": {
+            "filename": "Business_Model_Canvas.svg",
+            "bytes": 35770,
+            "errors": 0,
+            "root": "svg",
+            "namespace": "http://www.w3.org/2000/svg",
+            "blocks": [
+              {
+                "title": "Key Partners",
+                "paragraphs": [
+                  "Fixture content for Key Partners"
+                ]
+              },
+              {
+                "title": "Key Activities",
+                "paragraphs": [
+                  "Fixture content for Key Activities"
+                ]
+              },
+              {
+                "title": "Value Propositions",
+                "paragraphs": [
+                  "Fixture content for Value Propositions"
+                ]
+              },
+              {
+                "title": "Customer Relationships",
+                "paragraphs": [
+                  "Fixture content for Customer Relationships"
+                ]
+              },
+              {
+                "title": "Customer Segments",
+                "paragraphs": [
+                  "Fixture content for Customer Segments"
+                ]
+              },
+              {
+                "title": "Key Resources",
+                "paragraphs": [
+                  "Fixture content for Key Resources"
+                ]
+              },
+              {
+                "title": "Channels",
+                "paragraphs": [
+                  "Fixture content for Channels"
+                ]
+              },
+              {
+                "title": "Cost Structure",
+                "paragraphs": [
+                  "Fixture content for Cost Structure"
+                ]
+              },
+              {
+                "title": "Revenue Streams",
+                "paragraphs": [
+                  "Fixture content for Revenue Streams"
+                ]
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "completedSvgDownloads": [
+      {
+        "caseDirectory": "regeneration-preservation--2f4ef-nvas-and-its-downloaded-SVG-chromium",
+        "file": "after-regeneration.svg",
+        "bytes": 35812,
+        "sha256": "a69eef3409307d6edc526c004471f155330dcadea2b54cb1ef79819ef143596c"
+      },
+      {
+        "caseDirectory": "regeneration-preservation--2f4ef-nvas-and-its-downloaded-SVG-chromium",
+        "file": "before-regeneration.svg",
+        "bytes": 35812,
+        "sha256": "936497e4af0e2a0f08c70c6a9dd587dc3c95fce4da06dc82e106b3dad5e81eaf"
+      },
+      {
+        "caseDirectory": "regeneration-preservation--68e22-nvas-and-its-downloaded-SVG-chromium",
+        "file": "after-regeneration.svg",
+        "bytes": 35812,
+        "sha256": "a69eef3409307d6edc526c004471f155330dcadea2b54cb1ef79819ef143596c"
+      },
+      {
+        "caseDirectory": "regeneration-preservation--68e22-nvas-and-its-downloaded-SVG-chromium",
+        "file": "before-regeneration.svg",
+        "bytes": 35812,
+        "sha256": "936497e4af0e2a0f08c70c6a9dd587dc3c95fce4da06dc82e106b3dad5e81eaf"
+      },
+      {
+        "caseDirectory": "regeneration-preservation--6ccdf-nvas-and-its-downloaded-SVG-chromium",
+        "file": "after-regeneration.svg",
+        "bytes": 35812,
+        "sha256": "a69eef3409307d6edc526c004471f155330dcadea2b54cb1ef79819ef143596c"
+      },
+      {
+        "caseDirectory": "regeneration-preservation--6ccdf-nvas-and-its-downloaded-SVG-chromium",
+        "file": "before-regeneration.svg",
+        "bytes": 35812,
+        "sha256": "936497e4af0e2a0f08c70c6a9dd587dc3c95fce4da06dc82e106b3dad5e81eaf"
+      },
+      {
+        "caseDirectory": "regeneration-preservation--9a7a2-ty-and-can-recover-normally-chromium",
+        "file": "recovered.svg",
+        "bytes": 35770,
+        "sha256": "51e25e9881925d9a8f48e6192ab6e16505531118a8ea7793f37c0822740d843d"
+      },
+      {
+        "caseDirectory": "regeneration-preservation--fe19e-and-exports-the-new-content-chromium",
+        "file": "before-regeneration.svg",
+        "bytes": 35812,
+        "sha256": "936497e4af0e2a0f08c70c6a9dd587dc3c95fce4da06dc82e106b3dad5e81eaf"
+      },
+      {
+        "caseDirectory": "regeneration-preservation--fe19e-and-exports-the-new-content-chromium",
+        "file": "replacement.svg",
+        "bytes": 35770,
+        "sha256": "cf1c5c12ad2f6cf5693feefaa2abe2bc601c5d74210d4fbeeba5cfe7fc4a2b88"
+      }
+    ]
+  },
+  "limits": [
+    "No live provider/model or hosted CI run",
+    "No reload persistence/undo or cross-template ownership claim",
+    "No PNG/JPEG/PDF paint or layout claim; openPR9 separately addresses existing paint loss",
+    "Existing4 dependency advisories remain; dependency files unchanged"
+  ],
+  "savedSamples": {
+    "baseline-saved-edit.svg": {
+      "bytes": 35812,
+      "sha256": "fe539c8092717c99212e5602c67a66c59fa973ada5d022f484f3f6c6931a3fe7"
+    },
+    "preserved-after-cancel.svg": {
+      "bytes": 35812,
+      "sha256": "a69eef3409307d6edc526c004471f155330dcadea2b54cb1ef79819ef143596c"
+    }
+  },
+  "checks": {
+    "secrets": {
+      "exitCode": 0
+    },
+    "types": {
+      "exitCode": 0
+    },
+    "lint": {
+      "exitCode": 0
+    },
+    "audit": {
+      "exitCode": 1,
+      "unchangedExistingAdvisories": 4
+    }
+  },
+  "fullSuite": {
+    "startTime": "2026-10-31T04:37:49.243Z",
+    "duration": 11599.294,
+    "expected": 9,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "committedLauncherFullSuite": {
+    "startTime": "2026-10-31T04:39:27.013Z",
+    "duration": 10758.638,
+    "expected": 9,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "unitSuite": {
+    "passed": 16,
+    "files": 6,
+    "durationMs": 710
+  }
+}
