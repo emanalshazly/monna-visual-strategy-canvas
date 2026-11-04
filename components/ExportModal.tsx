@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { toPng, toJpeg, toSvg } from 'html-to-image';
 import { jsPDF } from 'jspdf';
+import { createCanvasExportSnapshot } from '../services/canvasExportSnapshot';
 
 interface ExportModalProps {
   isOpen: boolean;
@@ -27,9 +28,11 @@ const ExportModal: React.FC<ExportModalProps> = ({ isOpen, onClose, canvasRef, c
         setExportFormat(format);
         setExportError('');
 
+        let snapshot: ReturnType<typeof createCanvasExportSnapshot> | undefined;
         try {
-            const element = canvasRef.current;
             await document.fonts?.ready;
+            snapshot = createCanvasExportSnapshot(canvasRef.current);
+            const element = snapshot.element;
             const fileName = canvasName.trim().replace(/[^a-z0-9]+/gi, '_').replace(/^_+|_+$/g, '');
 
             switch (format) {
@@ -52,6 +55,7 @@ const ExportModal: React.FC<ExportModalProps> = ({ isOpen, onClose, canvasRef, c
             console.error(`Export as ${format} failed:`, err);
             setExportError(`Failed to export as ${format.toUpperCase()}. Please try again.`);
         } finally {
+            snapshot?.dispose();
             setIsExporting(false);
             setExportFormat(null);
         }
