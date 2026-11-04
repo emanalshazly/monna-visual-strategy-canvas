@@ -45,4 +45,22 @@ describe('analysis API', () => {
     expect(response.json()).toMatchObject({ kind: 'refine', text: 'Refined: Local trust' });
     await app.close();
   });
+
+  it('accepts a successful refinement as the next refinement input', async () => {
+    const app = buildApp({ provider: new FakeAnalysisProvider() });
+    const payload = { action: 'refine', blockTitle: 'Strengths', currentContent: 'A'.repeat(10_000), originalUserInput: 'A fictional repair cooperative' };
+    try {
+      const first = await app.inject({ method: 'POST', url: '/api/analysis', payload });
+      expect(first.statusCode).toBe(200);
+      const second = await app.inject({ method: 'POST', url: '/api/analysis', payload: { ...payload, currentContent: first.json().text } });
+      expect(second.statusCode).toBe(200);
+      expect(second.json().text).toBe(`Refined: Refined: ${payload.currentContent}`);
+      const oversizedInput = await app.inject({ method: 'POST', url: '/api/analysis', payload: { ...payload, currentContent: 'A'.repeat(20_001) } });
+      expect(oversizedInput.statusCode).toBe(400);
+      const oversizedOutput = await app.inject({ method: 'POST', url: '/api/analysis', payload: { ...payload, currentContent: 'A'.repeat(19_992) } });
+      expect(oversizedOutput.statusCode).toBe(502);
+    } finally {
+      await app.close();
+    }
+  });
 });
