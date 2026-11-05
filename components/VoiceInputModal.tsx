@@ -32,10 +32,11 @@ const VoiceInputModal: React.FC<VoiceInputModalProps> = ({ isOpen, onClose, onSa
         startListening,
         stopListening,
         clearTranscript,
+        acknowledgeFinalResults,
     } = useSpeechRecognition();
 
     const [text, setText] = useState(initialTranscript);
-    const [interimEdited, setInterimEdited] = useState(false);
+    const [editedResultIds, setEditedResultIds] = useState<string[]>([]);
     const [language, setLanguage] = useState('en-US');
     const [showSettings, setShowSettings] = useState(false);
 
@@ -57,7 +58,7 @@ const VoiceInputModal: React.FC<VoiceInputModalProps> = ({ isOpen, onClose, onSa
         if (isOpen) {
             clearTranscript();
             setText(initialTranscript);
-            setInterimEdited(false);
+            setEditedResultIds([]);
         } else {
             stopListening();
             stopVisualizer();
@@ -66,32 +67,31 @@ const VoiceInputModal: React.FC<VoiceInputModalProps> = ({ isOpen, onClose, onSa
     }, [isOpen, clearTranscript, initialTranscript, stopListening, stopVisualizer]);
 
     useEffect(() => {
-        if(transcript.final) {
-            // A manual edit owns the visible utterance, including its interim text.
-            // Ignore later hypotheses/finalization for that utterance only.
-            if (interimEdited) {
-                setInterimEdited(false);
-                clearTranscript();
-                return;
-            }
+        if (!transcript.final.length) return;
+        for (const result of transcript.final) {
+            // Manual edits own only the results included in the visible draft.
+            // IDs include the session, so restarted recognition cannot reuse them.
+            if (editedResultIds.includes(result.id)) continue;
             // Voice command processing
-            const command = transcript.final.toLowerCase().trim();
+            const command = result.text.toLowerCase().trim();
             if (command.includes('stop recording')) {
                 handleStop();
             } else if (command.includes('clear text')) {
                 setText('');
                 clearTranscript();
+                break;
             } else {
-                 setText(prev => (prev ? prev + ' ' : '') + transcript.final);
+                 setText(prev => (prev ? prev + ' ' : '') + result.text);
             }
-            clearTranscript();
         }
-    }, [transcript.final, clearTranscript, handleStop, interimEdited]);
+        // Acknowledge only this batch; retain other interim/queued final results.
+        acknowledgeFinalResults(transcript.final.map(result => result.id));
+    }, [transcript.final, clearTranscript, handleStop, editedResultIds, acknowledgeFinalResults]);
     
     const handleStart = () => {
         if (!isListening) {
             setText(''); // Clear text on new recording session
-            setInterimEdited(false);
+            setEditedResultIds([]);
             startListening(language);
             startVisualizer();
         }
@@ -103,7 +103,8 @@ const VoiceInputModal: React.FC<VoiceInputModalProps> = ({ isOpen, onClose, onSa
     
     if (!isOpen) return null;
 
-    const fullTranscript = text + (!interimEdited && transcript.interim ? (text ? ' ' : '') + transcript.interim : '');
+    const interimText = transcript.interim.filter(result => !editedResultIds.includes(result.id)).map(result => result.text).join(' ');
+    const fullTranscript = text + (interimText ? (text ? ' ' : '') + interimText : '');
     const confidencePercentage = (confidence * 100).toFixed(0);
 
     return (
@@ -149,7 +150,7 @@ const VoiceInputModal: React.FC<VoiceInputModalProps> = ({ isOpen, onClose, onSa
                         value={fullTranscript}
                         onChange={(e) => {
                             setText(e.target.value);
-                            if (transcript.interim) setInterimEdited(true);
+                            setEditedResultIds(prev => [...new Set([...prev, ...transcript.interim.map(result => result.id)])]);
                         }}
                         placeholder="Your transcribed text will appear here..."
                     />

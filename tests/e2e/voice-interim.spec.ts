@@ -2,23 +2,36 @@ import { readFile } from 'node:fs/promises';
 import { expect, test, type Page } from '@playwright/test';
 
 async function speech(page: Page, text: string, final = false) {
-  await page.evaluate(async ({ text, final }) => {
-    const fixture = window as unknown as { voiceRecognition: { onresult(event: unknown): void } };
-    fixture.voiceRecognition.onresult({ resultIndex: 0, results: [Object.assign([{ transcript: text, confidence: 1 }], { isFinal: final })] });
+  await speechBatch(page, [[text, final]]);
+}
+
+async function speechBatch(page: Page, results: Array<[string, boolean]>) {
+  await page.evaluate(async (results) => {
+    const fixture = window as unknown as { voiceRecognition: { emit(results: Array<[string, boolean]>): void } };
+    fixture.voiceRecognition.emit(results);
     // Finalization can leave the displayed value unchanged. Wait for React's
     // effects before delivering the next utterance, rather than matching old text.
     await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
     await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
-  }, { text, final });
+  }, results);
 }
 
-for (const edit of [false, true]) {
-  test(`visible interim brief survives ${edit ? 'manual editing and finalization' : 'save without finalization'}, generation and export`, async ({ page }, testInfo) => {
+for (const scenario of ['save without finalization', 'manual editing', 'batched finalization', 'automatic restart']) {
+  test(`visible interim brief survives ${scenario}, generation and export`, async ({ page }, testInfo) => {
     await page.addInitScript(() => {
       class Recognition {
+        history: unknown[] = [];
+        onresult?: (event: unknown) => void;
+        onend?: () => void;
         constructor() { Object.assign(window, { voiceRecognition: this }); }
-        start() {}
+        start() { this.history = []; }
         stop() {}
+        emit(results: Array<[string, boolean]>) {
+          const resultIndex = this.history.length;
+          const batch = results.map(([text, isFinal]) => Object.assign([{ transcript: text, confidence: 1 }], { isFinal }));
+          this.onresult?.({ resultIndex, results: [...this.history, ...batch] });
+          this.history.push(...batch.filter(result => result.isFinal));
+        }
       }
       Object.assign(window, { SpeechRecognition: Recognition });
       // Keep this draft test independent of microphone permission/device behavior.
@@ -28,6 +41,7 @@ for (const edit of [false, true]) {
     await page.getByRole('button', { name: 'Advanced Voice Input', exact: true }).click();
     await page.getByRole('button', { name: 'Start Recording', exact: true }).click();
     const phrase = 'A fictional repair cooperative';
+    const edit = scenario !== 'save without finalization';
     const expected = edit ? `${phrase}. Serving local shops` : phrase;
     const editor = page.getByPlaceholder('Your transcribed text will appear here...');
     await speech(page, phrase);
@@ -36,11 +50,23 @@ for (const edit of [false, true]) {
       await editor.press('End');
       await editor.press('.');
       await expect(editor).toHaveValue(`${phrase}.`);
-      await speech(page, `${phrase} revised`);
-      await expect(editor).toHaveValue(`${phrase}.`);
-      await speech(page, `${phrase} revised`, true);
-      await expect(editor).toHaveValue(`${phrase}.`);
-      await speech(page, 'Serving local shops');
+      if (scenario === 'batched finalization') {
+        await speechBatch(page, [[`${phrase} revised`, true], ['Serving local shops', true]]);
+      } else if (scenario === 'automatic restart') {
+        await page.evaluate(() => {
+          const fixture = window as unknown as { voiceRecognition: { onend(): void } };
+          fixture.voiceRecognition.onend();
+        });
+        await speech(page, 'Serving shops');
+        await expect(editor).toHaveValue(`${phrase}. Serving shops`);
+        await speech(page, 'Serving local shops', true);
+      } else {
+        await speech(page, `${phrase} revised`);
+        await expect(editor).toHaveValue(`${phrase}.`);
+        await speech(page, `${phrase} revised`, true);
+        await expect(editor).toHaveValue(`${phrase}.`);
+        await speech(page, 'Serving local shops');
+      }
     }
     await expect(editor).toHaveValue(expected);
     await page.screenshot({ path: testInfo.outputPath('visible-brief.png') });

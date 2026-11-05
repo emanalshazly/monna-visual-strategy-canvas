@@ -9,11 +9,26 @@ vi.mock('@/hooks/useAudioVisualizer', () => ({ useAudioVisualizer: () => visuali
 class RecognitionFixture {
   static current: RecognitionFixture;
   onresult?: (event: unknown) => void;
+  onend?: () => void;
+  history: unknown[] = [];
   start = vi.fn();
   stop = vi.fn();
   constructor() { RecognitionFixture.current = this; }
   result(text: string, isFinal = false) {
-    this.onresult?.({ resultIndex: 0, results: [Object.assign([{ transcript: text, confidence: 1 }], { isFinal })] });
+    const resultIndex = this.history.length;
+    const result = Object.assign([{ transcript: text, confidence: 1 }], { isFinal });
+    this.onresult?.({ resultIndex, results: [...this.history, result] });
+    if (isFinal) this.history.push(result);
+  }
+  batch(results: Array<[string, boolean]>) {
+    const resultIndex = this.history.length;
+    const batch = results.map(([text, isFinal]) => Object.assign([{ transcript: text, confidence: 1 }], { isFinal }));
+    this.onresult?.({ resultIndex, results: [...this.history, ...batch] });
+    this.history.push(...batch.filter(result => result.isFinal));
+  }
+  end() {
+    this.history = [];
+    this.onend?.();
   }
 }
 
@@ -34,6 +49,90 @@ function speech(text: string, final = false) {
 }
 
 describe('voice interim draft ownership', () => {
+  it('retains unedited finals and interim text from one recognition event', async () => {
+    const { user, editor, onSave } = await openRecording();
+    act(() => RecognitionFixture.current.batch([['Repair cooperative', true], ['Serving shops', true], ['Open daily', false]]));
+    expect(editor).toHaveValue('Repair cooperative Serving shops Open daily');
+    await user.click(screen.getByRole('button', { name: 'Save & Close' }));
+    expect(onSave).toHaveBeenCalledWith('Repair cooperative Serving shops Open daily');
+  });
+
+  it('does not replay a final when a later event includes the same result index', async () => {
+    const { editor } = await openRecording();
+    speech('Repair cooperative', true);
+    act(() => RecognitionFixture.current.onresult?.({ resultIndex: 0, results: RecognitionFixture.current.history }));
+    expect(editor).toHaveValue('Repair cooperative');
+  });
+
+  it('preserves queued finals on both sides of an automatic restart', async () => {
+    const { user, editor } = await openRecording();
+    speech('Repair cooperative');
+    await user.type(editor, '.');
+    act(() => {
+      RecognitionFixture.current.batch([['Repair cooperative', true], ['Serving shops', true]]);
+      RecognitionFixture.current.end();
+      RecognitionFixture.current.result('Open daily', true);
+    });
+    expect(editor).toHaveValue('Repair cooperative. Serving shops Open daily');
+  });
+
+  it('preserves an unedited final after the edited result in one event', async () => {
+    const { user, editor, onSave } = await openRecording();
+    speech('Repair cooperative');
+    await user.type(editor, '.');
+    act(() => RecognitionFixture.current.batch([['Repair cooperative', true], ['Serving local shops', true]]));
+    expect(editor).toHaveValue('Repair cooperative. Serving local shops');
+    await user.click(screen.getByRole('button', { name: 'Save & Close' }));
+    expect(onSave).toHaveBeenCalledWith('Repair cooperative. Serving local shops');
+  });
+
+  it('preserves the next interim result delivered with an edited final', async () => {
+    const { user, editor, onSave } = await openRecording();
+    speech('Repair cooperative');
+    await user.type(editor, '.');
+    act(() => RecognitionFixture.current.batch([['Repair cooperative', true], ['Serving shops', false]]));
+    expect(editor).toHaveValue('Repair cooperative. Serving shops');
+    speech('Serving local shops', true);
+    expect(editor).toHaveValue('Repair cooperative. Serving local shops');
+    await user.click(screen.getByRole('button', { name: 'Save & Close' }));
+    expect(onSave).toHaveBeenCalledWith('Repair cooperative. Serving local shops');
+  });
+
+  it('accepts a new session result at the same index after an automatic restart', async () => {
+    const { user, editor, onSave } = await openRecording();
+    speech('Repair cooperative');
+    await user.type(editor, '.');
+    act(() => RecognitionFixture.current.end());
+    expect(RecognitionFixture.current.start).toHaveBeenCalledTimes(2);
+    expect(editor).toHaveValue('Repair cooperative.');
+    speech('Serving shops');
+    expect(editor).toHaveValue('Repair cooperative. Serving shops');
+    speech('Serving local shops', true);
+    expect(editor).toHaveValue('Repair cooperative. Serving local shops');
+    await user.click(screen.getByRole('button', { name: 'Save & Close' }));
+    expect(onSave).toHaveBeenCalledWith('Repair cooperative. Serving local shops');
+  });
+
+  it('retains multiple final events delivered before React renders', async () => {
+    const { user, editor } = await openRecording();
+    speech('Repair cooperative');
+    await user.type(editor, '.');
+    act(() => {
+      RecognitionFixture.current.result('Repair cooperative', true);
+      RecognitionFixture.current.result('Serving shops', true);
+    });
+    expect(editor).toHaveValue('Repair cooperative. Serving shops');
+  });
+
+  it('suppresses only the interim result identities included in a manual edit', async () => {
+    const { user, editor } = await openRecording();
+    act(() => RecognitionFixture.current.batch([['Repair', false], ['cooperative', false]]));
+    fireEvent.change(editor, { target: { value: 'Repair cooperative.' } });
+    act(() => RecognitionFixture.current.batch([['Repair', true], ['cooperative', true], ['Serving shops', true]]));
+    expect(editor).toHaveValue('Repair cooperative. Serving shops');
+    await user.click(screen.getByRole('button', { name: 'Save & Close' }));
+  });
+
   it('keeps ordinary manual edits and accepts speech when no interim phrase was edited', async () => {
     const { user, editor, onSave } = await openRecording();
     await user.type(editor, 'Manual brief.');
