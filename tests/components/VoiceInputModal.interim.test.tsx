@@ -30,6 +30,9 @@ class RecognitionFixture {
     this.history = [];
     this.onend?.();
   }
+  retractInterims() {
+    this.onresult?.({ resultIndex: this.history.length, results: [...this.history] });
+  }
 }
 
 beforeEach(() => { vi.stubGlobal('SpeechRecognition', RecognitionFixture); });
@@ -49,6 +52,65 @@ function speech(text: string, final = false) {
 }
 
 describe('voice interim draft ownership', () => {
+  it('accepts unrelated finals when a withdrawn interim index is reused', async () => {
+    const { user, editor, onSave } = await openRecording();
+    speech('Repair cooperative');
+    await user.type(editor, '.');
+    act(() => RecognitionFixture.current.retractInterims());
+    speech('Serving shops', true);
+    expect(editor).toHaveValue('Repair cooperative. Serving shops');
+    await user.click(screen.getByRole('button', { name: 'Save & Close' }));
+    expect(onSave).toHaveBeenCalledWith('Repair cooperative. Serving shops');
+  });
+
+  it('accepts new interim revisions after a trailing slot is withdrawn while retaining finals', async () => {
+    const { user, editor } = await openRecording();
+    speech('Original brief.', true);
+    speech('Repair cooperative');
+    await user.type(editor, '.');
+    act(() => RecognitionFixture.current.retractInterims());
+    speech('Serving shops');
+    expect(editor).toHaveValue('Original brief. Repair cooperative. Serving shops');
+    speech('Serving local shops', true);
+    expect(editor).toHaveValue('Original brief. Repair cooperative. Serving local shops');
+  });
+
+  for (const pieces of [['clear ', 'text'], ['cl', 'ear text']]) {
+    it(`recognizes a clear command split into ${JSON.stringify(pieces)} in one event`, async () => {
+      const { user, editor, onSave } = await openRecording();
+      await user.type(editor, 'Existing brief');
+      act(() => RecognitionFixture.current.batch(pieces.map(text => [text, true])));
+      expect(editor).toHaveValue('');
+      await user.click(screen.getByRole('button', { name: 'Save & Close' }));
+      expect(onSave).toHaveBeenCalledWith('');
+    });
+  }
+
+  it('recognizes stop recording split across adjacent finals in one event', async () => {
+    await openRecording();
+    act(() => RecognitionFixture.current.batch([['stop ', true], ['recording', true]]));
+    expect(RecognitionFixture.current.stop).toHaveBeenCalled();
+    expect(screen.getByRole('button', { name: 'Start Recording' })).toBeVisible();
+  });
+
+  it('does not assemble a command from separate recognition events queued before rendering', async () => {
+    const { user, editor } = await openRecording();
+    await user.type(editor, 'Existing');
+    act(() => {
+      RecognitionFixture.current.result('clear ', true);
+      RecognitionFixture.current.result('text', true);
+    });
+    expect((editor as HTMLTextAreaElement).value).toMatch(/^Existing clear\s+text$/);
+  });
+
+  it('excludes manually edited results from split command matching', async () => {
+    const { editor } = await openRecording();
+    speech('clear ');
+    fireEvent.change(editor, { target: { value: 'Manual correction.' } });
+    act(() => RecognitionFixture.current.batch([['clear ', true], ['text', true]]));
+    expect(editor).toHaveValue('Manual correction. text');
+  });
+
   it('retains unedited finals and interim text from one recognition event', async () => {
     const { user, editor, onSave } = await openRecording();
     act(() => RecognitionFixture.current.batch([['Repair cooperative', true], ['Serving shops', true], ['Open daily', false]]));

@@ -16,8 +16,9 @@ async function speechBatch(page: Page, results: Array<[string, boolean]>) {
   }, results);
 }
 
-for (const scenario of ['save without finalization', 'manual editing', 'batched finalization', 'automatic restart']) {
-  test(`visible interim brief survives ${scenario}, generation and export`, async ({ page }, testInfo) => {
+for (const scenario of ['save without finalization', 'manual editing', 'batched finalization', 'automatic restart', 'retracted interim', 'split clear command', 'split stop command']) {
+  const commandCase = scenario.startsWith('split ');
+  test(`visible interim brief survives ${scenario}${commandCase ? ' and save' : ', generation and export'}`, async ({ page }, testInfo) => {
     await page.addInitScript(() => {
       class Recognition {
         history: unknown[] = [];
@@ -42,7 +43,7 @@ for (const scenario of ['save without finalization', 'manual editing', 'batched 
     await page.getByRole('button', { name: 'Start Recording', exact: true }).click();
     const phrase = 'A fictional repair cooperative';
     const edit = scenario !== 'save without finalization';
-    const expected = edit ? `${phrase}. Serving local shops` : phrase;
+    let expected = edit ? `${phrase}. Serving local shops` : phrase;
     const editor = page.getByPlaceholder('Your transcribed text will appear here...');
     await speech(page, phrase);
     await expect(editor).toHaveValue(phrase);
@@ -50,7 +51,26 @@ for (const scenario of ['save without finalization', 'manual editing', 'batched 
       await editor.press('End');
       await editor.press('.');
       await expect(editor).toHaveValue(`${phrase}.`);
-      if (scenario === 'batched finalization') {
+      if (scenario === 'retracted interim') {
+        await speechBatch(page, []);
+        await speech(page, 'Serving shops');
+        await expect(editor).toHaveValue(`${phrase}. Serving shops`);
+        await speech(page, 'Serving local shops', true);
+      } else if (scenario === 'split clear command') {
+        await speech(page, phrase, true);
+        await speechBatch(page, [['clear ', true], ['text', true]]);
+        await expect(editor).toHaveValue('');
+        expected = 'A fictional replacement brief after clearing';
+        await editor.fill(expected);
+      } else if (scenario === 'split stop command') {
+        await speech(page, phrase, true);
+        await speechBatch(page, [['stop ', true], ['recording', true]]);
+        await expect(page.getByRole('button', { name: 'Start Recording', exact: true })).toBeVisible();
+        // Stop/reset draft retention is tracked separately in #13. This case
+        // proves command matching, then checks manual input still saves/exports.
+        expected = 'A fictional replacement brief after stopping';
+        await editor.fill(expected);
+      } else if (scenario === 'batched finalization') {
         await speechBatch(page, [[`${phrase} revised`, true], ['Serving local shops', true]]);
       } else if (scenario === 'automatic restart') {
         await page.evaluate(() => {
@@ -73,6 +93,9 @@ for (const scenario of ['save without finalization', 'manual editing', 'batched 
     await page.getByRole('button', { name: 'Save & Close', exact: true }).click();
     await expect(page.getByRole('dialog')).toHaveCount(0);
     await expect(page.getByPlaceholder(/Describe your business idea/)).toHaveValue(expected);
+    // Command cases prove recognition and the saved parent draft. Other cases
+    // cover generation/export without exhausting the shared gateway rate limit.
+    if (commandCase) return;
     const request = page.waitForRequest((r) => r.url().endsWith('/api/analysis') && r.method() === 'POST');
     await page.getByRole('button', { name: 'Generate Canvas', exact: true }).click();
     expect((await request).postDataJSON().userInput).toBe(expected);

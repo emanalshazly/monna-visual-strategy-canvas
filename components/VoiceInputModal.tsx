@@ -68,20 +68,28 @@ const VoiceInputModal: React.FC<VoiceInputModalProps> = ({ isOpen, onClose, onSa
 
     useEffect(() => {
         if (!transcript.final.length) return;
-        for (const result of transcript.final) {
+        for (let index = 0; index < transcript.final.length;) {
+            const result = transcript.final[index++];
             // Manual edits own only the results included in the visible draft.
             // IDs include the session, so restarted recognition cannot reuse them.
             if (editedResultIds.includes(result.id)) continue;
-            // Voice command processing
-            const command = result.text.toLowerCase().trim();
+            // A command can span adjacent results in one event, but cannot
+            // borrow words from another event or a manually edited result.
+            const batch = [result];
+            while (index < transcript.final.length &&
+                transcript.final[index].batchId === result.batchId &&
+                !editedResultIds.includes(transcript.final[index].id)) {
+                batch.push(transcript.final[index++]);
+            }
+            const command = batch.map(item => item.text).join('').toLowerCase().replace(/\s+/g, ' ').trim();
             if (command.includes('stop recording')) {
                 handleStop();
             } else if (command.includes('clear text')) {
                 setText('');
                 clearTranscript();
-                break;
             } else {
-                 setText(prev => (prev ? prev + ' ' : '') + result.text);
+                 const finalText = batch.map(item => item.text).join(' ');
+                 setText(prev => (prev ? prev + ' ' : '') + finalText);
             }
         }
         // Acknowledge only this batch; retain other interim/queued final results.

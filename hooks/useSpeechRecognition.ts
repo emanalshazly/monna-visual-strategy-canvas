@@ -11,6 +11,7 @@ declare global {
 export interface RecognitionResult {
     id: string;
     text: string;
+    batchId: number;
 }
 
 export interface SpeechRecognitionHook {
@@ -39,10 +40,14 @@ export const useSpeechRecognition = (): SpeechRecognitionHook => {
     const isListeningRef = useRef(false);
     const sessionRef = useRef(0);
     const deliveredFinalIds = useRef(new Set<string>());
+    const resultSlots = useRef<string[]>([]);
+    const nextResultId = useRef(0);
+    const nextBatchId = useRef(0);
 
     const beginSession = useCallback(() => {
         sessionRef.current += 1;
         deliveredFinalIds.current.clear();
+        resultSlots.current = [];
         // Retain queued finals, but hypotheses from the ended session are stale.
         setTranscript(prev => ({ interim: [], final: prev.final }));
     }, []);
@@ -64,9 +69,15 @@ export const useSpeechRecognition = (): SpeechRecognitionHook => {
             const interimResults: RecognitionResult[] = [];
             const finalResults: RecognitionResult[] = [];
             let lastConfidence = 0;
+            const batchId = nextBatchId.current++;
+            // Removed interim slots no longer identify the same utterance when
+            // the browser later reuses their result-list index.
+            resultSlots.current.length = event.results.length;
 
             for (let i = 0; i < event.results.length; ++i) {
-                const result = { id: `${sessionRef.current}:${i}`, text: event.results[i][0].transcript };
+                const id = resultSlots.current[i] ?? `${sessionRef.current}:${nextResultId.current++}`;
+                resultSlots.current[i] = id;
+                const result = { id, text: event.results[i][0].transcript, batchId };
                 if (event.results[i].isFinal) {
                     if (i >= event.resultIndex && !deliveredFinalIds.current.has(result.id)) {
                         deliveredFinalIds.current.add(result.id);
