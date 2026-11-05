@@ -35,6 +35,7 @@ const VoiceInputModal: React.FC<VoiceInputModalProps> = ({ isOpen, onClose, onSa
     } = useSpeechRecognition();
 
     const [text, setText] = useState(initialTranscript);
+    const [interimEdited, setInterimEdited] = useState(false);
     const [language, setLanguage] = useState('en-US');
     const [showSettings, setShowSettings] = useState(false);
 
@@ -56,6 +57,7 @@ const VoiceInputModal: React.FC<VoiceInputModalProps> = ({ isOpen, onClose, onSa
         if (isOpen) {
             clearTranscript();
             setText(initialTranscript);
+            setInterimEdited(false);
         } else {
             stopListening();
             stopVisualizer();
@@ -65,6 +67,13 @@ const VoiceInputModal: React.FC<VoiceInputModalProps> = ({ isOpen, onClose, onSa
 
     useEffect(() => {
         if(transcript.final) {
+            // A manual edit owns the visible utterance, including its interim text.
+            // Ignore later hypotheses/finalization for that utterance only.
+            if (interimEdited) {
+                setInterimEdited(false);
+                clearTranscript();
+                return;
+            }
             // Voice command processing
             const command = transcript.final.toLowerCase().trim();
             if (command.includes('stop recording')) {
@@ -77,23 +86,24 @@ const VoiceInputModal: React.FC<VoiceInputModalProps> = ({ isOpen, onClose, onSa
             }
             clearTranscript();
         }
-    }, [transcript.final, clearTranscript, handleStop]);
+    }, [transcript.final, clearTranscript, handleStop, interimEdited]);
     
     const handleStart = () => {
         if (!isListening) {
             setText(''); // Clear text on new recording session
+            setInterimEdited(false);
             startListening(language);
             startVisualizer();
         }
     };
     
     const handleSave = () => {
-        onSave(text);
+        onSave(fullTranscript);
     };
     
     if (!isOpen) return null;
 
-    const fullTranscript = text + (transcript.interim ? (text ? ' ' : '') + transcript.interim : '');
+    const fullTranscript = text + (!interimEdited && transcript.interim ? (text ? ' ' : '') + transcript.interim : '');
     const confidencePercentage = (confidence * 100).toFixed(0);
 
     return (
@@ -137,7 +147,10 @@ const VoiceInputModal: React.FC<VoiceInputModalProps> = ({ isOpen, onClose, onSa
                     <textarea
                         className="w-full grow p-3 border border-slate-300 dark:border-slate-600 rounded-md bg-slate-50 dark:bg-slate-700 text-slate-800 dark:text-slate-200 focus:ring-2 focus:ring-blue-500 focus:outline-hidden resize-none"
                         value={fullTranscript}
-                        onChange={(e) => setText(e.target.value)}
+                        onChange={(e) => {
+                            setText(e.target.value);
+                            if (transcript.interim) setInterimEdited(true);
+                        }}
                         placeholder="Your transcribed text will appear here..."
                     />
                     <div className="text-xs text-slate-500 dark:text-slate-400 mt-2 h-4">
