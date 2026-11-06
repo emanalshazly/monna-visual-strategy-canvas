@@ -34,7 +34,7 @@ export const CANVAS_TEMPLATES: Record<string, CanvasTemplate> = {
         { type: 'arrow', from: { x: 50, y: 22 }, to: { x: 50, y: 34 } }, // Top to Center
         { type: 'arrow', from: { x: 32, y: 50 }, to: { x: 34, y: 50 } }, // Left to Center
         { type: 'arrow', from: { x: 68, y: 50 }, to: { x: 66, y: 50 } }, // Right to Center
-        { type: 'arrow', from: { x: 50, y: 69 }, to: { x: 50, y: 91 } }  // Bottom to Center
+        { type: 'arrow', from: { x: 50, y: 69 }, to: { x: 50, y: 66 } }  // Bottom to Center
     ]
   },
   [CanvasType.SWOT_ANALYSIS]: {
