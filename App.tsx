@@ -89,11 +89,15 @@ const App: React.FC = () => {
                 hasAnalysis: !!result.analysisFeedback,
             });
 
-            // Check if this is the user's first canvas
-            const hasGeneratedBefore = localStorage.getItem('has_generated_canvas');
-            if (!hasGeneratedBefore) {
-                trackEvent(AnalyticsEventType.FIRST_CANVAS_CREATED, { canvasType });
-                localStorage.setItem('has_generated_canvas', 'true');
+            try {
+                // First-use metadata is optional, including when storage is full.
+                const hasGeneratedBefore = localStorage.getItem('has_generated_canvas');
+                if (!hasGeneratedBefore) {
+                    trackEvent(AnalyticsEventType.FIRST_CANVAS_CREATED, { canvasType });
+                    localStorage.setItem('has_generated_canvas', 'true');
+                }
+            } catch {
+                // A storage failure must not report successful generation as failed.
             }
         } catch (err: unknown) {
             const message = err instanceof Error ? err.message : 'An unknown error occurred.';

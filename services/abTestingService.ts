@@ -221,13 +221,14 @@ class ABTestingService {
    * Get user ID (generate if needed)
    */
   private getUserId(): UserId {
-    const stored = localStorage.getItem('abtest_user_id');
+    let stored: string | null = null;
+    try { stored = localStorage.getItem('abtest_user_id'); } catch { /* Storage may be unavailable. */ }
     if (stored) {
       return stored;
     }
 
     const newId = this.generateId();
-    localStorage.setItem('abtest_user_id', newId);
+    try { localStorage.setItem('abtest_user_id', newId); } catch { /* Keep the ID in this service instance. */ }
     return newId;
   }
 
@@ -235,13 +236,14 @@ class ABTestingService {
    * Get session ID (generate if needed)
    */
   private getSessionId(): string {
-    const stored = sessionStorage.getItem(SESSION_KEY);
+    let stored: string | null = null;
+    try { stored = sessionStorage.getItem(SESSION_KEY); } catch { /* Storage may be unavailable. */ }
     if (stored) {
       return stored;
     }
 
     const newId = this.generateId();
-    sessionStorage.setItem(SESSION_KEY, newId);
+    try { sessionStorage.setItem(SESSION_KEY, newId); } catch { /* Keep the ID in this service instance. */ }
     return newId;
   }
 
