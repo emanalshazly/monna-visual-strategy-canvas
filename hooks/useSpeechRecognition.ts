@@ -8,29 +8,49 @@ declare global {
     }
 }
 
+export interface RecognitionResult {
+    id: string;
+    text: string;
+    batchId: number;
+}
+
 export interface SpeechRecognitionHook {
     isListening: boolean;
     isSupported: boolean;
     error: string;
     transcript: {
-        interim: string;
-        final: string;
+        interim: RecognitionResult[];
+        final: RecognitionResult[];
     };
     confidence: number;
     toggleListening: () => void;
     stopListening: () => void;
     startListening: (lang: string) => void;
     clearTranscript: () => void;
+    acknowledgeFinalResults: (ids: string[]) => void;
 }
 
 export const useSpeechRecognition = (): SpeechRecognitionHook => {
     const [isListening, setIsListening] = useState<boolean>(false);
     const [isSupported, setIsSupported] = useState<boolean>(true);
     const [error, setError] = useState<string>('');
-    const [transcript, setTranscript] = useState({ interim: '', final: '' });
+    const [transcript, setTranscript] = useState<SpeechRecognitionHook['transcript']>({ interim: [], final: [] });
     const [confidence, setConfidence] = useState(0);
     const recognitionRef = useRef<any>(null);
     const isListeningRef = useRef(false);
+    const sessionRef = useRef(0);
+    const deliveredFinalIds = useRef(new Set<string>());
+    const resultSlots = useRef<string[]>([]);
+    const nextResultId = useRef(0);
+    const nextBatchId = useRef(0);
+
+    const beginSession = useCallback(() => {
+        sessionRef.current += 1;
+        deliveredFinalIds.current.clear();
+        resultSlots.current = [];
+        // Retain queued finals, but hypotheses from the ended session are stale.
+        setTranscript(prev => ({ interim: [], final: prev.final }));
+    }, []);
 
     useEffect(() => {
         if (!('SpeechRecognition' in window || 'webkitSpeechRecognition' in window)) {
@@ -46,22 +66,32 @@ export const useSpeechRecognition = (): SpeechRecognitionHook => {
         recognition.interimResults = true;
 
         recognition.onresult = (event: any) => {
-            let interimTranscript = '';
-            let finalTranscript = '';
+            const interimResults: RecognitionResult[] = [];
+            const finalResults: RecognitionResult[] = [];
             let lastConfidence = 0;
+            const batchId = nextBatchId.current++;
+            // Removed interim slots no longer identify the same utterance when
+            // the browser later reuses their result-list index.
+            resultSlots.current.length = event.results.length;
 
-            for (let i = event.resultIndex; i < event.results.length; ++i) {
+            for (let i = 0; i < event.results.length; ++i) {
+                const id = resultSlots.current[i] ?? `${sessionRef.current}:${nextResultId.current++}`;
+                resultSlots.current[i] = id;
+                const result = { id, text: event.results[i][0].transcript, batchId };
                 if (event.results[i].isFinal) {
-                    finalTranscript += event.results[i][0].transcript;
-                    lastConfidence = event.results[i][0].confidence;
+                    if (i >= event.resultIndex && !deliveredFinalIds.current.has(result.id)) {
+                        deliveredFinalIds.current.add(result.id);
+                        finalResults.push(result);
+                        lastConfidence = event.results[i][0].confidence;
+                    }
                 } else {
-                    interimTranscript += event.results[i][0].transcript;
+                    interimResults.push(result);
                 }
             }
             
             setTranscript(prev => ({
-                interim: interimTranscript,
-                final: prev.final + finalTranscript,
+                interim: interimResults,
+                final: [...prev.final, ...finalResults],
             }));
             if (lastConfidence > 0) {
                 setConfidence(lastConfidence);
@@ -79,6 +109,7 @@ export const useSpeechRecognition = (): SpeechRecognitionHook => {
             if (isListeningRef.current) {
                  // Restart listening if it was stopped unexpectedly
                 recognition.start();
+                beginSession();
             }
         };
         
@@ -87,13 +118,14 @@ export const useSpeechRecognition = (): SpeechRecognitionHook => {
                 recognitionRef.current.stop();
             }
         };
-    }, []);
+    }, [beginSession]);
 
     const startListening = useCallback((lang: string = 'en-US') => {
         if (recognitionRef.current && !isListening) {
             try {
                 recognitionRef.current.lang = lang;
                 recognitionRef.current.start();
+                beginSession();
                 isListeningRef.current = true;
                 setIsListening(true);
                 setError('');
@@ -102,7 +134,7 @@ export const useSpeechRecognition = (): SpeechRecognitionHook => {
                 setError("Could not start microphone. It might be in use by another application.");
             }
         }
-    }, [isListening]);
+    }, [isListening, beginSession]);
 
     const stopListening = useCallback(() => {
         if (recognitionRef.current && isListening) {
@@ -121,7 +153,11 @@ export const useSpeechRecognition = (): SpeechRecognitionHook => {
     }, [isListening, startListening, stopListening]);
 
     const clearTranscript = useCallback(() => {
-        setTranscript({ interim: '', final: '' });
+        setTranscript({ interim: [], final: [] });
+    }, []);
+
+    const acknowledgeFinalResults = useCallback((ids: string[]) => {
+        setTranscript(prev => ({ ...prev, final: prev.final.filter(result => !ids.includes(result.id)) }));
     }, []);
 
     return {
@@ -134,5 +170,6 @@ export const useSpeechRecognition = (): SpeechRecognitionHook => {
         stopListening,
         startListening,
         clearTranscript,
+        acknowledgeFinalResults,
     };
 };

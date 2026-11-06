@@ -32,9 +32,11 @@ const VoiceInputModal: React.FC<VoiceInputModalProps> = ({ isOpen, onClose, onSa
         startListening,
         stopListening,
         clearTranscript,
+        acknowledgeFinalResults,
     } = useSpeechRecognition();
 
     const [text, setText] = useState(initialTranscript);
+    const [editedResultIds, setEditedResultIds] = useState<string[]>([]);
     const [language, setLanguage] = useState('en-US');
     const [showSettings, setShowSettings] = useState(false);
 
@@ -56,6 +58,7 @@ const VoiceInputModal: React.FC<VoiceInputModalProps> = ({ isOpen, onClose, onSa
         if (isOpen) {
             clearTranscript();
             setText(initialTranscript);
+            setEditedResultIds([]);
         } else {
             stopListening();
             stopVisualizer();
@@ -64,36 +67,52 @@ const VoiceInputModal: React.FC<VoiceInputModalProps> = ({ isOpen, onClose, onSa
     }, [isOpen, clearTranscript, initialTranscript, stopListening, stopVisualizer]);
 
     useEffect(() => {
-        if(transcript.final) {
-            // Voice command processing
-            const command = transcript.final.toLowerCase().trim();
+        if (!transcript.final.length) return;
+        for (let index = 0; index < transcript.final.length;) {
+            const result = transcript.final[index++];
+            // Manual edits own only the results included in the visible draft.
+            // IDs include the session, so restarted recognition cannot reuse them.
+            if (editedResultIds.includes(result.id)) continue;
+            // A command can span adjacent results in one event, but cannot
+            // borrow words from another event or a manually edited result.
+            const batch = [result];
+            while (index < transcript.final.length &&
+                transcript.final[index].batchId === result.batchId &&
+                !editedResultIds.includes(transcript.final[index].id)) {
+                batch.push(transcript.final[index++]);
+            }
+            const command = batch.map(item => item.text).join('').toLowerCase().replace(/\s+/g, ' ').trim();
             if (command.includes('stop recording')) {
                 handleStop();
             } else if (command.includes('clear text')) {
                 setText('');
                 clearTranscript();
             } else {
-                 setText(prev => (prev ? prev + ' ' : '') + transcript.final);
+                 const finalText = batch.map(item => item.text).join(' ');
+                 setText(prev => (prev ? prev + ' ' : '') + finalText);
             }
-            clearTranscript();
         }
-    }, [transcript.final, clearTranscript, handleStop]);
+        // Acknowledge only this batch; retain other interim/queued final results.
+        acknowledgeFinalResults(transcript.final.map(result => result.id));
+    }, [transcript.final, clearTranscript, handleStop, editedResultIds, acknowledgeFinalResults]);
     
     const handleStart = () => {
         if (!isListening) {
             setText(''); // Clear text on new recording session
+            setEditedResultIds([]);
             startListening(language);
             startVisualizer();
         }
     };
     
     const handleSave = () => {
-        onSave(text);
+        onSave(fullTranscript);
     };
     
     if (!isOpen) return null;
 
-    const fullTranscript = text + (transcript.interim ? (text ? ' ' : '') + transcript.interim : '');
+    const interimText = transcript.interim.filter(result => !editedResultIds.includes(result.id)).map(result => result.text).join(' ');
+    const fullTranscript = text + (interimText ? (text ? ' ' : '') + interimText : '');
     const confidencePercentage = (confidence * 100).toFixed(0);
 
     return (
@@ -137,7 +156,10 @@ const VoiceInputModal: React.FC<VoiceInputModalProps> = ({ isOpen, onClose, onSa
                     <textarea
                         className="w-full grow p-3 border border-slate-300 dark:border-slate-600 rounded-md bg-slate-50 dark:bg-slate-700 text-slate-800 dark:text-slate-200 focus:ring-2 focus:ring-blue-500 focus:outline-hidden resize-none"
                         value={fullTranscript}
-                        onChange={(e) => setText(e.target.value)}
+                        onChange={(e) => {
+                            setText(e.target.value);
+                            setEditedResultIds(prev => [...new Set([...prev, ...transcript.interim.map(result => result.id)])]);
+                        }}
                         placeholder="Your transcribed text will appear here..."
                     />
                     <div className="text-xs text-slate-500 dark:text-slate-400 mt-2 h-4">
