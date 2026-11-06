@@ -90,7 +90,7 @@ export const useSpeechRecognition = (): SpeechRecognitionHook => {
     }, []);
 
     const startListening = useCallback((lang: string = 'en-US') => {
-        if (recognitionRef.current && !isListening) {
+        if (recognitionRef.current && !isListeningRef.current) {
             try {
                 recognitionRef.current.lang = lang;
                 recognitionRef.current.start();
@@ -102,15 +102,15 @@ export const useSpeechRecognition = (): SpeechRecognitionHook => {
                 setError("Could not start microphone. It might be in use by another application.");
             }
         }
-    }, [isListening]);
+    }, []);
 
     const stopListening = useCallback(() => {
-        if (recognitionRef.current && isListening) {
-            recognitionRef.current.stop();
+        if (recognitionRef.current && isListeningRef.current) {
             isListeningRef.current = false;
+            recognitionRef.current.stop();
             setIsListening(false);
         }
-    }, [isListening]);
+    }, []);
 
     const toggleListening = useCallback(() => {
         if (isListening) {
