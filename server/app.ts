@@ -46,13 +46,14 @@ export function buildApp({ provider, maxRequests = 20, windowMs = 60_000, timeou
       return reply.send({ kind: 'generate', result: cached.value, receipt: { requestId: request.id, provider: provider.name, cached: true, durationMs: Date.now() - startedAt } });
     }
 
+    let timeout: ReturnType<typeof setTimeout> | undefined;
     try {
       const operation = parsed.data.action === 'generate'
         ? provider.generate(parsed.data)
         : provider.refine(parsed.data);
       const value = await Promise.race([
         operation,
-        new Promise<never>((_, reject) => setTimeout(() => reject(new Error('provider_timeout')), timeoutMs)),
+        new Promise<never>((_, reject) => { timeout = setTimeout(() => reject(new Error('provider_timeout')), timeoutMs); }),
       ]);
       const receipt = { requestId: request.id, provider: provider.name, cached: false, durationMs: Date.now() - startedAt };
       if (parsed.data.action === 'refine') return reply.send({ kind: 'refine', text: zText(value), receipt });
@@ -66,6 +67,8 @@ export function buildApp({ provider, maxRequests = 20, windowMs = 60_000, timeou
     } catch (error) {
       request.log.error({ requestId: request.id, provider: provider.name, code: error instanceof Error ? error.message : 'provider_error', durationMs: Date.now() - startedAt }, 'analysis request failed');
       return reply.code(502).send({ code: 'provider_error', message: 'Strategy analysis is temporarily unavailable.' });
+    } finally {
+      if (timeout !== undefined) clearTimeout(timeout);
     }
   });
 
