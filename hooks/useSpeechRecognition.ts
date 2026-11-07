@@ -78,7 +78,13 @@ export const useSpeechRecognition = (): SpeechRecognitionHook => {
         recognition.onend = () => {
             if (isListeningRef.current) {
                  // Restart listening if it was stopped unexpectedly
-                recognition.start();
+                try {
+                    recognition.start();
+                } catch {
+                    isListeningRef.current = false;
+                    setIsListening(false);
+                    setError('Could not restart speech recognition. Please start recording again.');
+                }
             }
         };
         
