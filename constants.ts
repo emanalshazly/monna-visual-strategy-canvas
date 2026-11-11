@@ -9,14 +9,14 @@ export const CANVAS_TEMPLATES: Record<string, CanvasTemplate> = {
     blocks: [
       { id: 'keyPartners', title: 'Key Partners', description: 'Who are our key partners and suppliers?', x: 1, y: 1, width: 23, height: 48 },
       { id: 'keyActivities', title: 'Key Activities', description: 'What key activities do our value propositions require?', x: 25, y: 1, width: 23, height: 23 },
-      { id: 'valuePropositions', title: 'Value Propositions', description: 'What value do we deliver to the customer?', x: 49, y: 1, width: 23, height: 98 },
+      { id: 'valuePropositions', title: 'Value Propositions', description: 'What value do we deliver to the customer?', x: 49, y: 1, width: 23, height: 48 },
       { id: 'customerRelationships', title: 'Customer Relationships', description: 'What type of relationship does each customer segment expect?', x: 73, y: 1, width: 26, height: 23 },
       { id: 'customerSegments', title: 'Customer Segments', description: 'For whom are we creating value?', x: 73, y: 25, width: 26, height: 23 },
       { id: 'keyResources', title: 'Key Resources', description: 'What key resources do our value propositions require?', x: 25, y: 25, width: 23, height: 23 },
       { id: 'channels', title: 'Channels', description: 'Through which channels do our customer segments want to be reached?', x: 73, y: 50, width: 26, height: 48 },
       { id: 'costStructure', title: 'Cost Structure', description: 'What are the most important costs inherent in our business model?', x: 1, y: 50, width: 47, height: 48 },
       // FIX: Removed duplicate `revenueStreams` blocks and corrected the single entry.
-      { id: 'revenueStreams', title: 'Revenue Streams', description: 'For what value are our customers willing to pay?', x: 49, y: 50, width: 50, height: 48 },
+      { id: 'revenueStreams', title: 'Revenue Streams', description: 'For what value are our customers willing to pay?', x: 49, y: 50, width: 23, height: 48 },
     ],
   },
   [CanvasType.PORTERS_FIVE_FORCES]: {
