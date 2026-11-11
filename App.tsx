@@ -38,6 +38,8 @@ const App: React.FC = () => {
         clearCanvas,
     } = useCanvas(CanvasType.BUSINESS_MODEL_CANVAS);
 
+    const [dataCanvasType, setDataCanvasType] = useState<CanvasType>(canvasType);
+
     const { trackEvent } = useAnalytics();
 
     const [userInput, setUserInput] = useState<string>('');
@@ -61,6 +63,7 @@ const App: React.FC = () => {
         }
         setError('');
         setIsLoading(true);
+        setDataCanvasType(canvasType);
         clearCanvas();
         setAnalysisFeedback(null);
         const controller = new AbortController();
@@ -86,11 +89,15 @@ const App: React.FC = () => {
                 hasAnalysis: !!result.analysisFeedback,
             });
 
-            // Check if this is the user's first canvas
-            const hasGeneratedBefore = localStorage.getItem('has_generated_canvas');
-            if (!hasGeneratedBefore) {
-                trackEvent(AnalyticsEventType.FIRST_CANVAS_CREATED, { canvasType });
-                localStorage.setItem('has_generated_canvas', 'true');
+            try {
+                // First-use metadata is optional, including when storage is full.
+                const hasGeneratedBefore = localStorage.getItem('has_generated_canvas');
+                if (!hasGeneratedBefore) {
+                    trackEvent(AnalyticsEventType.FIRST_CANVAS_CREATED, { canvasType });
+                    localStorage.setItem('has_generated_canvas', 'true');
+                }
+            } catch {
+                // A storage failure must not report successful generation as failed.
             }
         } catch (err: unknown) {
             const message = err instanceof Error ? err.message : 'An unknown error occurred.';
@@ -182,6 +189,10 @@ const App: React.FC = () => {
     }, [editingBlock, userInput]);
     
     const currentTemplate = CANVAS_TEMPLATES[canvasType];
+    // Selection can change while a request is running or after editing.
+    // Keep the result with the template that requested it, including on return.
+    const isCurrentCanvas = dataCanvasType === canvasType;
+    const visibleCanvasData = isCurrentCanvas ? canvasData : {};
 
     return (
         <div className="min-h-screen flex flex-col text-slate-800 dark:text-slate-200 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
@@ -224,12 +235,12 @@ const App: React.FC = () => {
                         handleGenerate={handleGenerate}
                         onCancel={handleCancel}
                         isLoading={isLoading}
-                        isCanvasPopulated={Object.keys(canvasData).length > 0}
+                        isCanvasPopulated={Object.keys(visibleCanvasData).length > 0}
                         onExport={() => setIsExportModalOpen(true)}
                         onOpenVoiceModal={() => setIsVoiceModalOpen(true)}
                         error={error}
                     />
-                    {analysisFeedback && (
+                    {analysisFeedback && isCurrentCanvas && (
                         <AnalysisPanel 
                             analysis={analysisFeedback} 
                             onDismiss={() => setAnalysisFeedback(null)} 
@@ -239,8 +250,8 @@ const App: React.FC = () => {
 
                 <CanvasDisplay
                     isLoading={isLoading}
-                    currentTemplate={currentTemplate}
-                    canvasData={canvasData}
+                    currentTemplate={isLoading ? CANVAS_TEMPLATES[dataCanvasType] : currentTemplate}
+                    canvasData={visibleCanvasData}
                     handleEditBlock={handleEditBlock}
                     canvasRef={canvasRef}
                 />
@@ -257,7 +268,7 @@ const App: React.FC = () => {
                 />
                 
                 <ExportModal
-                    isOpen={isExportModalOpen}
+                    isOpen={isExportModalOpen && isCurrentCanvas}
                     onClose={() => setIsExportModalOpen(false)}
                     canvasRef={canvasRef}
                     canvasName={currentTemplate.name}

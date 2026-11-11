@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { SparklesIcon } from './IconComponents';
 
 interface EditModalProps {
@@ -13,10 +13,16 @@ interface EditModalProps {
 const EditModal: React.FC<EditModalProps> = ({ isOpen, title, initialContent, onClose, onSave, onRefine }) => {
   const [content, setContent] = useState(initialContent);
   const [isRefining, setIsRefining] = useState(false);
+  const activeRefinement = useRef<object | null>(null);
+  const draftRevision = useRef(0);
 
   useEffect(() => {
+    activeRefinement.current = null;
+    draftRevision.current += 1;
     setContent(initialContent);
-  }, [initialContent]);
+    setIsRefining(false);
+    return () => { activeRefinement.current = null; };
+  }, [initialContent, isOpen, title]);
 
   if (!isOpen) {
     return null;
@@ -27,15 +33,25 @@ const EditModal: React.FC<EditModalProps> = ({ isOpen, title, initialContent, on
   };
 
   const handleRefine = async () => {
+    if (activeRefinement.current) return;
+    const request = {};
+    const revision = draftRevision.current;
+    activeRefinement.current = request;
     setIsRefining(true);
     try {
         const refinedContent = await onRefine(content);
-        setContent(refinedContent);
+        // A reply may update only the unchanged draft in its original session.
+        if (activeRefinement.current === request && draftRevision.current === revision) {
+          setContent(refinedContent);
+        }
     } catch {
         // Error is handled by parent, but we stop loading
         console.error("Refinement failed in modal");
     } finally {
-        setIsRefining(false);
+        if (activeRefinement.current === request) {
+          activeRefinement.current = null;
+          setIsRefining(false);
+        }
     }
   };
 
@@ -47,7 +63,10 @@ const EditModal: React.FC<EditModalProps> = ({ isOpen, title, initialContent, on
           <textarea
             className="w-full h-64 p-3 border border-slate-300 dark:border-slate-600 rounded-md bg-slate-50 dark:bg-slate-700 text-slate-800 dark:text-slate-200 focus:ring-2 focus:ring-blue-500 focus:outline-hidden"
             value={content}
-            onChange={(e) => setContent(e.target.value)}
+            onChange={(e) => {
+              draftRevision.current += 1;
+              setContent(e.target.value);
+            }}
             placeholder="Enter your content here..."
           />
         </div>
