@@ -1,0 +1,53 @@
+{
+  "node": "22.23.4",
+  "platform": "Windows",
+  "tested_code_commit": "8c0dc39934609fcb8d883b2275239584bd07c1a1",
+  "runtime_origin": "https://nodejs.org/dist/v22.23.4/node-v22.23.4-win-x64.zip",
+  "archive_sha256": "cbc74b5e0982c9dbb41525fd8fb5dcd32fbee237863f7829072f4639a1ce5f20",
+  "checks": {
+    "check:secrets": "PASS",
+    "type-check": "PASS",
+    "lint": "PASS",
+    "test": {
+      "tests": 17,
+      "result": "PASS"
+    },
+    "build": "PASS",
+    "test:e2e": {
+      "tests": 6,
+      "result": "PASS",
+      "command": "npm run test:e2e -- --config ../.tools/visual-playwright.config.ts"
+    },
+    "npm audit --audit-level=high": {
+      "result": "FAIL (existing unchanged lockfile)",
+      "counts": {
+        "info": 0,
+        "low": 1,
+        "moderate": 18,
+        "high": 2,
+        "critical": 1,
+        "total": 22
+      }
+    }
+  },
+  "source_sha256": {
+    "server/contracts.ts": "188f17b17c53d6c315fbe93a0eeb117ae4482cca86b11816e85776b7fa675d04",
+    "server/app.ts": "35a7f2dafc9d9d53d94b9ea5ac7c371762ee13249b689451218e21d4cf8d76fd",
+    "server/app.test.ts": "1847f97091b9fc75aee220c66bb81f2b213730289b31fba3f2e017bfab26f4e7",
+    "tests/e2e/refinement-roundtrip.spec.ts": "db040624c90efb5c6c617302b165f96638ee2caf78704f3c94c47672e93f8b0b"
+  },
+  "completed_export_downloads": {
+    "refinement-roundtrip-refin-54d4d-in-and-exports-it-at-1280px-chromium": {
+      "bytes": 40705,
+      "sha256": "8fd4e88f9509f901698cd39a29101083bba00ed912b7fc23c1dec25f33c61e0e",
+      "xml_and_4_block_exact_text_assertions": "PASS"
+    },
+    "refinement-roundtrip-refin-f9309-ain-and-exports-it-at-393px-chromium": {
+      "bytes": 40693,
+      "sha256": "d3e830f742fa5b46d38cd6a67c90481778a235aa2f7d43eb8dfa0ca87d5426b3",
+      "xml_and_4_block_exact_text_assertions": "PASS"
+    }
+  },
+  "live_provider": "NOT RUN; real local gateway with existing fake provider",
+  "hosted_ci_claimed": false
+}
