@@ -1,0 +1,943 @@
+{
+  "baseCommit": "61a2067cce2d658094be73caaea2e05c67c4f63a",
+  "environment": {
+    "node": "24.3.0",
+    "bun": "1.4.4",
+    "playwright": "1.62.1",
+    "poppler": "26.03.0",
+    "browser": "Chromium",
+    "platform": "macOS arm64"
+  },
+  "sourceSha256": {
+    "components/ExportModal.tsx": "4f109d0164bafff57ca7ecae7371545270f4006cc7536e5fef131292b0041692",
+    "services/canvasExportSnapshot.ts": "28d189199a6eb563a488e72a92c7f073a55ad9fcf4e821b89c07342f47b98108",
+    "tests/e2e/export-paint.spec.ts": "b9e458da60683a15b28f3938f198d9c7141d0add902ce5f19aa61e32ba28f5e7"
+  },
+  "cases": [
+    {
+      "case": "export-paint-Business-Mode-59ea8--live-paint-and-edited-text-chromium",
+      "live": {
+        "fill": "rgb(255, 255, 255)",
+        "stroke": "oklch(0.869 0.022 252.894)",
+        "font": "18px",
+        "textColor": "oklch(0.279 0.041 260.031)",
+        "rgb": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "point": {
+          "x": 0.04489017647282249,
+          "y": 0.419189247519283
+        }
+      },
+      "before": {
+        "svg": {
+          "after": {
+            "fill": "rgb(0, 0, 0)",
+            "stroke": "none",
+            "font": "18.603px",
+            "textColor": "oklch(0.279 0.041 260.031)"
+          },
+          "xml": {
+            "errors": 0,
+            "root": "svg",
+            "blocks": 9,
+            "content": "Fictional Key Partners: \"repair & reuse\" <bikes>"
+          },
+          "failedRequests": []
+        },
+        "rasters": [
+          {
+            "format": "PNG",
+            "width": 1748,
+            "height": 2360,
+            "pixel": [
+              0,
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "format": "JPEG",
+            "width": 1748,
+            "height": 2360,
+            "pixel": [
+              0,
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "format": "PDF",
+            "width": 1166,
+            "height": 1574,
+            "pixel": [
+              0,
+              0,
+              0,
+              255
+            ]
+          }
+        ]
+      },
+      "after": {
+        "svg": {
+          "after": {
+            "fill": "rgb(255, 255, 255)",
+            "stroke": "oklch(0.869 0.022 252.894)",
+            "font": "18px",
+            "textColor": "oklch(0.279 0.041 260.031)"
+          },
+          "xml": {
+            "errors": 0,
+            "root": "svg",
+            "blocks": 9,
+            "content": "Fictional Key Partners: \"repair & reuse\" <bikes>"
+          },
+          "failedRequests": []
+        },
+        "rasters": [
+          {
+            "format": "PNG",
+            "width": 1748,
+            "height": 2360,
+            "pixel": [
+              255,
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "format": "JPEG",
+            "width": 1748,
+            "height": 2360,
+            "pixel": [
+              255,
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "format": "PDF",
+            "width": 1166,
+            "height": 1574,
+            "pixel": [
+              254,
+              254,
+              254,
+              255
+            ]
+          }
+        ]
+      },
+      "artifacts": [
+        {
+          "stage": "before",
+          "file": "Business_Model_Canvas.jpeg",
+          "bytes": 179906,
+          "sha256": "273179f0b43d4609f05104ece015fe588e2b385c39b37e96351e63448f91065a"
+        },
+        {
+          "stage": "before",
+          "file": "Business_Model_Canvas.pdf",
+          "bytes": 1474192,
+          "sha256": "a0dec082e409d5c3c8604b18708c1f0135b2e46c58c7eb64af4394d096fb8178"
+        },
+        {
+          "stage": "before",
+          "file": "Business_Model_Canvas.png",
+          "bytes": 1188907,
+          "sha256": "5c52441989873d31eba58718189591df47958270ae7a1af23d9a589efc382868"
+        },
+        {
+          "stage": "before",
+          "file": "Business_Model_Canvas.svg",
+          "bytes": 35796,
+          "sha256": "04ac635839ad98a9a747562bfaaf390737f79eacedc10515a50b7188242ecbcf"
+        },
+        {
+          "stage": "before",
+          "file": "pdf-page.png",
+          "bytes": 388607,
+          "sha256": "5bf3da86d1a818bf3ba10e5d390b1d1da71a67cd7f2fd97e0af869d197deba85"
+        },
+        {
+          "stage": "after",
+          "file": "Business_Model_Canvas.jpeg",
+          "bytes": 232119,
+          "sha256": "a90e8ce077fcc3ad56017b43d7e83e112661b5be1c0dfbdd528c456e7e77c103"
+        },
+        {
+          "stage": "after",
+          "file": "Business_Model_Canvas.pdf",
+          "bytes": 1551555,
+          "sha256": "7be7b3cea0423601e44df22c278f88547f6afd55064effdd311e2e8a8544d00c"
+        },
+        {
+          "stage": "after",
+          "file": "Business_Model_Canvas.png",
+          "bytes": 1201939,
+          "sha256": "3ff24d756b4f43b32fc13c095f61cd6ad855bee02872c905c148f8a55a87f6ea"
+        },
+        {
+          "stage": "after",
+          "file": "Business_Model_Canvas.svg",
+          "bytes": 1094933,
+          "sha256": "e701b47e8041bbdfdcea88927ccc2d549e32f187faf559663532c6bda9f008d4"
+        },
+        {
+          "stage": "after",
+          "file": "pdf-page.png",
+          "bytes": 410965,
+          "sha256": "efd954b57bfc6cd4df2784edb1c3633f0ffa739564df889fb71b9b81d302a830"
+        }
+      ]
+    },
+    {
+      "case": "export-paint-Porter-s-Five-cc39f--live-paint-and-edited-text-chromium",
+      "live": {
+        "fill": "rgb(255, 255, 255)",
+        "stroke": "oklch(0.869 0.022 252.894)",
+        "font": "18px",
+        "textColor": "oklch(0.279 0.041 260.031)",
+        "rgb": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "point": {
+          "x": 0.36544317333815934,
+          "y": 0.5220011837199583
+        }
+      },
+      "before": {
+        "svg": {
+          "after": {
+            "fill": "rgb(0, 0, 0)",
+            "stroke": "none",
+            "font": "18.603px",
+            "textColor": "oklch(0.279 0.041 260.031)"
+          },
+          "xml": {
+            "errors": 0,
+            "root": "svg",
+            "blocks": 5,
+            "content": "Fictional Competitive Rivalry: \"repair & reuse\" <bikes>"
+          },
+          "failedRequests": []
+        },
+        "rasters": [
+          {
+            "format": "PNG",
+            "width": 1748,
+            "height": 2360,
+            "pixel": [
+              0,
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "format": "JPEG",
+            "width": 1748,
+            "height": 2360,
+            "pixel": [
+              0,
+              0,
+              2,
+              255
+            ]
+          },
+          {
+            "format": "PDF",
+            "width": 1166,
+            "height": 1574,
+            "pixel": [
+              0,
+              0,
+              0,
+              255
+            ]
+          }
+        ]
+      },
+      "after": {
+        "svg": {
+          "after": {
+            "fill": "rgb(255, 255, 255)",
+            "stroke": "oklch(0.869 0.022 252.894)",
+            "font": "18px",
+            "textColor": "oklch(0.279 0.041 260.031)"
+          },
+          "xml": {
+            "errors": 0,
+            "root": "svg",
+            "blocks": 5,
+            "content": "Fictional Competitive Rivalry: \"repair & reuse\" <bikes>"
+          },
+          "failedRequests": []
+        },
+        "rasters": [
+          {
+            "format": "PNG",
+            "width": 1748,
+            "height": 2360,
+            "pixel": [
+              255,
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "format": "JPEG",
+            "width": 1748,
+            "height": 2360,
+            "pixel": [
+              255,
+              254,
+              255,
+              255
+            ]
+          },
+          {
+            "format": "PDF",
+            "width": 1166,
+            "height": 1574,
+            "pixel": [
+              254,
+              254,
+              254,
+              255
+            ]
+          }
+        ]
+      },
+      "artifacts": [
+        {
+          "stage": "before",
+          "file": "Porter_s_Five_Forces.jpeg",
+          "bytes": 171568,
+          "sha256": "17e6855f0ffc5bfbbe3a4269e55e708edfbd7255ca06568c172908addbc777d2"
+        },
+        {
+          "stage": "before",
+          "file": "Porter_s_Five_Forces.pdf",
+          "bytes": 1857323,
+          "sha256": "a6fe919747d724d6bb105494e5013a3bc7d0773a6cabbb99d747acc723b5c7e1"
+        },
+        {
+          "stage": "before",
+          "file": "Porter_s_Five_Forces.png",
+          "bytes": 1463790,
+          "sha256": "cdc9fa04fe7d298387a9c9fad1f0a4c04dc33787660fff0ee9fcdc401198f76f"
+        },
+        {
+          "stage": "before",
+          "file": "Porter_s_Five_Forces.svg",
+          "bytes": 32458,
+          "sha256": "8c33f52a46a772e966f2e037581f3a02003915e25133e34f2540afce3bba777d"
+        },
+        {
+          "stage": "before",
+          "file": "pdf-page.png",
+          "bytes": 485891,
+          "sha256": "b03313cb8c2d881548cec76e26192a693038215d4c8eea4f323123386f72b9c9"
+        },
+        {
+          "stage": "after",
+          "file": "Porter_s_Five_Forces.jpeg",
+          "bytes": 219469,
+          "sha256": "e833d417edde13d3f772fa1f57316177168f564bfaefff071051a908268581b6"
+        },
+        {
+          "stage": "after",
+          "file": "Porter_s_Five_Forces.pdf",
+          "bytes": 1916567,
+          "sha256": "0b931eac1d94ee3f045d417de46215229aadfd48fa8be04203ba61f998cfc6f5"
+        },
+        {
+          "stage": "after",
+          "file": "Porter_s_Five_Forces.png",
+          "bytes": 1473807,
+          "sha256": "b5d067b883cd843433affb535fb023fee52225c20bc0e53c3428b9390ca8eaa1"
+        },
+        {
+          "stage": "after",
+          "file": "Porter_s_Five_Forces.svg",
+          "bytes": 687923,
+          "sha256": "f29f12b3b0ff4fef2ab7d59bd42de0379875e5e45b0cfb3a620e58ded7ee4eca"
+        },
+        {
+          "stage": "after",
+          "file": "pdf-page.png",
+          "bytes": 507685,
+          "sha256": "0fdc2fee1648709131f97235cc061a1cdc41b0768aa437424a30707a2ec7da40"
+        }
+      ]
+    },
+    {
+      "case": "export-paint-SWOT-Analysis-0d410--live-paint-and-edited-text-chromium",
+      "live": {
+        "fill": "rgb(255, 255, 255)",
+        "stroke": "oklch(0.869 0.022 252.894)",
+        "font": "18px",
+        "textColor": "oklch(0.279 0.041 260.031)",
+        "rgb": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "point": {
+          "x": 0.04489017647282249,
+          "y": 0.40675682973053495
+        }
+      },
+      "before": {
+        "svg": {
+          "after": {
+            "fill": "rgb(0, 0, 0)",
+            "stroke": "none",
+            "font": "18.603px",
+            "textColor": "oklch(0.279 0.041 260.031)"
+          },
+          "xml": {
+            "errors": 0,
+            "root": "svg",
+            "blocks": 4,
+            "content": "Fictional Strengths: \"repair & reuse\" <bikes>"
+          },
+          "failedRequests": []
+        },
+        "rasters": [
+          {
+            "format": "PNG",
+            "width": 1748,
+            "height": 2360,
+            "pixel": [
+              0,
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "format": "JPEG",
+            "width": 1748,
+            "height": 2360,
+            "pixel": [
+              0,
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "format": "PDF",
+            "width": 1166,
+            "height": 1574,
+            "pixel": [
+              0,
+              0,
+              0,
+              255
+            ]
+          }
+        ]
+      },
+      "after": {
+        "svg": {
+          "after": {
+            "fill": "rgb(255, 255, 255)",
+            "stroke": "oklch(0.869 0.022 252.894)",
+            "font": "18px",
+            "textColor": "oklch(0.279 0.041 260.031)"
+          },
+          "xml": {
+            "errors": 0,
+            "root": "svg",
+            "blocks": 4,
+            "content": "Fictional Strengths: \"repair & reuse\" <bikes>"
+          },
+          "failedRequests": []
+        },
+        "rasters": [
+          {
+            "format": "PNG",
+            "width": 1748,
+            "height": 2360,
+            "pixel": [
+              255,
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "format": "JPEG",
+            "width": 1748,
+            "height": 2360,
+            "pixel": [
+              254,
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "format": "PDF",
+            "width": 1166,
+            "height": 1574,
+            "pixel": [
+              254,
+              254,
+              254,
+              255
+            ]
+          }
+        ]
+      },
+      "artifacts": [
+        {
+          "stage": "before",
+          "file": "SWOT_Analysis.jpeg",
+          "bytes": 139896,
+          "sha256": "5b7bb00fa4f1beb393821f81d2ee897df12585fb22b2c33a9e71efecbe0c946b"
+        },
+        {
+          "stage": "before",
+          "file": "SWOT_Analysis.pdf",
+          "bytes": 1286838,
+          "sha256": "7f830f1291b9f862bf3ed343aa2a8d34b84c2e6d8995746b8f0f612e5b16b964"
+        },
+        {
+          "stage": "before",
+          "file": "SWOT_Analysis.png",
+          "bytes": 1039142,
+          "sha256": "2835867a7f77dd7c604b3381705b344a10dd7d7e21a9961c840595bd2f094461"
+        },
+        {
+          "stage": "before",
+          "file": "SWOT_Analysis.svg",
+          "bytes": 30382,
+          "sha256": "a8c466e13c500437e00581829785a0ba01f92687fd5383c293348d042904f584"
+        },
+        {
+          "stage": "before",
+          "file": "pdf-page.png",
+          "bytes": 324626,
+          "sha256": "4a374c5f21196cdfe1ecc42cf992547a8dd2373d56ed79d318960ac4c86edfaf"
+        },
+        {
+          "stage": "after",
+          "file": "SWOT_Analysis.jpeg",
+          "bytes": 182488,
+          "sha256": "01307f0db975ab9c5476a9e28081d47d8eb92742b1a238d3400c17dae64783ba"
+        },
+        {
+          "stage": "after",
+          "file": "SWOT_Analysis.pdf",
+          "bytes": 1366494,
+          "sha256": "1d32bc94bb4eaa4b0292d9d86003398bf693093f03879b1421a301f50ccb5a30"
+        },
+        {
+          "stage": "after",
+          "file": "SWOT_Analysis.png",
+          "bytes": 1041841,
+          "sha256": "38340b10040db3530851ebd44cd981f13debb655abe6cc6e65d0f18330b5bfbe"
+        },
+        {
+          "stage": "after",
+          "file": "SWOT_Analysis.svg",
+          "bytes": 521836,
+          "sha256": "1e1f1d91e7e9a975be774e81d0d5a6f4aedace02176e420fb1f9577a75367868"
+        },
+        {
+          "stage": "after",
+          "file": "pdf-page.png",
+          "bytes": 339178,
+          "sha256": "1a61e631f7801f1f7abfeb427503486f3491fc300c7c0ca08b184389b903ea14"
+        }
+      ]
+    },
+    {
+      "case": "export-paint-SWOT-Analysis-2b4f4--live-paint-and-edited-text-chromium",
+      "live": {
+        "fill": "oklch(0.279 0.041 260.031)",
+        "stroke": "oklch(0.446 0.043 257.281)",
+        "font": "18px",
+        "textColor": "oklch(0.968 0.007 247.896)",
+        "rgb": [
+          29,
+          41,
+          61,
+          255
+        ],
+        "point": {
+          "x": 0.04489017647282249,
+          "y": 0.40675682973053495
+        }
+      },
+      "before": {
+        "svg": {
+          "after": {
+            "fill": "rgb(0, 0, 0)",
+            "stroke": "none",
+            "font": "18.603px",
+            "textColor": "oklch(0.929 0.013 255.508)"
+          },
+          "xml": {
+            "errors": 0,
+            "root": "svg",
+            "blocks": 4,
+            "content": "Fictional Strengths: \"repair & reuse\" <bikes>"
+          },
+          "failedRequests": []
+        },
+        "rasters": [
+          {
+            "format": "PNG",
+            "width": 1748,
+            "height": 2360,
+            "pixel": [
+              0,
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "format": "JPEG",
+            "width": 1748,
+            "height": 2360,
+            "pixel": [
+              0,
+              0,
+              2,
+              255
+            ]
+          },
+          {
+            "format": "PDF",
+            "width": 1166,
+            "height": 1574,
+            "pixel": [
+              0,
+              0,
+              0,
+              255
+            ]
+          }
+        ]
+      },
+      "after": {
+        "svg": {
+          "after": {
+            "fill": "oklch(0.279 0.041 260.031)",
+            "stroke": "oklch(0.446 0.043 257.281)",
+            "font": "18px",
+            "textColor": "oklch(0.968 0.007 247.896)"
+          },
+          "xml": {
+            "errors": 0,
+            "root": "svg",
+            "blocks": 4,
+            "content": "Fictional Strengths: \"repair & reuse\" <bikes>"
+          },
+          "failedRequests": []
+        },
+        "rasters": [
+          {
+            "format": "PNG",
+            "width": 1748,
+            "height": 2360,
+            "pixel": [
+              29,
+              41,
+              61,
+              255
+            ]
+          },
+          {
+            "format": "JPEG",
+            "width": 1748,
+            "height": 2360,
+            "pixel": [
+              29,
+              42,
+              61,
+              255
+            ]
+          },
+          {
+            "format": "PDF",
+            "width": 1166,
+            "height": 1574,
+            "pixel": [
+              28,
+              40,
+              60,
+              255
+            ]
+          }
+        ]
+      },
+      "artifacts": [
+        {
+          "stage": "before",
+          "file": "SWOT_Analysis.jpeg",
+          "bytes": 187524,
+          "sha256": "ad586ed05ef9a066a2b1977574bf339f96b7dae41194650860c80327e7fd95ff"
+        },
+        {
+          "stage": "before",
+          "file": "SWOT_Analysis.pdf",
+          "bytes": 1289787,
+          "sha256": "ba2ec366a6c1bdfd4ab5ec772dc9ad824d228d6dad6712c1565d92687d9b001a"
+        },
+        {
+          "stage": "before",
+          "file": "SWOT_Analysis.png",
+          "bytes": 1262898,
+          "sha256": "25cf6f98d4aa2a54cb4df93b0a7b342ecea30542ad963e5e0c73d2a99997ef1b"
+        },
+        {
+          "stage": "before",
+          "file": "SWOT_Analysis.svg",
+          "bytes": 30440,
+          "sha256": "3254ce9a4d911aa61d704d75674bed0be8fe1f3eb64b8b2b7d8e5e0185c9b5ce"
+        },
+        {
+          "stage": "before",
+          "file": "pdf-page.png",
+          "bytes": 377375,
+          "sha256": "40d15853662d25e62958836fd43c9f129d3ca41bce32963ee2b807a3a820329e"
+        },
+        {
+          "stage": "after",
+          "file": "SWOT_Analysis.jpeg",
+          "bytes": 180709,
+          "sha256": "399d37624617f7ade5f5d156e1a910464883c38b389034e24090d6686561fd51"
+        },
+        {
+          "stage": "after",
+          "file": "SWOT_Analysis.pdf",
+          "bytes": 1342105,
+          "sha256": "1715013272c162f7f7da8bb6518c6bfe0443454fdf6324515f1aab6c1f11daa0"
+        },
+        {
+          "stage": "after",
+          "file": "SWOT_Analysis.png",
+          "bytes": 1254973,
+          "sha256": "277fe1c9cf266a4105356028a9b384e71ff316c419b0994ee32fd52bc7f0e849"
+        },
+        {
+          "stage": "after",
+          "file": "SWOT_Analysis.svg",
+          "bytes": 521903,
+          "sha256": "5943128058eeef8672784908c28c379e08bbb6435d0f672bfa0dac6b21c60b4f"
+        },
+        {
+          "stage": "after",
+          "file": "pdf-page.png",
+          "bytes": 380684,
+          "sha256": "1f13a162b5acfc5060f2bc8f18bc2f13a826e42fd7143459b3a41196ebff51a4"
+        }
+      ]
+    },
+    {
+      "case": "export-paint-Value-Proposi-6ec59--live-paint-and-edited-text-chromium",
+      "live": {
+        "fill": "rgb(255, 255, 255)",
+        "stroke": "oklch(0.869 0.022 252.894)",
+        "font": "18px",
+        "textColor": "oklch(0.279 0.041 260.031)",
+        "rgb": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "point": {
+          "x": 0.04489017647282249,
+          "y": 0.5262273263677106
+        }
+      },
+      "before": {
+        "svg": {
+          "after": {
+            "fill": "rgb(0, 0, 0)",
+            "stroke": "none",
+            "font": "18.603px",
+            "textColor": "oklch(0.279 0.041 260.031)"
+          },
+          "xml": {
+            "errors": 0,
+            "root": "svg",
+            "blocks": 6,
+            "content": "Fictional Products & Services: \"repair & reuse\" <bikes>"
+          },
+          "failedRequests": []
+        },
+        "rasters": [
+          {
+            "format": "PNG",
+            "width": 1748,
+            "height": 2360,
+            "pixel": [
+              0,
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "format": "JPEG",
+            "width": 1748,
+            "height": 2360,
+            "pixel": [
+              0,
+              0,
+              0,
+              255
+            ]
+          },
+          {
+            "format": "PDF",
+            "width": 1166,
+            "height": 1574,
+            "pixel": [
+              0,
+              0,
+              0,
+              255
+            ]
+          }
+        ]
+      },
+      "after": {
+        "svg": {
+          "after": {
+            "fill": "rgb(255, 255, 255)",
+            "stroke": "oklch(0.869 0.022 252.894)",
+            "font": "18px",
+            "textColor": "oklch(0.279 0.041 260.031)"
+          },
+          "xml": {
+            "errors": 0,
+            "root": "svg",
+            "blocks": 6,
+            "content": "Fictional Products & Services: \"repair & reuse\" <bikes>"
+          },
+          "failedRequests": []
+        },
+        "rasters": [
+          {
+            "format": "PNG",
+            "width": 1748,
+            "height": 2360,
+            "pixel": [
+              255,
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "format": "JPEG",
+            "width": 1748,
+            "height": 2360,
+            "pixel": [
+              255,
+              255,
+              255,
+              255
+            ]
+          },
+          {
+            "format": "PDF",
+            "width": 1166,
+            "height": 1574,
+            "pixel": [
+              254,
+              254,
+              254,
+              255
+            ]
+          }
+        ]
+      },
+      "artifacts": [
+        {
+          "stage": "before",
+          "file": "Value_Proposition_Canvas.jpeg",
+          "bytes": 158670,
+          "sha256": "95f5327d32244ce6b253009d3d2e0683a02ed2d760a84fa62755da7aed0bb033"
+        },
+        {
+          "stage": "before",
+          "file": "Value_Proposition_Canvas.pdf",
+          "bytes": 1781426,
+          "sha256": "0bfeeeeaf8cbd4078b785815f6878bbae5ade244f09d700d99e07a2cb5d4dc83"
+        },
+        {
+          "stage": "before",
+          "file": "Value_Proposition_Canvas.png",
+          "bytes": 1408984,
+          "sha256": "acd4e05e073a943a1f0c7f2f38927b886c8bacfcd20c7a6e32f5cd663eeaddf9"
+        },
+        {
+          "stage": "before",
+          "file": "Value_Proposition_Canvas.svg",
+          "bytes": 33166,
+          "sha256": "63663aaede779dc01f4237292a79097bdfc40cda1d40b909633d2c7490549847"
+        },
+        {
+          "stage": "before",
+          "file": "pdf-page.png",
+          "bytes": 455774,
+          "sha256": "8fbf4a5e38819dd21cb6a0f2369e678afafd2efd60c5c4c62495c8914846bbae"
+        },
+        {
+          "stage": "after",
+          "file": "Value_Proposition_Canvas.jpeg",
+          "bytes": 183600,
+          "sha256": "c1785f6c296acc46d94fc33768c063b9c339e42064ec93930fbb7bcbb8e5aed5"
+        },
+        {
+          "stage": "after",
+          "file": "Value_Proposition_Canvas.pdf",
+          "bytes": 1858471,
+          "sha256": "8e61671230dd3ebde48648d8d1e7e405202c5bd8067794be28063fa2c2dedb6f"
+        },
+        {
+          "stage": "after",
+          "file": "Value_Proposition_Canvas.png",
+          "bytes": 1422744,
+          "sha256": "d9df9c1e77d85cc4e94595df4187ecfbb523dee3586e98ace63d4e918c9a9f28"
+        },
+        {
+          "stage": "after",
+          "file": "Value_Proposition_Canvas.svg",
+          "bytes": 814493,
+          "sha256": "6428efdfd45b4f2051b0d8e3ad0feeb3b7688c8bacc4a56b7b3a5674b1e29a23"
+        },
+        {
+          "stage": "after",
+          "file": "pdf-page.png",
+          "bytes": 471272,
+          "sha256": "7acce5f52f6de9b8c631766ede2f87b80d31ab730ca127c4b13041eaa6722f13"
+        }
+      ]
+    }
+  ]
+}
