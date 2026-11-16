@@ -483,7 +483,9 @@ class AnalyticsService {
     ];
 
     const rows = events.map((e) => [
-      e.timestamp.toISOString(),
+      // One stored event with an unparseable timestamp must not break the
+      // whole export: Date#toISOString throws RangeError on Invalid Date.
+      Number.isNaN(e.timestamp.getTime()) ? '' : e.timestamp.toISOString(),
       e.eventType,
       e.userId,
       e.experimentId || '',
@@ -492,7 +494,7 @@ class AnalyticsService {
       JSON.stringify(e.properties || {}),
     ]);
 
-    const csv = [headers, ...rows].map((row) => row.join(',')).join('\n');
+    const csv = [headers, ...rows].map((row) => row.map(toCsvField).join(',')).join('\n');
     return csv;
   }
 
@@ -509,6 +511,17 @@ class AnalyticsService {
   getSessionDuration(): number {
     return (Date.now() - this.sessionStartTime.getTime()) / 1000; // seconds
   }
+}
+
+/**
+ * Quote one CSV field (RFC 4180): fields containing a comma, quote, or line
+ * break are wrapped in double quotes with inner quotes doubled. Without
+ * this, the JSON `properties` column — which always contains commas and
+ * quotes — spills into extra columns and the downloaded file is unparseable.
+ */
+function toCsvField(value: string | number): string {
+  const text = String(value);
+  return /[\",\n\r]/.test(text) ? `"${text.replace(/"/g, '""')}"` : text;
 }
 
 // Singleton instance
